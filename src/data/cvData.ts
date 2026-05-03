@@ -131,12 +131,12 @@ export const cvData = {
       title: "Deals & WikiCamps Platform (Backend & Admin Portal)",
       tags: [".NET", "C#", "ASP.NET Core", "Retool", "Azure", "REST API"],
       shortDescription: "Scalable backend APIs and internal admin portal supporting bookings, deals, and content management.",
-      fullDescription: "Designed and maintained RESTful APIs powering the Deals and WikiCamps platform, integrated with a low-code Retool admin portal used by internal teams. Implemented secure configuration using Azure Key Vault, optimized performance with Redis caching, and structured data access with EF Core. Supported multi-environment deployments and ensured reliability for business-critical operations."
+      fullDescription: "Built and maintained RESTful APIs powering the Deals and WikiCamps platform, integrated with a low-code Retool admin portal used by internal teams. Implemented secure configuration using Azure Key Vault, optimized performance with Redis caching, and structured data access with EF Core. Supported multi-environment deployments and ensured reliability for business-critical operations."
     },
     {
       id: "optimatech-cloud",
       title: "Cloud-Based Meter Data Processing System",
-      tags: ["C#", "AWS S3", "AWS SQS", "Distributed Systems"],
+      tags: ["C#", "AWS S3", "AWS SQS", "BuildKite", "LaunchDarkly"],
       shortDescription: "High-throughput cloud system ensuring reliable and accurate meter data processing.",
       fullDescription: "Contributed to the design and development of a scalable cloud architecture using AWS S3 for storage and SQS for asynchronous messaging. Handled large volumes of meter data with a focus on reliability and data integrity, achieving ~99% accuracy. Refactored legacy components and improved system resilience and maintainability."
     },
@@ -157,7 +157,7 @@ export const cvData = {
     {
       id: "resort-systems",
       title: "Resort Operations System Suite (POS, CMS, ATS)",
-      tags: ["C#", "SQL Server", "System Design"],
+      tags: ["VB.NET", "SQL Server", "System Design"],
       shortDescription: "End-to-end system suite replacing manual resort operations.",
       fullDescription: "Led development of multiple in-house systems including POS, Casino Management, and biometric timekeeping. Automated manual workflows, improved operational efficiency, and centralized data management across departments."
     }
@@ -168,42 +168,42 @@ export const cvData = {
       title: "Google AI Studio Bootcamp: Build Pro Apps with Gemini",
       issuer: "Udemy",
       date: "2026",
-      url: "https://www.udemy.com/certificate/UC-8c04d79f-34ad-4f82-9ed3-5745947c64ff/"
+      url: "https://www.udemy.com/certificate/UC-ec50185e-3909-44b2-859a-bd9d2b91f7bd/"
     },
     {
       id: "udemy-claude-pro",
       title: "Claude Pro: Build, Integrate & Optimize AI Solutions",
       issuer: "Udemy",
       date: "2026",
-      url: "https://www.udemy.com/certificate/UC-8c04d79f-34ad-4f82-9ed3-5745947c64ff/"
+      url: "https://www.udemy.com/certificate/UC-4ab674fc-cda3-45a5-ae26-b3404f77560b/"
     },
     {
       id: "udemy-azure-bicep",
-      title: "Azure Bicep, Docker, Secure Code Reviews (2025)",
+      title: "Learn Infra as a Code with Azure Bicep",
       issuer: "Udemy",
       date: "2025",
-      url: "https://www.udemy.com/certificate/UC-8c04d79f-34ad-4f82-9ed3-5745947c64ff/"
+      url: "https://www.udemy.com/certificate/UC-49d83313-257a-496c-9907-8a189eb04dda/"
     },
     {
       id: "udemy-azure-devops",
-      title: "Azure DevOps CI/CD, AWS & Cloud Computing, Python Foundations",
+      title: "Learn Azure DevOps CI/CD pipelines",
       issuer: "Udemy",
-      date: "2024",
-      url: "https://www.udemy.com/certificate/UC-8c04d79f-34ad-4f82-9ed3-5745947c64ff/"
+      date: "2025",
+      url: "https://www.udemy.com/certificate/UC-56b397a8-e1e8-4468-8ef4-c515c04e1518/"
     },
     {
-      id: "udemy-aws",
-      title: "AWS Cloud Essentials, S3 Deep Dive",
+      id: "udemy-code-reviews",
+      title: "Code Reviews for Secure, Clean, and Scalable Code",
       issuer: "Udemy",
-      date: "2022",
-      url: "https://www.udemy.com/certificate/UC-8c04d79f-34ad-4f82-9ed3-5745947c64ff/"
+      date: "2024",
+      url: "https://www.udemy.com/certificate/UC-cb997fb5-4ea4-417c-b23d-8c23677b735f/"
     },
     {
       id: "project-sparta-data-engineering",
       title: "Data Engineering, Data Science & Machine Learning ",
       issuer: "Project SPARTA",
       date: "2022",
-      url: "https://www.spartaglobal.com/"
+      url: "https://sparta.dap.edu.ph/"
     }
   ] as Certification[]
 };
