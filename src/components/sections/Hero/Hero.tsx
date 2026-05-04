@@ -26,8 +26,7 @@ export const Hero: React.FC = () => {
           </h1>
 
           <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-lg leading-relaxed font-light mt-4">
-            Software engineer with 15+ years of experience across backend development, system integration, and enterprise platforms. Currently focused on .NET and Azure cloud services, building APIs, integrating distributed systems. Proven experience across cloud-based applications, manufacturing execution systems (MES), and SAP integrations, with a strong focus on reliability, scalability, and improving business operations.
-          </p>
+            Software engineer with 15+ years of experience building systems that support real business operations — spanning backend development, system integrations, and enterprise platforms. Currently focused on .NET and Azure, delivering APIs and distributed systems that are stable and maintainable at scale. Known for stepping into unfamiliar technology and delivering — from learning ABAP to bridge SAP-to-MES integrations to picking up Retool to build production admin tooling.          </p>
 
           <div className="mt-8 flex gap-6 items-center">
             <a
