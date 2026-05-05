@@ -35,7 +35,7 @@ export const Contact: React.FC = () => {
           </a>
 
           <div className="flex gap-8 justify-center items-center font-mono text-sm tracking-widest text-[var(--text-secondary)]">
-            <a href="https://linkedin.com/in/patrickgonzaga" target="_blank" rel="noreferrer" className="hover:text-[var(--text-primary)] transition-colors uppercase">
+            <a href="https://linkedin.com/in/patgonzaga" target="_blank" rel="noreferrer" className="hover:text-[var(--text-primary)] transition-colors uppercase">
               LinkedIn
             </a>
             <span className="w-1 h-1 rounded-full bg-[var(--border-color)]"></span>
