@@ -150,7 +150,7 @@ export const cvData = {
     {
       id: "enterprise-reporting",
       title: "Manufacturing Analytics & Reporting Platform",
-      tags: ["TIBCO Spotfire", "SQL", "Data Visualization"],
+      tags: ["TIBCO Spotfire", "Oracle", "Data Visualization"],
       shortDescription: "Real-time reporting platform for operational insights and decision-making.",
       fullDescription: "Developed interactive dashboards and reporting solutions using TIBCO Spotfire, enabling stakeholders to monitor production performance, identify bottlenecks, and improve decision-making. Enhanced visibility across operations and supported data-driven improvements."
     },

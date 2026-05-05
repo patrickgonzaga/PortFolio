@@ -1,7 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { cvData } from '../../../data/cvData';
 
 export const Hero: React.FC = () => {
+  const { personal } = cvData;
+  
+  // Splitting the name for the visual "First Name / Last Name" effect
+  // We'll use the first and last name from the personal data
+  const nameParts = personal.name.split(' ');
+  const firstName = nameParts[0];
+  const lastName = nameParts[nameParts.length - 1];
+
   return (
     <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 lg:px-20">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
@@ -16,17 +25,18 @@ export const Hero: React.FC = () => {
           <div className="inline-flex items-center gap-3">
             <span className="w-8 h-[1px] bg-[var(--text-primary)]"></span>
             <span className="text-sm tracking-widest uppercase text-[var(--text-secondary)] font-mono">
-              .NET · Azure · APIs
+              {personal.title.includes('|') ? personal.title.split('|')[1].trim() : personal.title}
             </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[var(--text-primary)] leading-[1.1]">
-            Patrick <br />
-            <span className="text-[var(--text-secondary)]">Gonzaga.</span>
+            {firstName} <br />
+            <span className="text-[var(--text-secondary)]">{lastName}.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-[var(--text-secondary)] max-w-lg leading-relaxed font-light mt-4">
-            Software engineer with 15+ years of experience building systems that support real business operations — spanning backend development, system integrations, and enterprise platforms. Currently focused on .NET and Azure, delivering APIs and distributed systems that are stable and maintainable at scale. Known for stepping into unfamiliar technology and delivering — from learning ABAP to bridge SAP-to-MES integrations to picking up Retool to build production admin tooling.          </p>
+            {personal.overview}
+          </p>
 
           <div className="mt-8 flex gap-6 items-center">
             <a
@@ -54,7 +64,7 @@ export const Hero: React.FC = () => {
           <div className="relative w-[300px] h-[450px] md:w-[400px] md:h-[600px] rounded-2xl overflow-hidden glass-panel group">
             <img
               src="/pat.jpg"
-              alt="Patrick Gonzaga"
+              alt={personal.name}
               className="w-full h-full object-cover object-top filter opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-transparent to-transparent opacity-60"></div>
