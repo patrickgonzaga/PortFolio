@@ -164,6 +164,13 @@ export const cvData = {
   ],
   certifications: [
     {
+      id: "udemy-n8n",
+      title: "N8N Masterclass: Learn Basic AI & Automation using N8N",
+      issuer: "Udemy",
+      date: "2026",
+      url: ""
+    },
+    {
       id: "udemy-ai",
       title: "Google AI Studio Bootcamp: Build Pro Apps with Gemini",
       issuer: "Udemy",
