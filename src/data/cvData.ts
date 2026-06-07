@@ -185,7 +185,7 @@ export const cvData = {
       url: "https://www.udemy.com/certificate/UC-ec50185e-3909-44b2-859a-bd9d2b91f7bd/"
     },
     {
-      id: "udemy-claude-pro",
+      id: "udemy-claude-code-pro",
       title: "Claude Pro: Build, Integrate & Optimize AI Solutions",
       issuer: "Udemy",
       date: "2026",

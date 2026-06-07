@@ -1,0 +1,138 @@
+name: 🤖 AI PR Description
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  generate-description:
+    name: Generate PR description with Gemini
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get diff
+        id: diff
+        run: |
+          DIFF=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- . \
+            ':(exclude)*.lock' \
+            ':(exclude)package-lock.json' \
+            ':(exclude)*.min.js' \
+            ':(exclude)*.min.css' \
+            | head -c 8000)
+          DIFF_ESCAPED=$(echo "$DIFF" | python3 -c "import sys, json; print(json.dumps(sys.stdin.read()))")
+          echo "diff=$DIFF_ESCAPED" >> $GITHUB_OUTPUT
+
+      - name: Get changed files summary
+        id: files
+        run: |
+          FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD | head -50 | tr '\n' ', ')
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+
+      - name: Generate PR description via Gemini
+        id: gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          BRANCH="${{ github.event.pull_request.head.ref }}"
+          BASE="${{ github.event.pull_request.base.ref }}"
+          FILES="${{ steps.files.outputs.files }}"
+          DIFF=${{ steps.diff.outputs.diff }}
+
+          PROMPT="You are a senior developer writing a GitHub Pull Request description. \
+          Generate a professional, detailed PR description based on the information below. \
+          Follow this EXACT markdown format — fill in every section, do NOT skip any. \
+          Auto-check the correct Type of Change checkbox by replacing '- [ ]' with '- [x]' for the matching type. \
+          \n\nBranch: $BRANCH -> $BASE \
+          \nTitle: $PR_TITLE \
+          \nChanged files: $FILES \
+          \nDiff (may be truncated): $DIFF \
+          \n\n---FORMAT START---\
+          \n# [emoji] [Descriptive Title based on the changes]\
+          \n\
+          \n## 📝 Description\
+          \n[Clear summary of WHAT changed, WHY, and HOW. Use bullet points.]\
+          \n\
+          \n- **Changed:** [what specifically changed]\
+          \n- **Why:** [the reason / motivation]\
+          \n- **Approach:** [how it was implemented]\
+          \n\
+          \n## 💡 Type of Change\
+          \n- [ ] ✨ \`feat\` — New feature (non-breaking)\
+          \n- [ ] 🐛 \`fix\` — Bug fix (non-breaking)\
+          \n- [ ] ♻️ \`refactor\` — Code restructure (no behavior change)\
+          \n- [ ] 📚 \`docs\` — Documentation update\
+          \n- [ ] 🔧 \`chore\` — Maintenance / dependencies\
+          \n- [ ] 🏗️ \`ci\` — Build/CI pipeline change\
+          \n- [ ] 💥 \`breaking\` — Breaking change (existing functionality affected)\
+          \n\
+          \n## 🖼️ Screenshots / Recordings\
+          \nN/A\
+          \n\
+          \n## ✅ Review Checklist\
+          \n- [ ] 🧐 Code follows SOLID principles and workspace standards\
+          \n- [ ] 🔍 Self-reviewed — no debug logs, commented-out code, or TODOs left in\
+          \n- [ ] 🎨 UI changes queried through \`ui-ux-pro-max\` design system\
+          \n- [ ] 🧪 Tests added or updated — all passing locally\
+          \n- [ ] 📖 Documentation updated (if applicable)\
+          \n- [ ] 🚦 No new linting warnings or TypeScript errors\
+          \n- [ ] 🔒 No secrets or credentials committed\
+          \n\
+          \n## 🔗 Related\
+          \n- Closes: #\
+          \n- Refs: \
+          \n---FORMAT END---\
+          \nReturn ONLY the filled markdown. No preamble, no code fences, no extra text."
+
+          RESPONSE=$(curl -s \
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"contents\": [{
+                \"parts\": [{
+                  \"text\": $(echo "$PROMPT" | python3 -c "import sys, json; print(json.dumps(sys.stdin.read()))")
+                }]
+              }],
+              \"generationConfig\": {
+                \"temperature\": 0.3,
+                \"maxOutputTokens\": 2048
+              }
+            }")
+
+          DESCRIPTION=$(echo "$RESPONSE" | python3 -c "
+          import sys, json
+          data = json.load(sys.stdin)
+          try:
+              text = data['candidates'][0]['content']['parts'][0]['text']
+              lines = text.strip().splitlines()
+              if lines and lines[0].startswith('\`\`\`'):
+                  lines = lines[1:]
+              if lines and lines[-1].startswith('\`\`\`'):
+                  lines = lines[:-1]
+              print('\n'.join(lines))
+          except (KeyError, IndexError):
+              print('<!-- Gemini generation failed. Please fill in the description manually. -->')
+              print(f'<!-- Response: {data} -->')
+          ")
+
+          echo "$DESCRIPTION" > /tmp/pr_description.txt
+          echo "--- Preview (first 10 lines) ---"
+          head -10 /tmp/pr_description.txt
+
+      - name: Update PR description
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr edit ${{ github.event.pull_request.number }} \
+            --body "$(cat /tmp/pr_description.txt)" \
+            --repo ${{ github.repository }}
+          echo "✅ PR description updated."
