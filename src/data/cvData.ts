@@ -171,6 +171,13 @@ export const cvData = {
       url: ""
     },
     {
+      id: "udemy-react",
+      title: "The Complete ReactJs Course - Basics to Advanced",
+      issuer: "Udemy",
+      date: "2026",
+      url: "https://www.udemy.com/certificate/UC-42f4b61e-e673-4ed5-b8bc-42fdb952837f"
+    },
+    {
       id: "udemy-ai",
       title: "Google AI Studio Bootcamp: Build Pro Apps with Gemini",
       issuer: "Udemy",
