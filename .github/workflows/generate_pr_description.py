@@ -166,19 +166,26 @@ for provider, model, key in provider_queue:
     if description:
         break
 
+# Cleanup accidental markdown code fences from response wrapping safely
+def clean_response(text):
+    text = text.strip()
+    # Remove leading ```markdown or ```
+    if text.startswith("```"):
+        first_newline = text.find("\n")
+        if first_newline != -1:
+            text = text[first_newline:].strip()
+    # Remove trailing ```
+    if text.endswith("```"):
+        text = text[:-3].strip()
+    return text
+
 if not description:
     description = (
         f"<!-- AI Generation failed. Last error: {last_error} -->\n"
         "<!-- Please fill in the description manually. -->"
     )
 else:
-    # Cleanup accidental markdown code fences from response wrapping
-    lines = description.splitlines()
-    if lines and lines[0].startswith("```"):
-        lines = lines[1:]
-    if lines and lines[-1].startswith("```"):
-        lines = lines[:-1]
-    description = "\n".join(lines)
+    description = clean_response(description)
 
 with open("/tmp/pr_description.txt", "w") as f:
     f.write(description)
