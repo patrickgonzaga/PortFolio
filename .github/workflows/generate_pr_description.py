@@ -58,9 +58,14 @@ N/A
 - Refs: """
 
 prompt = f"""You are a senior developer writing a GitHub Pull Request description.
-Generate a professional, detailed PR description based on the information below.
-Follow this EXACT markdown format — fill in every section, do NOT skip any.
-Auto-check the correct Type of Change checkbox by replacing '- [ ]' with '- [x]' for the matching type.
+Generate a professional, detailed PR description by filling in the template below.
+
+CRITICAL INSTRUCTIONS:
+1. You MUST keep the EXACT structure and all headers from the template. Do not delete any headers or sections.
+2. Under "Type of Change", auto-check the correct checkbox by replacing '- [ ]' with '- [x]' for the matching type based on the diff. Leave other boxes unchecked as '- [ ]'.
+3. Under "Review Checklist", leave the checkboxes as '- [ ]' (do not check them).
+4. Fill in the "Description" details accurately using the provided git diff.
+5. Do NOT include markdown code blocks wrapping the entire response. Start directly with the title '#'.
 
 Branch: {branch} -> {base}
 Title: {pr_title}
@@ -68,11 +73,9 @@ Changed files: {files}
 Diff (may be truncated):
 {diff}
 
----FORMAT START---
+--- TEMPLATE TO FILL IN ---
 {template}
----FORMAT END---
-
-Return ONLY the filled markdown. No preamble, no code fences, no extra text."""
+--------------------------"""
 
 def try_gemini(model, key):
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
