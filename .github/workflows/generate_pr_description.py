@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """
-Generates a PR description using the Gemini API and writes it to /tmp/pr_description.txt.
-Called by the ai-pr-description.yml GitHub Actions workflow.
+Generates a PR description using Gemini, Anthropic, or OpenAI APIs.
+Dynamically detects configured keys and falls back across models/providers.
 """
 import os
 import json
+import time
 import urllib.request
+import urllib.error
 
-api_key  = os.environ["GEMINI_API_KEY"]
+# Retrieve API Keys
+gemini_key    = os.environ.get("GEMINI_API_KEY")
+anthropic_key = os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("CLAUDE_API_KEY")
+openai_key    = os.environ.get("OPENAI_API_KEY")
+
 pr_title = os.environ.get("PR_TITLE", "")
 branch   = os.environ.get("PR_BRANCH", "")
 base     = os.environ.get("PR_BASE", "")
@@ -68,34 +74,111 @@ Diff (may be truncated):
 
 Return ONLY the filled markdown. No preamble, no code fences, no extra text."""
 
-payload = json.dumps({
-    "contents": [{"parts": [{"text": prompt}]}],
-    "generationConfig": {"temperature": 0.3, "maxOutputTokens": 2048}
-}).encode("utf-8")
-
-url = (
-    "https://generativelanguage.googleapis.com/v1beta/"
-    f"models/gemini-2.0-flash:generateContent?key={api_key}"
-)
-req = urllib.request.Request(
-    url, data=payload, headers={"Content-Type": "application/json"}
-)
-
-try:
+def try_gemini(model, key):
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
+    payload = json.dumps({
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {"temperature": 0.3, "maxOutputTokens": 2048}
+    }).encode("utf-8")
+    req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req) as resp:
         data = json.loads(resp.read())
-    text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
-    lines = text.splitlines()
+    return data["candidates"][0]["content"]["parts"][0]["text"].strip()
+
+def try_anthropic(model, key):
+    url = "https://api.anthropic.com/v1/messages"
+    payload = json.dumps({
+        "model": model,
+        "max_tokens": 2048,
+        "temperature": 0.3,
+        "messages": [{"role": "user", "content": prompt}]
+    }).encode("utf-8")
+    req = urllib.request.Request(url, data=payload, headers={
+        "Content-Type": "application/json",
+        "x-api-key": key,
+        "anthropic-version": "2023-06-01"
+    })
+    with urllib.request.urlopen(req) as resp:
+        data = json.loads(resp.read())
+    return data["content"][0]["text"].strip()
+
+def try_openai(model, key):
+    url = "https://api.openai.com/v1/chat/completions"
+    payload = json.dumps({
+        "model": model,
+        "temperature": 0.3,
+        "max_tokens": 2048,
+        "messages": [{"role": "user", "content": prompt}]
+    }).encode("utf-8")
+    req = urllib.request.Request(url, data=payload, headers={
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {key}"
+    })
+    with urllib.request.urlopen(req) as resp:
+        data = json.loads(resp.read())
+    return data["choices"][0]["message"]["content"].strip()
+
+# Build provider queue based on keys present
+provider_queue = []
+if gemini_key:
+    # Includes Gemini 3.5 Flash (2.5), 2.0 Flash, 1.5 Flash, 3.1 Pro (1.5 Pro)
+    for m in ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"]:
+        provider_queue.append(("gemini", m, gemini_key))
+if anthropic_key:
+    # Includes Claude Sonnet 4.6 (Claude 3.7 Sonnet) and Claude 3.5 Sonnet
+    for m in ["claude-3-7-sonnet-latest", "claude-3-7-sonnet-20250219", "claude-3-5-sonnet-latest"]:
+        provider_queue.append(("anthropic", m, anthropic_key))
+if openai_key:
+    # Includes GPT-4o and lightweight/alternative models
+    for m in ["gpt-4o", "gpt-4o-mini"]:
+        provider_queue.append(("openai", m, openai_key))
+
+description = None
+last_error = None
+
+for provider, model, key in provider_queue:
+    # Try up to 3 times per model configuration with exponential backoff on 429
+    for attempt in range(3):
+        try:
+            print(f"Attempting to generate using {provider} ({model})...")
+            if provider == "gemini":
+                description = try_gemini(model, key)
+            elif provider == "anthropic":
+                description = try_anthropic(model, key)
+            elif provider == "openai":
+                description = try_openai(model, key)
+            break
+        except urllib.error.HTTPError as e:
+            last_error = e
+            if e.code == 429:
+                sleep_time = (attempt + 1) * 5
+                print(f"⚠️ Hit rate limit (429) using model '{model}'. Retrying in {sleep_time}s...")
+                time.sleep(sleep_time)
+                continue
+            else:
+                print(f"❌ HTTP Error {e.code} using model '{model}'. Trying next model.")
+                break
+        except Exception as e:
+            last_error = e
+            print(f"❌ Error using model '{model}': {e}. Trying next model.")
+            break
+            
+    if description:
+        break
+
+if not description:
+    description = (
+        f"<!-- AI Generation failed. Last error: {last_error} -->\n"
+        "<!-- Please fill in the description manually. -->"
+    )
+else:
+    # Cleanup accidental markdown code fences from response wrapping
+    lines = description.splitlines()
     if lines and lines[0].startswith("```"):
         lines = lines[1:]
     if lines and lines[-1].startswith("```"):
         lines = lines[:-1]
     description = "\n".join(lines)
-except Exception as e:
-    description = (
-        f"<!-- Gemini generation failed: {e} -->\n"
-        "<!-- Please fill in the description manually. -->"
-    )
 
 with open("/tmp/pr_description.txt", "w") as f:
     f.write(description)
