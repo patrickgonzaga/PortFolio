@@ -1,4 +1,4 @@
-name: "🤖 AI PR Description"
+name: "🔍 AI PR Reviewer"
 
 on:
   pull_request:
@@ -9,8 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  generate-description:
-    name: Generate PR description with AI
+  code-review:
+    name: Run AI Code Review
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get diff and changed files
+      - name: Get diff
         id: meta
         run: |
           git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- . \
@@ -27,12 +27,9 @@ jobs:
             ':(exclude)package-lock.json' \
             ':(exclude)*.min.js' \
             ':(exclude)*.min.css' \
-            | head -c 8000 > /tmp/pr_diff.txt
+            | head -c 12000 > /tmp/pr_diff.txt
 
-          FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD | head -50 | tr '\n' ', ')
-          echo "files=$FILES" >> $GITHUB_OUTPUT
-
-      - name: Generate PR description via AI
+      - name: Generate review comments via AI
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -40,14 +37,18 @@ jobs:
           PR_TITLE: ${{ github.event.pull_request.title }}
           PR_BRANCH: ${{ github.event.pull_request.head.ref }}
           PR_BASE: ${{ github.event.pull_request.base.ref }}
-          PR_FILES: ${{ steps.meta.outputs.files }}
-        run: python3 .github/workflows/generate_pr_description.py
+        run: python3 .github/workflows/generate_pr_review.py
 
-      - name: Update PR description
+      - name: Post review comment to PR
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh pr edit ${{ github.event.pull_request.number }} \
-            --body "$(cat /tmp/pr_description.txt)" \
-            --repo ${{ github.repository }}
-          echo "PR description updated."
+          # Only post if review was successfully generated
+          if [ -f /tmp/pr_review.txt ] && ! grep -q "AI Code Review failed" /tmp/pr_review.txt; then
+            gh pr comment ${{ github.event.pull_request.number }} \
+              --body "$(cat /tmp/pr_review.txt)" \
+              --repo ${{ github.repository }}
+            echo "Review comment posted."
+          else
+            echo "Review generation failed or was skipped."
+          fi
