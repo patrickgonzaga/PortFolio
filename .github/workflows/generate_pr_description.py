@@ -22,15 +22,19 @@ files    = os.environ.get("PR_FILES", "")
 with open("/tmp/pr_diff.txt", "r", errors="replace") as f:
     diff = f.read()
 
-template = """\
-# [emoji] [Descriptive Title based on the changes]
+# Read the repository PR template
+template_path = ".github/pull_request_template.md"
+if os.path.exists(template_path):
+    with open(template_path, "r", encoding="utf-8") as f:
+        template = f.read()
+else:
+    # Fallback to hardcoded template if the file is missing
+    template = """# [emoji] [Descriptive Title]
 
 ## 📝 Description
-[Clear summary of WHAT changed, WHY, and HOW. Use bullet points.]
-
-- **Changed:** [what specifically changed]
-- **Why:** [the reason / motivation]
-- **Approach:** [how it was implemented]
+- **Changed:** 
+- **Why:** 
+- **Approach:** 
 
 ## 💡 Type of Change
 - [ ] ✨ `feat` — New feature (non-breaking)
