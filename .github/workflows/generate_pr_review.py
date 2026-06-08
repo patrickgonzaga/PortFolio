@@ -39,7 +39,9 @@ Diff:
 """
 
 def try_gemini(model, key):
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
+    # 1.5 models use the stable v1 path, 2.x models use the newer v1beta path
+    api_version = "v1" if "1.5" in model else "v1beta"
+    url = f"https://generativelanguage.googleapis.com/{api_version}/models/{model}:generateContent?key={key}"
     payload = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"temperature": 0.2, "maxOutputTokens": 2048}
