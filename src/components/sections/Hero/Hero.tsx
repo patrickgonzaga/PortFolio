@@ -4,7 +4,7 @@ import { cvData } from '../../../data/cvData';
 
 export const Hero: React.FC = () => {
   const { personal } = cvData;
-  
+
   // Splitting the name for the visual "First Name / Last Name" effect
   // We'll use the first and last name from the personal data
   const nameParts = personal.name.split(' ');
@@ -63,7 +63,7 @@ export const Hero: React.FC = () => {
         >
           <div className="relative w-[300px] h-[450px] md:w-[400px] md:h-[600px] rounded-2xl overflow-hidden glass-panel group">
             <img
-              src="/pat.jpg"
+              src="/pat.png"
               alt={personal.name}
               className="w-full h-full object-cover object-top filter opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
             />
