@@ -164,11 +164,11 @@ export const cvData = {
   ],
   certifications: [
     {
-      id: "udemy-n8n",
-      title: "N8N Masterclass: Learn Basic AI & Automation using N8N",
-      issuer: "Udemy",
+      id: "n8n-n8n-quickstart",
+      title: "QS101: n8n Quickstart",
+      issuer: "n8n Academy",
       date: "2026",
-      url: ""
+      url: "https://badges.n8n.io/a8780446-ca11-44a5-872d-d30e2bd4cead#acc.qTuCVHO6"
     },
     {
       id: "udemy-react",
