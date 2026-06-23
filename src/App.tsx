@@ -42,7 +42,7 @@ const AppContent: React.FC = () => {
         <Contact />
       </main>
 
-      <footer className="py-8 text-center text-sm font-mono text-[var(--text-secondary)] border-t border-[var(--border-color)]">
+      <footer className="py-8 text-center text-sm font-mono text-text-secondary border-t border-border-color">
         <p>© {new Date().getFullYear()} Patrick Gonzaga. Crafted with React, Tailwind & Framer Motion.</p>
       </footer>
     </>

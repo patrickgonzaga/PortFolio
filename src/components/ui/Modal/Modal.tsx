@@ -51,22 +51,22 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-[var(--bg-color)] border border-[var(--border-color)] p-8 md:p-12 shadow-2xl rounded-none"
+            className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-bg-color border border-border-color p-8 md:p-12 shadow-2xl rounded-none"
           >
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors p-2"
+              className="absolute top-6 right-6 text-text-secondary hover:text-text-primary transition-colors p-2"
               aria-label="Close modal"
             >
               ✕
             </button>
             
             <div className="mb-8">
-              <h3 className="text-3xl font-bold text-[var(--text-primary)] mb-2 pr-8">{title}</h3>
-              <div className="w-12 h-[1px] bg-[var(--text-primary)]"></div>
+              <h3 className="text-3xl font-bold text-text-primary mb-2 pr-8">{title}</h3>
+              <div className="w-12 h-[1px] bg-text-primary"></div>
             </div>
             
-            <div className="text-[var(--text-secondary)] leading-relaxed font-light">
+            <div className="text-text-secondary leading-relaxed font-light">
               {children}
             </div>
           </motion.div>
