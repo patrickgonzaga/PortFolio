@@ -51,19 +51,37 @@ export const ExpertiseGrid: React.FC = () => {
           {cvData.skills.map((skillGroup, index) => (
             <motion.div 
               key={skillGroup.category} 
-              className={`p-8 border border-[var(--border-color)] bg-[var(--bg-color)] hover:border-[var(--text-secondary)] transition-colors duration-300 ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`}
+              className={`group border border-[var(--border-color)] bg-[var(--card-bg)] hover:border-[var(--text-primary)] hover:bg-[var(--bg-color)] transition-all duration-300 flex flex-col h-full overflow-hidden ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`}
               variants={itemVariants}
             >
-              <div className="flex justify-between items-start mb-6">
-                <h3 className="text-xl font-medium text-[var(--text-primary)]">{skillGroup.category}</h3>
-                <span className="font-mono text-xs text-[var(--text-secondary)]">0{index + 1}</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skillGroup.skills.map(skill => (
-                  <span key={skill} className="px-3 py-1 text-sm border border-[var(--border-color)] text-[var(--text-secondary)] rounded-full bg-[var(--card-bg)]">
-                    {skill}
-                  </span>
-                ))}
+              {/* Hero Photo with Hover Effects */}
+              {skillGroup.image && (
+                <div className="w-full h-40 md:h-48 overflow-hidden relative border-b border-[var(--border-color)] group-hover:border-[var(--text-primary)] transition-colors duration-300">
+                  <img 
+                    src={skillGroup.image} 
+                    alt={skillGroup.category} 
+                    className="w-full h-full object-cover grayscale contrast-115 brightness-90 group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-100 transition-all duration-500 ease-out"
+                    loading="lazy"
+                  />
+                  {/* Subtle dark overlay that fades on hover */}
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+                </div>
+              )}
+
+              <div className="p-8 flex flex-col flex-grow">
+                <div className="flex justify-between items-start mb-6">
+                  <h3 className="text-xl font-medium text-[var(--text-primary)] group-hover:text-blue-400 dark:group-hover:text-blue-300 transition-colors">
+                    {skillGroup.category}
+                  </h3>
+                  <span className="font-mono text-xs text-[var(--text-secondary)]">0{index + 1}</span>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {skillGroup.skills.map(skill => (
+                    <span key={skill} className="px-3 py-1 text-sm border border-[var(--border-color)] text-[var(--text-secondary)] rounded-full bg-[var(--bg-color)]">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

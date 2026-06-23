@@ -4,7 +4,7 @@ import { cvData } from '../../../data/cvData';
 
 export const ExperienceTimeline: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -13,7 +13,7 @@ export const ExperienceTimeline: React.FC = () => {
   return (
     <section className="py-32 px-6 lg:px-20 relative" id="experience" ref={containerRef}>
       <div className="max-w-4xl mx-auto">
-        <motion.div 
+        <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export const ExperienceTimeline: React.FC = () => {
 
         <div className="relative pl-8 md:pl-0">
           {/* Vertical Line */}
-          <motion.div 
+          <motion.div
             className="absolute left-0 md:left-1/3 top-0 bottom-0 w-[1px] bg-[var(--border-color)] origin-top hidden md:block"
             style={{ scaleY: scrollYProgress }}
           />
@@ -40,7 +40,7 @@ export const ExperienceTimeline: React.FC = () => {
 
           <div className="flex flex-col gap-20">
             {cvData.experience.map((exp, index) => (
-              <motion.div 
+              <motion.div
                 key={exp.id}
                 className="relative flex flex-col md:flex-row md:gap-12 group"
                 initial={{ opacity: 0, y: 30 }}
@@ -59,8 +59,15 @@ export const ExperienceTimeline: React.FC = () => {
                   <h4 className="font-medium text-[var(--text-primary)]">
                     {exp.company}
                   </h4>
-                  <span className="text-sm text-[var(--text-secondary)] block mt-1">
-                    {exp.location}
+                  <span className="text-sm text-[var(--text-secondary)] inline-flex items-center gap-2 mt-1 md:justify-end justify-start w-full">
+                    {exp.flag && (
+                      <img
+                        src={`https://flagcdn.com/${exp.flag}.svg`}
+                        alt={`${exp.location}`}
+                        className="w-4 h-3 object-cover rounded-[1px] shadow-[0_1px_2px_rgba(0,0,0,0.1)] border border-[var(--border-color)]"
+                      />
+                    )}
+                    <span>{exp.location}</span>
                   </span>
                 </div>
 
