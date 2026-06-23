@@ -62,7 +62,7 @@ export const cvData = {
       id: "emapta-current",
       company: "EMAPTA (Client: Discovery Holiday Parks)",
       role: ".NET Developer",
-      period: "2023 – Present",
+      period: "2023 – 2026",
       location: "PNB Manila, Philippines",
       description: [
         "Built and maintained the Deals and WikiCamps domain, focusing on RESTful API implementation, EF Core data access, and integration with shared microservices.",
