@@ -4,7 +4,7 @@ import { cvData } from '../../../data/cvData';
 
 export const Certifications: React.FC = () => {
   return (
-    <section id="certifications" className="py-24 px-6 lg:px-20 relative bg-[var(--bg-color)]">
+    <section id="certifications" className="py-24 px-6 lg:px-20 relative bg-bg-color">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -14,12 +14,12 @@ export const Certifications: React.FC = () => {
           className="mb-16"
         >
           <div className="inline-flex items-center gap-3 mb-6">
-            <span className="w-8 h-[1px] bg-[var(--text-secondary)]"></span>
-            <span className="text-sm tracking-widest uppercase text-[var(--text-secondary)] font-mono">
+            <span className="w-8 h-[1px] bg-text-secondary"></span>
+            <span className="text-sm tracking-widest uppercase text-text-secondary font-mono">
               Continuous Learning
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-text-primary">
             Certifications
           </h2>
         </motion.div>
@@ -35,24 +35,24 @@ export const Certifications: React.FC = () => {
               className="glass-panel p-8 rounded-2xl flex flex-col h-full hover:-translate-y-1 transition-transform duration-300"
             >
               <div className="flex-1">
-                <div className="text-xs tracking-widest uppercase text-[var(--text-secondary)] font-mono mb-3">
+                <div className="text-xs tracking-widest uppercase text-text-secondary font-mono mb-3">
                   {cert.date}
                 </div>
-                <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2 leading-tight">
+                <h3 className="text-xl font-bold text-text-primary mb-2 leading-tight">
                   {cert.title}
                 </h3>
-                <p className="text-sm text-[var(--text-secondary)]">
+                <p className="text-sm text-text-secondary">
                   {cert.issuer}
                 </p>
               </div>
               
               {cert.url && cert.url !== "#" && (
-                <div className="mt-6 pt-6 border-t border-[var(--border-color)]">
+                <div className="mt-6 pt-6 border-t border-border-color">
                   <a 
                     href={cert.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs uppercase tracking-widest font-mono text-[var(--text-primary)] hover:text-[var(--text-secondary)] transition-colors inline-flex items-center gap-2"
+                    className="text-xs uppercase tracking-widest font-mono text-text-primary hover:text-text-secondary transition-colors inline-flex items-center gap-2"
                   >
                     View Credential
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -68,13 +68,13 @@ export const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
       {!isOpen && (
         <motion.button
           onClick={() => setIsOpen(true)}
-          className="p-3 rounded-full glass-panel flex items-center justify-center hover:bg-[var(--border-color)] transition-colors cursor-none group"
+          className="p-3 rounded-full glass-panel flex items-center justify-center hover:bg-border-color transition-colors cursor-none group"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           whileHover={{ scale: 1.05 }}
           aria-label="Open Terminal"
         >
-          <TerminalIcon size={20} className="text-[var(--text-primary)] group-hover:text-blue-500 transition-colors" />
+          <TerminalIcon size={20} className="text-text-primary group-hover:text-blue-500 transition-colors" />
         </motion.button>
       )}
 
@@ -83,18 +83,18 @@ export const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          className="w-80 sm:w-96 rounded-lg glass-panel overflow-hidden border border-[var(--border-color)] shadow-2xl flex flex-col"
+          className="w-80 sm:w-96 rounded-lg glass-panel overflow-hidden border border-border-color shadow-2xl flex flex-col"
           style={{ height: '400px' }}
         >
           {/* Header */}
-          <div className="bg-[var(--card-bg)] px-4 py-2 border-b border-[var(--border-color)] flex items-center justify-between">
+          <div className="bg-card-bg px-4 py-2 border-b border-border-color flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <TerminalIcon size={14} className="text-[var(--text-secondary)]" />
-              <span className="text-xs font-mono text-[var(--text-secondary)]">guest@patrick-portfolio:~</span>
+              <TerminalIcon size={14} className="text-text-secondary" />
+              <span className="text-xs font-mono text-text-secondary">guest@patrick-portfolio:~</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-[var(--text-secondary)] hover:text-red-500 transition-colors"
+              className="text-text-secondary hover:text-red-500 transition-colors"
             >
               ×
             </button>
@@ -111,11 +111,11 @@ export const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
                   <div className="flex gap-2">
                     <span className="text-green-500">➜</span>
                     <span className="text-blue-400">~</span>
-                    <span className="text-[var(--text-primary)]">{item.command}</span>
+                    <span className="text-text-primary">{item.command}</span>
                   </div>
                 )}
                 {item.output && (
-                  <div className="text-[var(--text-secondary)] whitespace-pre-wrap mt-1">
+                  <div className="text-text-secondary whitespace-pre-wrap mt-1">
                     {item.output}
                   </div>
                 )}
@@ -131,7 +131,7 @@ export const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="flex-1 bg-transparent outline-none border-none text-[var(--text-primary)]"
+                className="flex-1 bg-transparent outline-none border-none text-text-primary"
                 autoComplete="off"
                 spellCheck="false"
               />

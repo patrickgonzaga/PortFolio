@@ -9,7 +9,7 @@ export const ThemeToggle: React.FC = () => {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-3 rounded-full glass-panel flex items-center justify-center hover:bg-[var(--border-color)] transition-colors cursor-none"
+      className="fixed top-6 right-6 z-50 p-3 rounded-full glass-panel flex items-center justify-center hover:bg-border-color transition-colors cursor-none"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       initial={{ opacity: 0, y: -20 }}
@@ -18,9 +18,9 @@ export const ThemeToggle: React.FC = () => {
       aria-label="Toggle theme"
     >
       {theme === 'light' ? (
-        <Moon size={20} className="text-[var(--text-primary)]" />
+        <Moon size={20} className="text-text-primary" />
       ) : (
-        <Sun size={20} className="text-[var(--text-primary)]" />
+        <Sun size={20} className="text-text-primary" />
       )}
     </motion.button>
   );
