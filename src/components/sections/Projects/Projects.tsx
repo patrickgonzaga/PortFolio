@@ -39,25 +39,41 @@ export const Projects: React.FC = () => {
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
               onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer p-8 border border-[var(--border-color)] bg-[var(--card-bg)] hover:border-[var(--text-primary)] hover:bg-[var(--bg-color)] transition-all duration-300 flex flex-col h-full relative overflow-hidden"
+              className="group cursor-pointer border border-[var(--border-color)] bg-[var(--card-bg)] hover:border-[var(--text-primary)] hover:bg-[var(--bg-color)] transition-all duration-300 flex flex-col h-full relative overflow-hidden"
             >
               {/* Subtle accent line on hover */}
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-[var(--text-primary)] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-[var(--text-primary)] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out z-10" />
               
-              <h3 className="text-2xl font-semibold text-[var(--text-primary)] mb-3 group-hover:text-blue-400 transition-colors">
-                {project.title}
-              </h3>
-              
-              <p className="text-[var(--text-secondary)] font-light mb-6 flex-grow">
-                {project.shortDescription}
-              </p>
+              {/* Hero Photo with Hover Effects */}
+              {project.image && (
+                <div className="w-full h-48 md:h-56 overflow-hidden relative border-b border-[var(--border-color)] group-hover:border-[var(--text-primary)] transition-colors duration-300">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover grayscale contrast-115 brightness-90 group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-100 transition-all duration-500 ease-out"
+                    loading="lazy"
+                  />
+                  {/* Subtle dark overlay that fades on hover */}
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+                </div>
+              )}
 
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {project.tags.map(tag => (
-                  <span key={tag} className="px-3 py-1 text-xs font-mono border border-[var(--border-color)] text-[var(--text-secondary)] rounded-full bg-[var(--bg-color)]">
-                    {tag}
-                  </span>
-                ))}
+              <div className="p-8 flex flex-col flex-grow">
+                <h3 className="text-2xl font-semibold text-[var(--text-primary)] mb-3 group-hover:text-blue-400 dark:group-hover:text-blue-300 transition-colors">
+                  {project.title}
+                </h3>
+                
+                <p className="text-[var(--text-secondary)] font-light mb-6 flex-grow leading-relaxed">
+                  {project.shortDescription}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="px-3 py-1 text-xs font-mono border border-[var(--border-color)] text-[var(--text-secondary)] rounded-full bg-[var(--bg-color)]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -72,6 +88,15 @@ export const Projects: React.FC = () => {
       >
         {selectedProject && (
           <div className="flex flex-col gap-6">
+            {selectedProject.image && (
+              <div className="w-full h-64 md:h-80 overflow-hidden border border-[var(--border-color)]">
+                <img 
+                  src={selectedProject.image} 
+                  alt={selectedProject.title} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
             <div className="flex flex-wrap gap-2">
               {selectedProject.tags.map(tag => (
                 <span key={tag} className="px-3 py-1 text-xs font-mono border border-[var(--border-color)] text-[var(--text-primary)] rounded-full bg-[var(--card-bg)]">

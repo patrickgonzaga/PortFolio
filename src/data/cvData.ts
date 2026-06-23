@@ -5,6 +5,7 @@ export interface Experience {
   period: string;
   location?: string;
   description: string[];
+  flag?: string;
 }
 
 export interface Certification {
@@ -19,6 +20,7 @@ export interface Certification {
 export interface SkillCategory {
   category: string;
   skills: string[];
+  image?: string;
 }
 
 export const cvData = {
@@ -31,39 +33,47 @@ export const cvData = {
     {
       category: "Backend & Frameworks",
       skills: ["C#", "ASP.NET Core", "EF Core", "VB.NET", "REST/OpenAPI"],
+      image: "/images/expertise/expertise-backend.png"
     },
     {
       category: "Cloud & DevOps",
       skills: ["Azure (App Config, Key Vault, App Insights, Service Bus, Blob Storage, Redis, Functions)", "AWS (S3, SQS)", "Azure DevOps", "Buildkite", "Git"],
+      image: "/images/expertise/expertise-cloud.png"
     },
     {
       category: "Databases",
       skills: ["SQL Server", "Oracle", "PostgreSQL", "MySQL", "MongoDB"],
+      image: "/images/expertise/expertise-databases.png"
     },
     {
       category: "Scripting & Markup",
       skills: ["SQL", "JavaScript", "HTML5/CSS3", "ABAP"],
+      image: "/images/expertise/expertise-scripting.png"
     },
     {
       category: "Enterprise & ERP",
       skills: ["SAP (MM, BOM, Routing, PP, CO)", "SAP–MES integration"],
+      image: "/images/expertise/expertise-enterprise.png"
     },
     {
       category: "AI-Assisted Dev",
       skills: ["Cursor"],
+      image: "/images/expertise/expertise-ai.png"
     },
     {
       category: "Portal & Reporting",
       skills: ["Retool", "TIBCO Spotfire"],
+      image: "/images/expertise/expertise-portal.png"
     }
   ] as SkillCategory[],
   experience: [
     {
       id: "emapta-current",
-      company: "EMAPTA (Client: Discovery Holiday Parks)",
+      company: "EMAPTA (Client: Discovery Holiday Parks AU)",
       role: ".NET Developer",
       period: "2023 – 2026",
-      location: "PNB Manila, Philippines",
+      location: "Australia (remote)",
+      flag: "au",
       description: [
         "Built and maintained the Deals and WikiCamps domain, focusing on RESTful API implementation, EF Core data access, and integration with shared microservices.",
         "Supported development of shared WikiCamps platform services, including sites, forums, accounts, trips, and media.",
@@ -78,7 +88,8 @@ export const cvData = {
       company: "EMAPTA (Client: Optima Technology AU)",
       role: ".NET Developer",
       period: "2021 – 2023",
-      location: "PNB Manila, Philippines",
+      location: "Australia (remote)",
+      flag: "au",
       description: [
         "Collaborated in the development of a highly scalable web application architecture utilizing AWS S3 and SQS for efficient and reliable storage and messaging solutions.",
         "Responsible for the design, development, refactoring, and maintenance of the Optimatech application implementing efficient and reliable best software practices.",
@@ -89,10 +100,11 @@ export const cvData = {
     },
     {
       id: "renesas",
-      company: "Renesas Semiconductor KL SDN BHD",
+      company: "Renesas Semiconductor KL SDN BHD MY",
       role: "Senior Engineer",
       period: "2011 – 2021",
       location: "Kuala Langat, Malaysia",
+      flag: "my",
       description: [
         "Ensures Main Manufacturing Execution System (MES) has an uptime of 99%.",
         "Engineered software solutions yielding an increased in productivity by 75%, over 1M+ MYR time saving benefits and 'POKA-YOKE'.",
@@ -107,6 +119,7 @@ export const cvData = {
       role: "IT Manager / IT Executive",
       period: "2008 – 2010",
       location: "Chrey Thom, Cambodia",
+      flag: "kh",
       description: [
         "Led project planning, resourcing, documentation, and client engagement; cleared risks so deliverables shipped on time.",
         "Delivered in-house POS, casino management (CMS), and biometric timekeeping (ATS); fully automated previously manual processes."
@@ -118,6 +131,7 @@ export const cvData = {
       role: "Senior Programmer / Junior Programmer",
       period: "2005 – 2008",
       location: "Subic Bay Olongapo, Philippines",
+      flag: "ph",
       description: [
         "Designed and built club systems covering employment, payroll, timekeeping, billing/collections, AP, and POS.",
         "Administered Windows Server, SCO UNIX, Novell NetWare, Oracle OPERA 4.04 PMS, and Micros-Fidelio.",
@@ -131,35 +145,40 @@ export const cvData = {
       title: "Deals & WikiCamps Platform (Backend & Admin Portal)",
       tags: [".NET", "C#", "ASP.NET Core", "Retool", "Azure", "REST API"],
       shortDescription: "Scalable backend APIs and internal admin portal supporting bookings, deals, and content management.",
-      fullDescription: "Built and maintained RESTful APIs powering the Deals and WikiCamps platform, integrated with a low-code Retool admin portal used by internal teams. Implemented secure configuration using Azure Key Vault, optimized performance with Redis caching, and structured data access with EF Core. Supported multi-environment deployments and ensured reliability for business-critical operations."
+      fullDescription: "Built and maintained RESTful APIs powering the Deals and WikiCamps platform, integrated with a low-code Retool admin portal used by internal teams. Implemented secure configuration using Azure Key Vault, optimized performance with Redis caching, and structured data access with EF Core. Supported multi-environment deployments and ensured reliability for business-critical operations.",
+      image: "/images/projects/wikicamps-admin.png"
     },
     {
       id: "optimatech-cloud",
       title: "Cloud-Based Meter Data Processing System",
       tags: ["C#", "AWS S3", "AWS SQS", "BuildKite", "LaunchDarkly"],
       shortDescription: "High-throughput cloud system ensuring reliable and accurate meter data processing.",
-      fullDescription: "Contributed to the design and development of a scalable cloud architecture using AWS S3 for storage and SQS for asynchronous messaging. Handled large volumes of meter data with a focus on reliability and data integrity, achieving ~99% accuracy. Refactored legacy components and improved system resilience and maintainability."
+      fullDescription: "Contributed to the design and development of a scalable cloud architecture using AWS S3 for storage and SQS for asynchronous messaging. Handled large volumes of meter data with a focus on reliability and data integrity, achieving ~99% accuracy. Refactored legacy components and improved system resilience and maintainability.",
+      image: "/images/projects/optimatech-cloud.png"
     },
     {
       id: "mes-sap-integration",
       title: "MES–SAP Integration & Automation",
       tags: ["SAP", "MES", "ABAP", "Enterprise Integration"],
       shortDescription: "Automated enterprise workflows, improving productivity by 75%.",
-      fullDescription: "Engineered integration between Manufacturing Execution Systems (MES) and SAP to automate material master data and production planning processes. Implemented 'poka-yoke' (error-proofing) solutions to eliminate manual input errors, resulting in significant efficiency gains and over 1M+ MYR in operational savings."
+      fullDescription: "Engineered integration between Manufacturing Execution Systems (MES) and SAP to automate material master data and production planning processes. Implemented 'poka-yoke' (error-proofing) solutions to eliminate manual input errors, resulting in significant efficiency gains and over 1M+ MYR in operational savings.",
+      image: "/images/projects/mes-sap-integration.png"
     },
     {
       id: "enterprise-reporting",
       title: "Manufacturing Analytics & Reporting Platform",
       tags: ["TIBCO Spotfire", "Oracle", "Data Visualization"],
       shortDescription: "Real-time reporting platform for operational insights and decision-making.",
-      fullDescription: "Developed interactive dashboards and reporting solutions using TIBCO Spotfire, enabling stakeholders to monitor production performance, identify bottlenecks, and improve decision-making. Enhanced visibility across operations and supported data-driven improvements."
+      fullDescription: "Developed interactive dashboards and reporting solutions using TIBCO Spotfire, enabling stakeholders to monitor production performance, identify bottlenecks, and improve decision-making. Enhanced visibility across operations and supported data-driven improvements.",
+      image: "/images/projects/enterprise-reporting.png"
     },
     {
       id: "resort-systems",
       title: "Resort Operations System Suite (POS, CMS, ATS)",
-      tags: ["VB.NET", "SQL Server", "System Design"],
+      tags: ["VB.NET", "SQL Server", "PHP", "System Design"],
       shortDescription: "End-to-end system suite replacing manual resort operations.",
-      fullDescription: "Led development of multiple in-house systems including POS, Casino Management, and biometric timekeeping. Automated manual workflows, improved operational efficiency, and centralized data management across departments."
+      fullDescription: "Led development of multiple in-house systems including POS, Casino Management, and biometric timekeeping. Automated manual workflows, improved operational efficiency, and centralized data management across departments.",
+      image: "/images/projects/resort-systems.png"
     }
   ],
   certifications: [
@@ -228,4 +247,5 @@ export interface Project {
   tags: string[];
   shortDescription: string;
   fullDescription: string;
+  image?: string;
 }
