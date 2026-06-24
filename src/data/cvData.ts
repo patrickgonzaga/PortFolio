@@ -26,8 +26,8 @@ export interface SkillCategory {
 export const cvData = {
   personal: {
     name: "Patrick James Lee Gonzaga",
-    title: "Software Engineer | .NET · Azure · APIs",
-    overview: "Software engineer with 15+ years of experience building systems that support real business operations — spanning backend development, system integrations, and enterprise platforms. Currently focused on .NET and Azure, delivering APIs and distributed systems that are stable and maintainable at scale. Known for stepping into unfamiliar technology and delivering — from learning ABAP to bridge SAP-to-MES integrations to picking up Retool to build production admin tooling.",
+    title: "Senior Software Engineer | Enterprise Systems, SAP, .NET & Azure Cloud Solutions",
+    overview: "Senior Software Engineer with 15+ years of experience building systems that support real business operations — spanning backend development, system integrations, and enterprise platforms. Currently focused on .NET and Azure, delivering APIs and distributed systems that are stable and maintainable at scale. Known for stepping into unfamiliar technology and delivering — from learning ABAP to bridge SAP-to-MES integrations to picking up Retool to build production admin tooling.",
   },
   skills: [
     {
@@ -52,7 +52,7 @@ export const cvData = {
     },
     {
       category: "Enterprise & ERP",
-      skills: ["SAP (MM, BOM, Routing, PP, CO)", "SAP–MES integration"],
+      skills: ["SAP [MM (Materials Management), PP (Production Planning), CO (Controlling), ABAP]", "SAP–MES integration"],
       image: "/images/expertise/expertise-enterprise.png"
     },
     {
