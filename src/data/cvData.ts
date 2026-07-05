@@ -14,20 +14,25 @@ export interface Certification {
   issuer: string;
   date: string;
   url?: string;
+  image?: string;
+  type: 'professional' | 'ai';
 }
-
 
 export interface SkillCategory {
   category: string;
   skills: string[];
   image?: string;
+  progression?: {
+    level: string;
+    description: string;
+  }[];
 }
 
 export const cvData = {
   personal: {
     name: "Patrick James Lee Gonzaga",
-    title: "Senior Software Engineer | Enterprise Systems, SAP, .NET & Azure Cloud Solutions",
-    overview: "Senior Software Engineer with 15+ years of experience building systems that support real business operations — spanning backend development, system integrations, and enterprise platforms. Currently focused on .NET and Azure, delivering APIs and distributed systems that are stable and maintainable at scale. Known for stepping into unfamiliar technology and delivering — from learning ABAP to bridge SAP-to-MES integrations to picking up Retool to build production admin tooling.",
+    title: "Senior Software Engineer | Enterprise Systems, SAP, AI Assisted Dev & Automation, .NET & Azure Cloud Solutions",
+    overview: "Senior Software Engineer with 15+ years of experience building software that solves real operational problems through backend development, enterprise integrations, and automation. Long before AI-powered workflows became popular, I was already eliminating manual work using scripts, cron jobs, stored procedures, and custom VB.NET, C#, and ASP.NET applications. Today, I combine that engineering foundation with modern automation platforms like Zapier and n8n, plus LLM-powered agentic workflows, to build scalable business solutions. I thrive in unfamiliar environments, whether that means writing ABAP for SAP-to-MES integrations, configuring Retool admin portals, or architecting human-in-the-loop AI systems.",
   },
   skills: [
     {
@@ -39,6 +44,25 @@ export const cvData = {
       category: "Cloud & DevOps",
       skills: ["Azure (App Config, Key Vault, App Insights, Service Bus, Blob Storage, Redis, Functions)", "AWS (S3, SQS)", "Azure DevOps", "Buildkite", "Git"],
       image: "/images/expertise/expertise-cloud.png"
+    },
+    {
+      category: "Automation",
+      skills: ["Scripts/Cron", "Zapier", "n8n", "AI Agents", "Human-in-the-Loop"],
+      progression: [
+        {
+          level: "Business process automation",
+          description: "scripts, cron jobs, stored procedure, desktop and web solutions"
+        },
+        {
+          level: "Low-code / iPaaS",
+          description: "Zapier, n8n (currently learning)"
+        },
+        {
+          level: "Agentic AI automation",
+          description: "LLM-driven multi-step workflows, human-in-the-loop pipelines"
+        }
+      ],
+      image: "/images/expertise/expertise-automation.png"
     },
     {
       category: "Databases",
@@ -70,7 +94,7 @@ export const cvData = {
     {
       id: "emapta-current",
       company: "EMAPTA (Client: Discovery Holiday Parks AU)",
-      role: ".NET Developer",
+      role: "Backend Developer",
       period: "2023 – 2026",
       location: "Australia (remote)",
       flag: "au",
@@ -108,6 +132,7 @@ export const cvData = {
       description: [
         "Ensures Main Manufacturing Execution System (MES) has an uptime of 99%.",
         "Engineered software solutions yielding an increased in productivity by 75%, over 1M+ MYR time saving benefits and 'POKA-YOKE'.",
+        "Designed and developed the RSKL Helpdesk system (VB.NET, ASP.NET, SQL Server) to automate internal IT support ticketing and streamline incident response workflows.",
         "Efficiently multi-tasked and administered over 100 servers running in physical, VMWare and Hyper V.",
         "Interfaced and integrated SAP to MES systems automating material master registrations and production planning run.",
         "Built Innovative management reports using TIBCO Spotfire."
@@ -122,7 +147,7 @@ export const cvData = {
       flag: "kh",
       description: [
         "Led project planning, resourcing, documentation, and client engagement; cleared risks so deliverables shipped on time.",
-        "Delivered in-house POS, casino management (CMS), and biometric timekeeping (ATS); fully automated previously manual processes."
+        "Delivered the Resort Operations System Suite (POS, Casino Management, and Automated Timekeeping with Biometrics), fully automating manual workflows and centralizing operations."
       ]
     },
     {
@@ -140,6 +165,30 @@ export const cvData = {
     }
   ] as Experience[],
   projects: [
+    {
+      id: "altomatiko",
+      title: "Altomatiko — AI-Powered Content Automation Pipeline",
+      tags: ["n8n", "ASP.NET Core", "React", "Postgre", "Antigravity", "AI Automation"],
+      shortDescription: "A portfolio project built to explore agentic workflow design, featuring a multi-stage n8n pipeline and a .NET backend.",
+      fullDescription: "Altomatiko is a portfolio project built to learn and explore agentic workflow design rather than simple, single-prompt AI calls.\n\nAt its core, n8n orchestrates a 9-stage content pipeline (discover → research → write → metadata → approve → generate media → publish → analyze → repeat) supported by a backend in ASP.NET Core 8 following CQRS patterns (MediatR), EF Core + Dapper, and PostgreSQL/Supabase. The user dashboard is a modern React 18 + Vite + TypeScript application.\n\nThis project demonstrates human-in-the-loop AI automation, ensuring AI agents collaborate with human editors before performing side-effect operations like media creation or publishing.\n\nTech Stack:\n• n8n (Orchestration)\n• ASP.NET Core 8 & MediatR (CQRS)\n• React + Vite + TypeScript & Zustand\n• PostgreSQL / Supabase\n• EF Core & Dapper\n• FluentValidation\n• Docker Compose\n• Tailwind CSS\n• Gemini / OpenRouter / OpenAI\n• Cloudinary",
+      image: "/images/projects/AItomatiko.png",
+      timeSavings: {
+        totalManual: "6 Hours",
+        totalAutomated: "3 Minutes",
+        percentSaved: "99% Faster",
+        stages: [
+          { stage: "1. Discover", manual: "30m", automated: "10s", saved: "99.4%" },
+          { stage: "2. Research", manual: "60m", automated: "30s", saved: "99.1%" },
+          { stage: "3. Write", manual: "120m", automated: "45s", saved: "99.3%" },
+          { stage: "4. Metadata", manual: "15m", automated: "5s", saved: "99.4%" },
+          { stage: "5. Approve", manual: "10m", automated: "60s (Human Review)", saved: "90.0%" },
+          { stage: "6. Media Gen", manual: "45m", automated: "20s", saved: "99.2%" },
+          { stage: "7. Publish", manual: "30m", automated: "5s", saved: "99.7%" },
+          { stage: "8. Analyze", manual: "40m", automated: "10s", saved: "99.5%" },
+          { stage: "9. Repeat", manual: "10m", automated: "Instant", saved: "100%" }
+        ]
+      }
+    },
     {
       id: "wikicamps-admin",
       title: "Deals & WikiCamps Platform (Backend & Admin Portal)",
@@ -174,72 +223,191 @@ export const cvData = {
     },
     {
       id: "resort-systems",
-      title: "Resort Operations System Suite (POS, CMS, ATS)",
-      tags: ["VB.NET", "SQL Server", "PHP", "System Design"],
+      title: "Resort Operations System Suite (Point of Sales(POS), Casino Management System (CMS), Automated Timekeeping System(ATS) with Biometric)",
+      tags: ["VB.NET", "SQL Server", "PHP", "Javascript", "System Design"],
       shortDescription: "End-to-end system suite replacing manual resort operations.",
       fullDescription: "Led development of multiple in-house systems including POS, Casino Management, and biometric timekeeping. Automated manual workflows, improved operational efficiency, and centralized data management across departments.",
       image: "/images/projects/resort-systems.png"
+    },
+    {
+      id: "rskl-helpdesk",
+      title: "RSKL Helpdesk",
+      tags: ["VB.NET", "ASP.NET", "SQL Server", "Javascript"],
+      shortDescription: "Internal IT helpdesk and support ticketing system streamlining request workflows.",
+      fullDescription: "Developed an internal Helpdesk ticketing system for Renesas Semiconductor KL (RSKL) using VB.NET, ASP.NET, and SQL Server. Automated support request routing, tracked SLA compliance, and replaced manual email-based tracking to improve IT department response times, transparency, and operational accountability.",
+      image: "/images/projects/rskl-helpdesk.png"
     }
   ],
   certifications: [
     {
-      id: "n8n-n8n-quickstart",
-      title: "QS101: n8n Quickstart",
-      issuer: "n8n Academy",
+      id: "taraai-zapier",
+      title: "No Code Automation with Zapier",
+      issuer: "TaraAI",
       date: "2026",
-      url: "https://badges.n8n.io/a8780446-ca11-44a5-872d-d30e2bd4cead#acc.qTuCVHO6"
+      url: "https://my-certificates.com/certificates/6a49ff4481683ab63964cd56",
+      image: "/images/certificates/taraai-zapier.jpg",
+      type: "ai"
     },
     {
       id: "udemy-react",
       title: "The Complete ReactJs Course - Basics to Advanced",
       issuer: "Udemy",
       date: "2026",
-      url: "https://www.udemy.com/certificate/UC-42f4b61e-e673-4ed5-b8bc-42fdb952837f"
-    },
-    {
-      id: "udemy-ai",
-      title: "Google AI Studio Bootcamp: Build Pro Apps with Gemini",
-      issuer: "Udemy",
-      date: "2026",
-      url: "https://www.udemy.com/certificate/UC-ec50185e-3909-44b2-859a-bd9d2b91f7bd/"
-    },
-    {
-      id: "udemy-claude-code-pro",
-      title: "Claude Pro: Build, Integrate & Optimize AI Solutions",
-      issuer: "Udemy",
-      date: "2026",
-      url: "https://www.udemy.com/certificate/UC-4ab674fc-cda3-45a5-ae26-b3404f77560b/"
+      url: "https://www.udemy.com/certificate/UC-42f4b61e-e673-4ed5-b8bc-42fdb952837f",
+      image: "/images/certificates/udemy-react.jpg",
+      type: "professional"
     },
     {
       id: "udemy-azure-bicep",
       title: "Learn Infra as a Code with Azure Bicep",
       issuer: "Udemy",
       date: "2025",
-      url: "https://www.udemy.com/certificate/UC-49d83313-257a-496c-9907-8a189eb04dda/"
+      url: "https://www.udemy.com/certificate/UC-49d83313-257a-496c-9907-8a189eb04dda/",
+      image: "/images/certificates/udemy-azure-bicep.jpg",
+      type: "professional"
     },
     {
       id: "udemy-azure-devops",
       title: "Learn Azure DevOps CI/CD pipelines",
       issuer: "Udemy",
       date: "2025",
-      url: "https://www.udemy.com/certificate/UC-56b397a8-e1e8-4468-8ef4-c515c04e1518/"
+      url: "https://www.udemy.com/certificate/UC-56b397a8-e1e8-4468-8ef4-c515c04e1518/",
+      image: "/images/certificates/udemy-azure-devops.jpg",
+      type: "professional"
     },
     {
       id: "udemy-code-reviews",
       title: "Code Reviews for Secure, Clean, and Scalable Code",
       issuer: "Udemy",
       date: "2024",
-      url: "https://www.udemy.com/certificate/UC-cb997fb5-4ea4-417c-b23d-8c23677b735f/"
+      url: "https://www.udemy.com/certificate/UC-cb997fb5-4ea4-417c-b23d-8c23677b735f/",
+      image: "/images/certificates/udemy-code-reviews.jpg",
+      type: "professional"
     },
     {
       id: "project-sparta-data-engineering",
-      title: "Data Engineering, Data Science & Machine Learning ",
+      title: "Data Engineering Pathway ",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-engineering.jpg",
+      type: "professional"
+    },
+    {
+      id: "n8n-quickstart",
+      title: "QS101: n8n Quickstart",
+      issuer: "n8n Academy",
+      date: "2026",
+      url: "https://badges.n8n.io/a8780446-ca11-44a5-872d-d30e2bd4cead#acc.qTuCVHO6",
+      image: "/images/certificates/n8n-quickstart.jpg",
+      type: "ai"
+    },
+    {
+      id: "udemy-ai",
+      title: "Google AI Studio Bootcamp: Build Pro Apps with Gemini",
+      issuer: "Udemy",
+      date: "2026",
+      url: "https://www.udemy.com/certificate/UC-ec50185e-3909-44b2-859a-bd9d2b91f7bd/",
+      image: "/images/certificates/udemy-ai.jpg",
+      type: "ai"
+    },
+    {
+      id: "udemy-claude-code-pro",
+      title: "Claude Pro: Build, Integrate & Optimize AI Solutions",
+      issuer: "Udemy",
+      date: "2026",
+      url: "https://www.udemy.com/certificate/UC-4ab674fc-cda3-45a5-ae26-b3404f77560b/",
+      image: "/images/certificates/udemy-claude-code-pro.jpg",
+      type: "ai"
+    },
+    {
+      id: "project-sparta-data-visualization",
+      title: "Data Visualization Fundamentals ",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-visualization.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-data-science",
+      title: "Data Science and Machine Learning Using Python",
       issuer: "Project SPARTA",
       date: "2022",
-      url: "https://sparta.dap.edu.ph/"
-    }
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-science.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-data-science-analytics",
+      title: "Data Science and Analytics Project Management",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-science-analytics.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-advance-data-engineering",
+      title: "Advanced Data Engineering",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-advance-data-engineering.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-data-visualization-tableau",
+      title: "Data Visualization with Tableau and Python",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-visualization-tableau.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-python-for-data-engineering",
+      title: "Python for Data Engineering",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-python-data-engineering.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-deep-learning-python",
+      title: "Deep Learning using Python",
+      issuer: "Project SPARTA",
+      date: "2022",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-deep-learning-python.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-computing-python",
+      title: "Computing in Python",
+      issuer: "Project SPARTA",
+      date: "2022",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-computing-python.jpg",
+      type: "professional"
+    },
   ] as Certification[]
 };
+
+export interface TimeSavingStage {
+  stage: string;
+  manual: string;
+  automated: string;
+  saved: string;
+}
+
+export interface TimeSavings {
+  totalManual: string;
+  totalAutomated: string;
+  percentSaved: string;
+  stages: TimeSavingStage[];
+}
 
 export interface Project {
   id: string;
@@ -248,4 +416,5 @@ export interface Project {
   shortDescription: string;
   fullDescription: string;
   image?: string;
+  timeSavings?: TimeSavings;
 }

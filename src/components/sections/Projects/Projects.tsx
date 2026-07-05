@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { cvData, type Project } from '../../../data/cvData';
 import { Modal } from '../../ui/Modal/Modal';
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="py-32 px-6 lg:px-20 border-t border-border-color" id="projects">
@@ -50,7 +51,7 @@ export const Projects: React.FC = () => {
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    className="w-full h-full object-cover grayscale contrast-115 brightness-90 group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-100 transition-all duration-500 ease-out"
+                    className="w-full h-full object-cover object-top grayscale contrast-115 brightness-90 group-hover:grayscale-0 group-hover:scale-110 group-hover:brightness-100 transition-all duration-500 ease-out"
                     loading="lazy"
                   />
                   {/* Subtle dark overlay that fades on hover */}
@@ -89,13 +90,24 @@ export const Projects: React.FC = () => {
         {selectedProject && (
           <div className="flex flex-col gap-6">
             {selectedProject.image && (
-              <div className="w-full h-64 md:h-80 overflow-hidden border border-border-color">
+              <a 
+                href={selectedProject.image} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full h-64 md:h-96 overflow-hidden border border-border-color flex items-center justify-center bg-black/10 dark:bg-black/30 block group relative cursor-zoom-in"
+                title="Click to view full image in a new tab"
+              >
                 <img 
                   src={selectedProject.image} 
                   alt={selectedProject.title} 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
                 />
-              </div>
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span className="text-white text-xs font-mono bg-black/80 px-4 py-2 border border-white/10 tracking-wider uppercase backdrop-blur-sm">
+                    View Full Image
+                  </span>
+                </div>
+              </a>
             )}
             <div className="flex flex-wrap gap-2">
               {selectedProject.tags.map(tag => (
@@ -104,9 +116,74 @@ export const Projects: React.FC = () => {
                 </span>
               ))}
             </div>
-            <p className="text-lg leading-relaxed text-text-secondary">
-              {selectedProject.fullDescription}
-            </p>
+            <div className="text-lg leading-relaxed text-text-secondary flex flex-col gap-4">
+              {selectedProject.fullDescription.split('\n\n').map((paragraph, idx) => (
+                <p key={idx} className="whitespace-pre-line">{paragraph}</p>
+              ))}
+            </div>
+
+            {selectedProject.timeSavings && (
+              <div className="mt-6 border-t border-border-color pt-6">
+                <h4 className="text-xs font-mono tracking-widest uppercase text-text-secondary mb-4 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                  Pipeline Time Savings Analysis
+                </h4>
+                
+                {/* Summary Cards */}
+                <div className="grid grid-cols-3 gap-3 mb-6">
+                  <div className="p-3 border border-border-color bg-black/5 dark:bg-white/5 rounded-xl">
+                    <span className="text-[10px] text-text-secondary font-mono">Manual Workflow</span>
+                    <div className="text-base md:text-lg font-bold text-red-400/90 mt-1">{selectedProject.timeSavings.totalManual}</div>
+                  </div>
+                  <div className="p-3 border border-border-color bg-black/5 dark:bg-white/5 rounded-xl">
+                    <span className="text-[10px] text-text-secondary font-mono">Altomatiko</span>
+                    <div className="text-base md:text-lg font-bold text-green-400/90 mt-1">{selectedProject.timeSavings.totalAutomated}</div>
+                  </div>
+                  <div className="p-3 border border-blue-500/20 bg-blue-500/10 rounded-xl">
+                    <span className="text-[10px] text-blue-400 font-mono font-bold">Total Saved</span>
+                    <div className="text-base md:text-lg font-bold text-blue-300 mt-1">{selectedProject.timeSavings.percentSaved}</div>
+                  </div>
+                </div>
+
+                {/* Horizontal Scrollable Stages Timeline */}
+                <div 
+                  ref={timelineRef}
+                  className="overflow-hidden pb-2"
+                >
+                  <motion.div 
+                    drag="x"
+                    dragConstraints={timelineRef}
+                    dragElastic={0.1}
+                    className="flex gap-4 w-max select-none cursor-grab active:cursor-grabbing"
+                  >
+                    {selectedProject.timeSavings.stages.map((stage) => (
+                      <div key={stage.stage} className="flex-1 min-w-[170px] p-4 border border-border-color bg-card-bg rounded-xl relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300">
+                        <div>
+                          <div className="text-xs font-mono font-bold text-text-primary mb-3">
+                            {stage.stage}
+                          </div>
+                          <div className="flex justify-between items-center text-xs mb-1.5">
+                            <span className="text-text-secondary font-light">Manual:</span>
+                            <span className="text-red-400/95 font-mono">{stage.manual}</span>
+                          </div>
+                          <div className="flex justify-between items-center text-xs mb-2">
+                            <span className="text-text-secondary font-light">Auto:</span>
+                            <span className="text-green-400/95 font-mono">{stage.automated}</span>
+                          </div>
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-border-color/30 flex justify-between items-center">
+                          <span className="text-[9px] uppercase font-mono tracking-widest text-text-secondary">Saved</span>
+                          <span className="text-xs font-mono font-bold text-blue-400">{stage.saved}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+                <div className="text-[9px] font-mono text-text-secondary text-right mt-1.5 opacity-60">
+                  ← Drag to view all 9 stages →
+                </div>
+              </div>
+            )}
           </div>
         )}
       </Modal>

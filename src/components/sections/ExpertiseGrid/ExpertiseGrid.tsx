@@ -75,13 +75,36 @@ export const ExpertiseGrid: React.FC = () => {
                   </h3>
                   <span className="font-mono text-xs text-text-secondary">0{index + 1}</span>
                 </div>
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {skillGroup.skills.map(skill => (
-                    <span key={skill} className="px-3 py-1 text-sm border border-border-color text-text-secondary rounded-full bg-bg-color">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+                {skillGroup.progression ? (
+                  <div className="flex flex-col gap-6 mt-4 flex-grow justify-end">
+                    {skillGroup.progression.map((step, stepIndex) => (
+                      <div key={step.level} className="flex gap-4 items-start relative group/step">
+                        <div className="flex flex-col items-center h-full min-w-4 mt-1.5 relative">
+                          <span className="w-2.5 h-2.5 rounded-full border border-border-color bg-bg-color group-hover:border-text-primary group-hover/step:bg-text-primary transition-colors duration-300 z-10" />
+                          {stepIndex < skillGroup.progression!.length - 1 && (
+                            <span className="absolute top-3 w-[1px] bg-border-color z-0" style={{ height: 'calc(100% + 1.5rem)' }} />
+                          )}
+                        </div>
+                        <div className="flex flex-col">
+                          <h4 className="text-sm font-semibold text-text-primary font-mono tracking-wide">
+                            {step.level}
+                          </h4>
+                          <p className="text-xs text-text-secondary mt-1 font-light leading-relaxed">
+                            {step.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {skillGroup.skills.map(skill => (
+                      <span key={skill} className="px-3 py-1 text-sm border border-border-color text-text-secondary rounded-full bg-bg-color">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
