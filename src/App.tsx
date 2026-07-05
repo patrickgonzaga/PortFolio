@@ -26,9 +26,9 @@ const AppContent: React.FC = () => {
         <div className="font-mono text-sm tracking-widest uppercase font-bold text-white">PG</div>
         <nav className="hidden md:flex gap-8 text-sm font-mono tracking-widest text-gray-300">
           <a href="#expertise" className="hover:text-white transition-colors">Expertise</a>
-          <a href="#experience" className="hover:text-white transition-colors">Experiences</a>
           <a href="#projects" className="hover:text-white transition-colors">Projects</a>
           <a href="#certifications" className="hover:text-white transition-colors">Certifications</a>
+          <a href="#experience" className="hover:text-white transition-colors">Experiences</a>
           <a href="#contact" className="hover:text-white transition-colors">Contact</a>
         </nav>
       </header>
@@ -36,9 +36,9 @@ const AppContent: React.FC = () => {
       <main>
         <Hero />
         <ExpertiseGrid />
-        <ExperienceTimeline />
         <Projects />
         <Certifications />
+        <ExperienceTimeline />
         <Contact />
       </main>
 

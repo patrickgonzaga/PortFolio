@@ -6,9 +6,10 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   children: React.ReactNode;
+  maxWidth?: string;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, maxWidth }) => {
   // Prevent scrolling when modal is open
   useEffect(() => {
     if (isOpen) {
@@ -51,7 +52,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-bg-color border border-border-color p-8 md:p-12 shadow-2xl rounded-none"
+            className={`relative w-full ${maxWidth || 'max-w-2xl'} max-h-[85vh] overflow-y-auto bg-bg-color border border-border-color p-8 md:p-12 shadow-2xl rounded-none`}
           >
             <button
               onClick={onClose}
