@@ -132,6 +132,7 @@ export const cvData = {
       description: [
         "Ensures Main Manufacturing Execution System (MES) has an uptime of 99%.",
         "Engineered software solutions yielding an increased in productivity by 75%, over 1M+ MYR time saving benefits and 'POKA-YOKE'.",
+        "Developed the Electronic Lot Control Slip (e-LCS) system, replacing manual paper templates with system-driven 'poka-yoke' route verification.",
         "Designed and developed the RSKL Helpdesk system (VB.NET, ASP.NET, SQL Server) to automate internal IT support ticketing and streamline incident response workflows.",
         "Efficiently multi-tasked and administered over 100 servers running in physical, VMWare and Hyper V.",
         "Interfaced and integrated SAP to MES systems automating material master registrations and production planning run.",
@@ -192,7 +193,7 @@ export const cvData = {
     {
       id: "wikicamps-admin",
       title: "Deals & WikiCamps Platform (Backend & Admin Portal)",
-      tags: [".NET", "C#", "ASP.NET Core", "Retool", "Azure", "REST API"],
+      tags: [".NET", "C#", "Cursor", "ASP.NET Core", "Retool", "Azure", "REST API"],
       shortDescription: "Scalable backend APIs and internal admin portal supporting bookings, deals, and content management.",
       fullDescription: "Built and maintained RESTful APIs powering the Deals and WikiCamps platform, integrated with a low-code Retool admin portal used by internal teams. Implemented secure configuration using Azure Key Vault, optimized performance with Redis caching, and structured data access with EF Core. Supported multi-environment deployments and ensured reliability for business-critical operations.",
       image: "/images/projects/wikicamps-admin.png"
@@ -212,6 +213,24 @@ export const cvData = {
       shortDescription: "Automated enterprise workflows, improving productivity by 75%.",
       fullDescription: "Engineered integration between Manufacturing Execution Systems (MES) and SAP to automate material master data and production planning processes. Implemented 'poka-yoke' (error-proofing) solutions to eliminate manual input errors, resulting in significant efficiency gains and over 1M+ MYR in operational savings.",
       image: "/images/projects/mes-sap-integration.png"
+    },
+    {
+      id: "e-lot-control-slip",
+      title: "e-Lot Control Slip",
+      tags: ["VB.NET", "SQL Server", "MES", "Poka-Yoke", "Manufacturing Automation"],
+      shortDescription: "Digitized manual paper lot templates, introducing system-driven 'poka-yoke' to prevent routing errors.",
+      fullDescription: "Developed the Electronic Lot Control Slip (e-LCS) system to replace a highly error-prone manual routing process on the semiconductor manufacturing floor.\n\nPreviously, operators relied on pre-printed paper templates, manually selecting and attaching sheets based on the lot's current routing step (e.g., Assembly, Dicing, etc.). Because this selection process was entirely manual, operators frequently selected the incorrect template, leading to lots being moved to the incorrect process. This created high risks of lot misprocessing and material waste.\n\nThe e-LCS solution digitized these templates and integrated directly with the Manufacturing Execution System (MES). The system automatically selects and validates the correct template based on the lot's real-time step in the routing database. Built-in 'poka-yoke' (mistake-proofing) logic was implemented, automatically blocking the lot from proceeding if a mismatch was detected. This integration completely eliminated routing mismatch errors, optimized production efficiency, and saved significant manual tracking hours.",
+      image: "/images/projects/e-lot-control.png",
+      timeSavings: {
+        totalManual: "25 Minutes",
+        totalAutomated: "2 Minutes",
+        percentSaved: "92% Faster",
+        stages: [
+          { stage: "1. Template Selection", manual: "5m", automated: "Instant", saved: "100%" },
+          { stage: "2. Route Verification", manual: "10m", automated: "30s", saved: "95%" },
+          { stage: "3. Poka-Yoke Validation", manual: "10m", automated: "1m 30s", saved: "85%" }
+        ]
+      }
     },
     {
       id: "enterprise-reporting",
