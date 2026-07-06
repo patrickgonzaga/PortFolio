@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Download } from 'lucide-react';
 import { cvData } from '../../../data/cvData';
 
 export const Hero: React.FC = () => {
-  const { personal } = cvData;
+  const personal = cvData.personal;
 
   // Splitting the name for the visual "First Name / Last Name" effect
   // We'll use the first and last name from the personal data
@@ -12,7 +13,7 @@ export const Hero: React.FC = () => {
   const lastName = nameParts[nameParts.length - 1];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 lg:px-20">
+    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 py-28 lg:py-0 lg:px-20">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
 
         {/* Text Content */}
@@ -38,18 +39,28 @@ export const Hero: React.FC = () => {
             {personal.overview}
           </p>
 
-          <div className="mt-8 flex gap-6 items-center">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
             <a
               href="#contact"
-              className="px-8 py-4 bg-text-primary text-bg-color rounded-full font-medium hover:scale-105 transition-transform"
+              className="px-8 py-4 bg-text-primary text-bg-color rounded-full font-medium hover:scale-105 transition-transform text-center"
             >
               Get in touch
             </a>
             <a
               href="#projects"
-              className="px-8 py-4 border border-border-color text-text-primary rounded-full font-medium hover:bg-card-bg transition-colors"
+              className="px-8 py-4 border border-border-color text-text-primary rounded-full font-medium hover:bg-card-bg transition-colors text-center"
             >
               View Work
+            </a>
+            <a
+              href="/docs/CV_Patrick_Gonzaga.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="px-8 py-4 border border-border-color text-text-primary rounded-full font-medium hover:bg-card-bg transition-colors flex items-center justify-center gap-2 text-center"
+            >
+              <Download size={18} />
+              Download CV
             </a>
           </div>
         </motion.div>
@@ -61,7 +72,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
           className="relative flex justify-center lg:justify-end"
         >
-          <div className="relative w-[300px] h-[450px] md:w-[400px] md:h-[600px] rounded-2xl overflow-hidden glass-panel group">
+          <div className="relative w-full max-w-[320px] aspect-[2/3] md:w-[400px] md:h-[600px] rounded-2xl overflow-hidden glass-panel group">
             <img
               src="/pat.png"
               alt={personal.name}

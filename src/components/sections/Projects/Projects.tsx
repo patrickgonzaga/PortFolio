@@ -1,11 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { cvData, type Project } from '../../../data/cvData';
 import { Modal } from '../../ui/Modal/Modal';
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="py-32 px-6 lg:px-20 border-t border-border-color" id="projects">
@@ -130,7 +129,7 @@ export const Projects: React.FC = () => {
                 </h4>
                 
                 {/* Summary Cards */}
-                <div className="grid grid-cols-3 gap-3 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
                   <div className="p-3 border border-border-color bg-black/5 dark:bg-white/5 rounded-xl">
                     <span className="text-[10px] text-text-secondary font-mono">Manual Workflow</span>
                     <div className="text-base md:text-lg font-bold text-red-400/90 mt-1">{selectedProject.timeSavings.totalManual}</div>
@@ -147,14 +146,10 @@ export const Projects: React.FC = () => {
 
                 {/* Horizontal Scrollable Stages Timeline */}
                 <div 
-                  ref={timelineRef}
-                  className="overflow-hidden pb-2"
+                  className="overflow-x-auto pb-2 scrollbar-none"
                 >
-                  <motion.div 
-                    drag="x"
-                    dragConstraints={timelineRef}
-                    dragElastic={0.1}
-                    className="flex gap-4 w-max select-none cursor-grab active:cursor-grabbing"
+                  <div 
+                    className="flex gap-4 w-max select-none"
                   >
                     {selectedProject.timeSavings.stages.map((stage) => (
                       <div key={stage.stage} className="flex-1 min-w-[170px] p-4 border border-border-color bg-card-bg rounded-xl relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300">
@@ -177,10 +172,10 @@ export const Projects: React.FC = () => {
                         </div>
                       </div>
                     ))}
-                  </motion.div>
+                  </div>
                 </div>
                 <div className="text-[9px] font-mono text-text-secondary text-right mt-1.5 opacity-60">
-                  ← Drag to view all 9 stages →
+                  ← Scroll to view all {selectedProject.timeSavings.stages.length} stages →
                 </div>
               </div>
             )}
