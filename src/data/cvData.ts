@@ -266,6 +266,15 @@ export const cvData = {
   ] as Project[],
   certifications: [
     {
+      id: "openai-workflow",
+      title: "Agents and Workflow",
+      issuer: "OpenAI",
+      date: "2026",
+      url: "https://academy.openai.com/home/certificate/zs18d7fk5h",
+      image: "/images/certificates/openai-workflow.jpg",
+      type: "ai"
+    },
+    {
       id: "taraai-zapier",
       title: "No Code Automation with Zapier",
       issuer: "TaraAI",
