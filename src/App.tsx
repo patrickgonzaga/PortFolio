@@ -37,7 +37,7 @@ const AppContent: React.FC = () => {
           <a href="#expertise" className="hover:text-white transition-colors">Expertise</a>
           <a href="#projects" className="hover:text-white transition-colors">Projects</a>
           <a href="#certifications" className="hover:text-white transition-colors">Certifications</a>
-          <a href="#experience" className="hover:text-white transition-colors">Experiences</a>
+          {/*<a href="#experience" className="hover:text-white transition-colors">Experiences</a>*/}
           <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           <a
             href="/docs/CV_Patrick_Gonzaga.pdf"

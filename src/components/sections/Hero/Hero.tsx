@@ -30,7 +30,7 @@ export const Hero: React.FC = () => {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-text-primary leading-[1.1]">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-text-primary leading-[1.1]">
             {firstName} <br />
             <span className="text-text-secondary">{lastName}.</span>
           </h1>
@@ -53,7 +53,7 @@ export const Hero: React.FC = () => {
               View Work
             </a>
             <a
-              href="/docs/CV_Patrick_Gonzaga.pdf"
+              href="/documents/CV_Patrick_Gonzaga.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download

@@ -6,6 +6,57 @@ import { Modal } from '../../ui/Modal/Modal';
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  const personalProjects = cvData.projects.filter(p => p.type === 'personal');
+  const enterpriseProjects = cvData.projects.filter(p => p.type === 'enterprise');
+
+  const renderProjectCard = (project: Project, index: number) => (
+    <motion.div
+      key={project.id}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ y: -5 }}
+      onClick={() => setSelectedProject(project)}
+      className="group cursor-pointer border border-border-color bg-card-bg hover:border-text-primary hover:bg-bg-color transition-all duration-300 flex flex-col h-full relative overflow-hidden"
+    >
+      {/* Subtle accent line on hover */}
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-text-primary scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out z-10" />
+      
+      {/* Hero Photo with Hover Effects */}
+      {project.image && (
+        <div className="w-full h-48 md:h-56 overflow-hidden relative border-b border-border-color group-hover:border-text-primary transition-colors duration-300">
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover object-top grayscale contrast-115 brightness-90 group-hover:grayscale-0 group-hover:scale-110 group-hover:brightness-100 transition-all duration-500 ease-out"
+            loading="lazy"
+          />
+          {/* Subtle dark overlay that fades on hover */}
+          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
+        </div>
+      )}
+
+      <div className="p-8 flex flex-col flex-grow">
+        <h3 className="text-2xl font-semibold text-text-primary mb-3 group-hover:text-blue-400 dark:group-hover:text-blue-300 transition-colors">
+          {project.title}
+        </h3>
+        
+        <p className="text-text-secondary font-light mb-6 flex-grow leading-relaxed">
+          {project.shortDescription}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {project.tags.map(tag => (
+            <span key={tag} className="px-3 py-1 text-xs font-mono border border-border-color text-text-secondary rounded-full bg-bg-color">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+
   return (
     <section className="py-32 px-6 lg:px-20 border-t border-border-color" id="projects">
       <div className="max-w-7xl mx-auto">
@@ -13,7 +64,7 @@ export const Projects: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="mb-16"
+          className="mb-20"
         >
           <div className="inline-flex items-center gap-3 mb-4">
             <span className="w-8 h-[1px] bg-text-primary"></span>
@@ -29,55 +80,58 @@ export const Projects: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {cvData.projects.map((project, index) => (
+        {/* Section 1: Enterprise & Client Solutions */}
+        {enterpriseProjects.length > 0 && (
+          <div className="mb-24">
             <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              onClick={() => setSelectedProject(project)}
-              className="group cursor-pointer border border-border-color bg-card-bg hover:border-text-primary hover:bg-bg-color transition-all duration-300 flex flex-col h-full relative overflow-hidden"
+              viewport={{ once: true }}
+              className="flex flex-col gap-2 mb-10"
             >
-              {/* Subtle accent line on hover */}
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-text-primary scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-out z-10" />
-              
-              {/* Hero Photo with Hover Effects */}
-              {project.image && (
-                <div className="w-full h-48 md:h-56 overflow-hidden relative border-b border-border-color group-hover:border-text-primary transition-colors duration-300">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover object-top grayscale contrast-115 brightness-90 group-hover:grayscale-0 group-hover:scale-110 group-hover:brightness-100 transition-all duration-500 ease-out"
-                    loading="lazy"
-                  />
-                  {/* Subtle dark overlay that fades on hover */}
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
-                </div>
-              )}
-
-              <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-semibold text-text-primary mb-3 group-hover:text-blue-400 dark:group-hover:text-blue-300 transition-colors">
-                  {project.title}
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-text-secondary"></span>
+                <h3 className="text-lg font-mono tracking-wider uppercase text-text-primary">
+                  Enterprise & Client Solutions
                 </h3>
-                
-                <p className="text-text-secondary font-light mb-6 flex-grow leading-relaxed">
-                  {project.shortDescription}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 text-xs font-mono border border-border-color text-text-secondary rounded-full bg-bg-color">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </div>
+              <p className="text-text-secondary font-light max-w-xl">
+                Production-grade platforms, cloud integrations, and automation suites built for corporate environments.
+              </p>
             </motion.div>
-          ))}
-        </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {enterpriseProjects.map((project, index) => renderProjectCard(project, index))}
+            </div>
+          </div>
+        )}
+        
+
+        {/* Section 2: Personal & AI Automation */}
+        {personalProjects.length > 0 && (
+          <div className="mb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex flex-col gap-2 mb-10"
+            >
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                <h3 className="text-lg font-mono tracking-wider uppercase text-text-primary">
+                  Personal & AI Automation
+                </h3>
+              </div>
+              <p className="text-text-secondary font-light max-w-xl">
+                Self-initiated pipelines, agentic workflows, and architectures built to explore new technology paradigms.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {personalProjects.map((project, index) => renderProjectCard(project, index))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Detail Modal */}
