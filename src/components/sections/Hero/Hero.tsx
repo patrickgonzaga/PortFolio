@@ -31,9 +31,9 @@ export const Hero: React.FC = () => {
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-text-primary leading-[1.1]">
-  {firstName} <br />
-  <span className="text-text-secondary">{lastName}.</span>
-</h1>
+            {firstName} <br />
+            <span className="text-text-secondary">{lastName}.</span>
+          </h1>
 
           <p className="text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed font-light mt-4">
             {personal.overview}
