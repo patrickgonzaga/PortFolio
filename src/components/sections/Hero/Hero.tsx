@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Download } from 'lucide-react';
 import { cvData } from '../../../data/cvData';
 
 export const Hero: React.FC = () => {
@@ -12,7 +13,7 @@ export const Hero: React.FC = () => {
   const lastName = nameParts[nameParts.length - 1];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 lg:px-20">
+    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 py-20 lg:py-0 lg:px-20">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
 
         {/* Text Content */}
@@ -29,27 +30,37 @@ export const Hero: React.FC = () => {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-text-primary leading-[1.1]">
-            {firstName} <br />
-            <span className="text-text-secondary">{lastName}.</span>
-          </h1>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-text-primary leading-[1.1]">
+  {firstName} <br />
+  <span className="text-text-secondary">{lastName}.</span>
+</h1>
 
           <p className="text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed font-light mt-4">
             {personal.overview}
           </p>
 
-          <div className="mt-8 flex gap-6 items-center">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
             <a
               href="#contact"
-              className="px-8 py-4 bg-text-primary text-bg-color rounded-full font-medium hover:scale-105 transition-transform"
+              className="px-8 py-4 bg-text-primary text-bg-color rounded-full font-medium hover:scale-105 transition-transform text-center"
             >
               Get in touch
             </a>
             <a
               href="#projects"
-              className="px-8 py-4 border border-border-color text-text-primary rounded-full font-medium hover:bg-card-bg transition-colors"
+              className="px-8 py-4 border border-border-color text-text-primary rounded-full font-medium hover:bg-card-bg transition-colors text-center"
             >
               View Work
+            </a>
+            <a
+              href="/documents/CV_Patrick_Gonzaga.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="px-8 py-4 border border-border-color text-text-primary rounded-full font-medium hover:bg-card-bg transition-colors flex items-center justify-center gap-2 text-center"
+            >
+              <Download size={18} />
+              Download CV
             </a>
           </div>
         </motion.div>

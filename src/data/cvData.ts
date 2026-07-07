@@ -32,7 +32,7 @@ export const cvData = {
   personal: {
     name: "Patrick James Lee Gonzaga",
     title: "Senior Software Engineer | Enterprise Systems, SAP, AI Assisted Dev & Automation, .NET & Azure Cloud Solutions",
-    overview: "Senior Software Engineer with 15+ years of experience building software that solves real operational problems through backend development, enterprise integrations, and automation. Long before AI-powered workflows became popular, I was already eliminating manual work using scripts, cron jobs, stored procedures, and custom VB.NET, C#, and ASP.NET applications. Today, I combine that engineering foundation with modern automation platforms like Zapier and n8n, plus LLM-powered agentic workflows, to build scalable business solutions. I thrive in unfamiliar environments, whether that means writing ABAP for SAP-to-MES integrations, configuring Retool admin portals, or architecting human-in-the-loop AI systems.",
+    overview: "Senior Software Engineer with over 15 years of experience building enterprise software, systems integrations, and business process automations. I’ve always enjoyed finding ways to eliminate manual work through technology—whether by developing custom applications, integrating enterprise systems, or automating workflows. Today, I'm expanding that foundation into AI, LLMs, and modern automation platforms like n8n and Zapier."
   },
   skills: [
     {

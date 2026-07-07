@@ -3,7 +3,7 @@ import { CustomCursor } from './components/ui/CustomCursor/CustomCursor';
 import { ThemeToggle } from './components/ui/ThemeToggle/ThemeToggle';
 import { Terminal } from './components/ui/Terminal/Terminal';
 import { Hero } from './components/sections/Hero/Hero';
-import { ExperienceTimeline } from './components/sections/ExperienceTimeline/ExperienceTimeline';
+//import { ExperienceTimeline } from './components/sections/ExperienceTimeline/ExperienceTimeline';
 import { Projects } from './components/sections/Projects/Projects';
 import { Certifications } from './components/sections/Certifications/Certifications';
 import { ExpertiseGrid } from './components/sections/ExpertiseGrid/ExpertiseGrid';
@@ -28,7 +28,7 @@ const AppContent: React.FC = () => {
           <a href="#expertise" className="hover:text-white transition-colors">Expertise</a>
           <a href="#projects" className="hover:text-white transition-colors">Projects</a>
           <a href="#certifications" className="hover:text-white transition-colors">Certifications</a>
-          <a href="#experience" className="hover:text-white transition-colors">Experiences</a>
+          {/*<a href="#experience" className="hover:text-white transition-colors">Experiences</a>*/}
           <a href="#contact" className="hover:text-white transition-colors">Contact</a>
         </nav>
       </header>
@@ -38,7 +38,7 @@ const AppContent: React.FC = () => {
         <ExpertiseGrid />
         <Projects />
         <Certifications />
-        <ExperienceTimeline />
+        {/*<ExperienceTimeline />*/}
         <Contact />
       </main>
 
