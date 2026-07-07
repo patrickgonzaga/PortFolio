@@ -4,7 +4,7 @@ import { Download } from 'lucide-react';
 import { cvData } from '../../../data/cvData';
 
 export const Hero: React.FC = () => {
-  const { personal } = cvData;
+  const personal = cvData.personal;
 
   // Splitting the name for the visual "First Name / Last Name" effect
   // We'll use the first and last name from the personal data
@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
   const lastName = nameParts[nameParts.length - 1];
 
   return (
-    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 py-20 lg:py-0 lg:px-20">
+    <section className="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 py-28 lg:py-0 lg:px-20">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
 
         {/* Text Content */}
@@ -72,7 +72,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
           className="relative flex justify-center lg:justify-end"
         >
-          <div className="relative w-[300px] h-[450px] md:w-[400px] md:h-[600px] rounded-2xl overflow-hidden glass-panel group">
+          <div className="relative w-full max-w-[320px] aspect-[2/3] md:w-[400px] md:h-[600px] rounded-2xl overflow-hidden glass-panel group">
             <img
               src="/pat.png"
               alt={personal.name}
