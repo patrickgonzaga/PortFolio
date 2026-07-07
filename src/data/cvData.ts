@@ -172,6 +172,7 @@ export const cvData = {
       shortDescription: "A portfolio project built to explore agentic workflow design, featuring a multi-stage n8n pipeline and a .NET backend.",
       fullDescription: "Altomatiko is a portfolio project built to learn and explore agentic workflow design rather than simple, single-prompt AI calls.\n\nAt its core, n8n orchestrates a 9-stage content pipeline (discover → research → write → metadata → approve → generate media → publish → analyze → repeat) supported by a backend in ASP.NET Core 8 following CQRS patterns (MediatR), EF Core + Dapper, and PostgreSQL/Supabase. The user dashboard is a modern React 18 + Vite + TypeScript application.\n\nThis project demonstrates human-in-the-loop AI automation, ensuring AI agents collaborate with human editors before performing side-effect operations like media creation or publishing.\n\nTech Stack:\n• n8n (Orchestration)\n• ASP.NET Core 8 & MediatR (CQRS)\n• React + Vite + TypeScript & Zustand\n• PostgreSQL / Supabase\n• EF Core & Dapper\n• FluentValidation\n• Docker Compose\n• Tailwind CSS\n• Gemini / OpenRouter / OpenAI\n• Cloudinary",
       image: "/images/projects/AItomatiko.png",
+      type: "personal",
       timeSavings: {
         totalManual: "6 Hours",
         totalAutomated: "3 Minutes",
@@ -192,10 +193,11 @@ export const cvData = {
     {
       id: "wikicamps-admin",
       title: "Deals & WikiCamps Platform (Backend & Admin Portal)",
-      tags: [".NET", "C#", "ASP.NET Core", "Retool", "Azure", "REST API"],
+      tags: [".NET", "C#", "ASP.NET Core", "Visual Studio", "Cursor", "Retool", "Azure", "REST API"],
       shortDescription: "Scalable backend APIs and internal admin portal supporting bookings, deals, and content management.",
       fullDescription: "Built and maintained RESTful APIs powering the Deals and WikiCamps platform, integrated with a low-code Retool admin portal used by internal teams. Implemented secure configuration using Azure Key Vault, optimized performance with Redis caching, and structured data access with EF Core. Supported multi-environment deployments and ensured reliability for business-critical operations.",
-      image: "/images/projects/wikicamps-admin.png"
+      image: "/images/projects/wikicamps-admin.png",
+      type: "enterprise"
     },
     {
       id: "optimatech-cloud",
@@ -203,7 +205,8 @@ export const cvData = {
       tags: ["C#", "AWS S3", "AWS SQS", "BuildKite", "LaunchDarkly"],
       shortDescription: "High-throughput cloud system ensuring reliable and accurate meter data processing.",
       fullDescription: "Contributed to the design and development of a scalable cloud architecture using AWS S3 for storage and SQS for asynchronous messaging. Handled large volumes of meter data with a focus on reliability and data integrity, achieving ~99% accuracy. Refactored legacy components and improved system resilience and maintainability.",
-      image: "/images/projects/optimatech-cloud.png"
+      image: "/images/projects/optimatech-cloud.png",
+      type: "enterprise"
     },
     {
       id: "mes-sap-integration",
@@ -211,7 +214,8 @@ export const cvData = {
       tags: ["SAP", "MES", "ABAP", "Enterprise Integration"],
       shortDescription: "Automated enterprise workflows, improving productivity by 75%.",
       fullDescription: "Engineered integration between Manufacturing Execution Systems (MES) and SAP to automate material master data and production planning processes. Implemented 'poka-yoke' (error-proofing) solutions to eliminate manual input errors, resulting in significant efficiency gains and over 1M+ MYR in operational savings.",
-      image: "/images/projects/mes-sap-integration.png"
+      image: "/images/projects/mes-sap-integration.png",
+      type: "enterprise"
     },
     {
       id: "enterprise-reporting",
@@ -219,7 +223,8 @@ export const cvData = {
       tags: ["TIBCO Spotfire", "Oracle", "Data Visualization"],
       shortDescription: "Real-time reporting platform for operational insights and decision-making.",
       fullDescription: "Developed interactive dashboards and reporting solutions using TIBCO Spotfire, enabling stakeholders to monitor production performance, identify bottlenecks, and improve decision-making. Enhanced visibility across operations and supported data-driven improvements.",
-      image: "/images/projects/enterprise-reporting.png"
+      image: "/images/projects/enterprise-reporting.png",
+      type: "enterprise"
     },
     {
       id: "resort-systems",
@@ -227,7 +232,8 @@ export const cvData = {
       tags: ["VB.NET", "SQL Server", "PHP", "Javascript", "System Design"],
       shortDescription: "End-to-end system suite replacing manual resort operations.",
       fullDescription: "Led development of multiple in-house systems including POS, Casino Management, and biometric timekeeping. Automated manual workflows, improved operational efficiency, and centralized data management across departments.",
-      image: "/images/projects/resort-systems.png"
+      image: "/images/projects/resort-systems.png",
+      type: "enterprise"
     },
     {
       id: "rskl-helpdesk",
@@ -235,9 +241,10 @@ export const cvData = {
       tags: ["VB.NET", "ASP.NET", "SQL Server", "Javascript"],
       shortDescription: "Internal IT helpdesk and support ticketing system streamlining request workflows.",
       fullDescription: "Developed an internal Helpdesk ticketing system for Renesas Semiconductor KL (RSKL) using VB.NET, ASP.NET, and SQL Server. Automated support request routing, tracked SLA compliance, and replaced manual email-based tracking to improve IT department response times, transparency, and operational accountability.",
-      image: "/images/projects/rskl-helpdesk.png"
+      image: "/images/projects/rskl-helpdesk.png",
+      type: "enterprise"
     }
-  ],
+  ] as Project[],
   certifications: [
     {
       id: "taraai-zapier",
@@ -417,4 +424,5 @@ export interface Project {
   fullDescription: string;
   image?: string;
   timeSavings?: TimeSavings;
+  type: 'personal' | 'enterprise';
 }
