@@ -189,7 +189,87 @@ export const cvData = {
           { stage: "8. Analyze", manual: "40m", automated: "10s", saved: "99.5%" },
           { stage: "9. Repeat", manual: "10m", automated: "Instant", saved: "100%" }
         ]
+      },
+      deploymentCosts: {
+        tiers: [
+          {
+            name: "Small Business",
+            totalSelfHosted: "$50 - $70/mo",
+            totalManaged: "$90 - $100/mo",
+            breakdown: [
+              {
+                service: "n8n Workflow Engine",
+                selfHosted: "$15 - $20/mo (Hetzner VPS)",
+                managed: "$20/mo (n8n Cloud)",
+                notes: "Hetzner CPX (4GB RAM, shared with API)"
+              },
+              {
+                service: "C# Web API on Azure",
+                selfHosted: "$0/mo (Co-hosted on same VPS)",
+                managed: "$15/mo (Azure App Service B1)",
+                notes: "Azure App Service basic B1 tier"
+              },
+              {
+                service: "PostgreSQL & Database",
+                selfHosted: "$10/mo (Managed Postgres)",
+                managed: "$25/mo (Supabase Pro)",
+                notes: "Managed Postgres with daily backups / Supabase Pro"
+              },
+              {
+                service: "Infrastructure (SSL, DNS, Backups)",
+                selfHosted: "$7/mo",
+                managed: "$17/mo (Included/Managed)",
+                notes: "Backup storage, domain, SSL & basic monitoring"
+              },
+              {
+                service: "APIs (Google Docs & LLMs)",
+                selfHosted: "$15 - $20/mo",
+                managed: "$15 - $20/mo",
+                notes: "Consumption-based LLM costs; free Google API quota"
+              }
+            ]
+          },
+          {
+            name: "Large Business",
+            totalSelfHosted: "$210 - $320/mo",
+            totalManaged: "$285 - $405/mo",
+            breakdown: [
+              {
+                service: "n8n Workflow Engine",
+                selfHosted: "$40 - $60/mo (Dedicated VPS)",
+                managed: "$50 - $70/mo (n8n Cloud Pro)",
+                notes: "Sized for high concurrent execution limits"
+              },
+              {
+                service: "C# Web API on Azure",
+                selfHosted: "$25 - $40/mo (Separate VPS)",
+                managed: "$55 - $75/mo (Azure App S1)",
+                notes: "Separate production API node, auto-scale & staging slots"
+              },
+              {
+                service: "PostgreSQL Database",
+                selfHosted: "$30 - $50/mo (Managed Postgres)",
+                managed: "$50 - $100/mo (Azure Flexible PG)",
+                notes: "Larger dedicated storage and Point-in-Time recovery"
+              },
+              {
+                service: "Infrastructure (SSL, APM, CDN)",
+                selfHosted: "$35 - $60/mo",
+                managed: "$50/mo",
+                notes: "Datadog/Azure Monitor APM, automated backups, and Cloudflare CDN"
+              },
+              {
+                service: "APIs (Google Workspace & LLMs)",
+                selfHosted: "$80 - $110/mo",
+                managed: "$80 - $110/mo",
+                notes: "Heavy LLM consumption, paid Google Workspace account seats"
+              }
+            ]
+          }
+        ]
       }
+
+
     },
     {
       id: "wikicamps-admin",
@@ -444,6 +524,24 @@ export interface TimeSavings {
   stages: TimeSavingStage[];
 }
 
+export interface DeploymentCostItem {
+  service: string;
+  selfHosted: string;
+  managed: string;
+  notes?: string;
+}
+
+export interface CostTier {
+  name: string;
+  totalSelfHosted: string;
+  totalManaged: string;
+  breakdown: DeploymentCostItem[];
+}
+
+export interface DeploymentCosts {
+  tiers: CostTier[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -452,5 +550,7 @@ export interface Project {
   fullDescription: string;
   image?: string;
   timeSavings?: TimeSavings;
+  deploymentCosts?: DeploymentCosts;
   type: 'personal' | 'enterprise';
 }
+

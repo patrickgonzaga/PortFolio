@@ -5,9 +5,15 @@ import { Modal } from '../../ui/Modal/Modal';
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeCostTierIndex, setActiveCostTierIndex] = useState<number>(0);
 
   const personalProjects = cvData.projects.filter(p => p.type === 'personal');
   const enterpriseProjects = cvData.projects.filter(p => p.type === 'enterprise');
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setActiveCostTierIndex(0);
+  };
 
   const renderProjectCard = (project: Project, index: number) => (
     <motion.div
@@ -17,7 +23,7 @@ export const Projects: React.FC = () => {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -5 }}
-      onClick={() => setSelectedProject(project)}
+      onClick={() => handleProjectClick(project)}
       className="group cursor-pointer border border-border-color bg-card-bg hover:border-text-primary hover:bg-bg-color transition-all duration-300 flex flex-col h-full relative overflow-hidden"
     >
       {/* Subtle accent line on hover */}
@@ -231,6 +237,79 @@ export const Projects: React.FC = () => {
                 <div className="text-[9px] font-mono text-text-secondary text-right mt-1.5 opacity-60">
                   ← Scroll to view all {selectedProject.timeSavings.stages.length} stages →
                 </div>
+              </div>
+            )}
+
+            {selectedProject.deploymentCosts && (
+              <div className="mt-6 border-t border-border-color pt-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                  <h4 className="text-xs font-mono tracking-widest uppercase text-text-secondary flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+                    Production Deployment Cost Estimate
+                  </h4>
+                  
+                  {/* Tier selector tabs */}
+                  <div className="flex gap-1.5 bg-black/10 dark:bg-white/5 p-1 rounded-lg border border-border-color self-start sm:self-auto">
+                    {selectedProject.deploymentCosts.tiers.map((tier, idx) => (
+                      <button
+                        key={tier.name}
+                        onClick={() => setActiveCostTierIndex(idx)}
+                        className={`px-3 py-1 text-[10px] font-mono tracking-wider uppercase rounded transition-colors ${
+                          activeCostTierIndex === idx
+                            ? 'bg-text-primary text-bg-color font-bold'
+                            : 'text-text-secondary hover:text-text-primary'
+                        }`}
+                      >
+                        {tier.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Cost Summary Cards for selected tier */}
+                {selectedProject.deploymentCosts.tiers[activeCostTierIndex] && (
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                      <div className="p-3 border border-border-color bg-black/5 dark:bg-white/5 rounded-xl">
+                        <span className="text-[10px] text-text-secondary font-mono">Self-Hosted / VPS Option</span>
+                        <div className="text-base md:text-lg font-bold text-green-400/90 mt-1">
+                          {selectedProject.deploymentCosts.tiers[activeCostTierIndex].totalSelfHosted}
+                        </div>
+                      </div>
+                      <div className="p-3 border border-blue-500/20 bg-blue-500/5 rounded-xl">
+                        <span className="text-[10px] text-blue-400 font-mono">Fully Managed / SaaS Option</span>
+                        <div className="text-base md:text-lg font-bold text-blue-300 mt-1">
+                          {selectedProject.deploymentCosts.tiers[activeCostTierIndex].totalManaged}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Table breakdown */}
+                    <div className="overflow-x-auto border border-border-color rounded-xl bg-card-bg">
+                      <table className="w-full text-left border-collapse">
+                        <thead>
+                          <tr className="border-b border-border-color bg-black/10 dark:bg-white/5">
+                            <th className="p-3 text-[10px] font-mono tracking-wider uppercase text-text-primary">Service</th>
+                            <th className="p-3 text-[10px] font-mono tracking-wider uppercase text-text-primary">Self-Hosted / VPS</th>
+                            <th className="p-3 text-[10px] font-mono tracking-wider uppercase text-text-primary">Managed / Cloud</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-border-color/30">
+                          {selectedProject.deploymentCosts.tiers[activeCostTierIndex].breakdown.map((item, idx) => (
+                            <tr key={idx} className="hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                              <td className="p-3">
+                                <div className="text-xs font-mono font-bold text-text-primary">{item.service}</div>
+                                {item.notes && <div className="text-[10px] text-text-secondary font-light mt-0.5">{item.notes}</div>}
+                              </td>
+                              <td className="p-3 text-xs text-green-400/95 font-mono whitespace-nowrap">{item.selfHosted}</td>
+                              <td className="p-3 text-xs text-blue-300 font-mono whitespace-nowrap">{item.managed}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
+                )}
               </div>
             )}
           </div>
