@@ -99,12 +99,12 @@ export const cvData = {
       location: "Australia (remote)",
       flag: "au",
       description: [
-        "Built and maintained the Deals and WikiCamps domain, focusing on RESTful API implementation, EF Core data access, and integration with shared microservices.",
-        "Supported development of shared WikiCamps platform services, including sites, forums, accounts, trips, and media.",
-        "Took ownership of the Admin Portal (Retool) for deals, bookings, and WikiCamps — including pages, resource/query configuration, and multi-environment setup.",
-        "Worked extensively with Azure services: Key Vault, Application Insights, Redis Cache, Blob Storage, Service Bus (message handlers), and Azure Functions.",
-        "Integrated external and internal services such as BookEasy (bookings), OSRM (routing) with Polly resilience policies, and Azure AI Search for content indexing.",
-        "Used Cursor (repository-level rules, MCP for read-only Azure/SQL access) to support AI-assisted development."
+        "Engineered and maintained RESTful APIs powering the Deals and WikiCamps platform, owning domain logic, EF Core data access, and shared microservice integrations.",
+        "Automated internal team workflows by taking full ownership of the Retool Admin Portal for deals, bookings, and WikiCamps — configuring pages, resources/queries, and multi-environment pipelines used daily by operations staff.",
+        "Integrated and automated external service pipelines: BookEasy (booking sync), OSRM (routing) with Polly resilience policies, and Azure AI Search for automated content indexing.",
+        "Leveraged Azure-native automation services — Service Bus message handlers, Azure Functions (media resizing, scheduled jobs, offline builder), Redis Cache, Blob Storage, and Key Vault — to orchestrate reliable, event-driven backend workflows.",
+        "Supported WikiCamps platform services covering sites, forums, accounts, trips, and media, ensuring shared service reliability for Australian users.",
+        "Accelerated development velocity using AI-assisted tooling (Cursor with repository-level rules and MCP for read-only Azure/SQL access), ensuring all AI-generated changes were reviewed and validated before merge."
       ]
     },
     {
@@ -115,11 +115,12 @@ export const cvData = {
       location: "Australia (remote)",
       flag: "au",
       description: [
-        "Collaborated in the development of a highly scalable web application architecture utilizing AWS S3 and SQS for efficient and reliable storage and messaging solutions.",
-        "Responsible for the design, development, refactoring, and maintenance of the Optimatech application implementing efficient and reliable best software practices.",
-        "Created and maintained top-notch functional and technical documentation using Confluence, resulting in a remarkable 50% improvement in knowledge sharing.",
-        "Successfully deployed code to Test, UAT and production environments using Buildkite.",
-        "Oversaw the accuracy of meter data, ensuring a 99% data quality rate."
+        "Contributed to a scalable cloud architecture using AWS S3 and SQS to automate high-throughput meter data storage and asynchronous messaging pipelines.",
+        "Designed, developed, refactored, and maintained the Optimatech application, implementing clean architecture and reliable software engineering practices to improve long-term maintainability.",
+        "Enforced engineering standards through active code review participation — improving code quality, security, and maintainability across the team.",
+        "Automated release workflows by deploying code across Test, UAT, and production environments via Buildkite CI/CD pipelines, ensuring minimal downtime and efficient releases.",
+        "Improved knowledge-transfer efficiency by 50% by creating and maintaining comprehensive functional and technical documentation in Confluence.",
+        "Ensured 99% meter data accuracy through automated data quality checks and oversight of data integrity processes."
       ]
     },
     {
@@ -130,13 +131,12 @@ export const cvData = {
       location: "Kuala Langat, Malaysia",
       flag: "my",
       description: [
-        "Ensures Main Manufacturing Execution System (MES) has an uptime of 99%.",
-        "Engineered software solutions yielding an increased in productivity by 75%, over 1M+ MYR time saving benefits and 'POKA-YOKE'.",
-        "Developed the Electronic Lot Control Slip (e-LCS) system, replacing manual paper templates with system-driven 'poka-yoke' route verification.",
-        "Designed and developed the RSKL Helpdesk system (VB.NET, ASP.NET, SQL Server) to automate internal IT support ticketing and streamline incident response workflows.",
-        "Efficiently multi-tasked and administered over 100 servers running in physical, VMWare and Hyper V.",
-        "Interfaced and integrated SAP to MES systems automating material master registrations and production planning run.",
-        "Built Innovative management reports using TIBCO Spotfire."
+        "Ensured 99% uptime for the core Manufacturing Execution System (MES) supporting 24/7 semiconductor production operations, administering 100+ physical, VMware, and Hyper-V servers — including Oracle and MS SQL databases — across in-house and Japan-linked environments.",
+        "Drove automation initiatives that boosted floor productivity by 75% and generated 1M+ MYR in time-saving benefits — achieved through deep analysis of production workflows, user needs, and system bottlenecks before engineering targeted solutions.",
+        "Eliminated lot routing mismatch defects by automating semiconductor floor routing via the Electronic Lot Control Slip (e-LCS) — replacing error-prone manual paper templates with MES-integrated poka-yoke (mistake-proofing) validation that blocked incorrect process steps in real time.",
+        "Automated IT support operations by building the RSKL Helpdesk System (VB.NET, ASP.NET, SQL Server) — replacing manual email-based incident tracking with automated ticket routing, assignment, and SLA compliance monitoring.",
+        "Integrated SAP with MES to fully automate material master registration and production planning runs, eliminating manual data entry and reducing end-to-end planning cycle time.",
+        "Built real-time manufacturing analytics dashboards using TIBCO Spotfire, enabling production leadership to monitor KPIs and act on data-driven insights across the semiconductor floor."
       ]
     },
     {
@@ -147,8 +147,8 @@ export const cvData = {
       location: "Chrey Thom, Cambodia",
       flag: "kh",
       description: [
-        "Led project planning, resourcing, documentation, and client engagement; cleared risks so deliverables shipped on time.",
-        "Delivered the Resort Operations System Suite (POS, Casino Management, and Automated Timekeeping with Biometrics), fully automating manual workflows and centralizing operations."
+        "As IT Manager: led end-to-end project planning, resourcing, documentation, and stakeholder engagement — clearing risks and ensuring all automation systems shipped on time and within scope.",
+        "As IT Executive: designed and delivered the Resort Operations System Suite — Point of Sale (POS), Casino Management System (CMS), and Automated Timekeeping System with Biometrics (ATS) — fully automating previously manual processes and centralizing resort operations across all departments."
       ]
     },
     {
@@ -159,9 +159,9 @@ export const cvData = {
       location: "Subic Bay Olongapo, Philippines",
       flag: "ph",
       description: [
-        "Designed and built club systems covering employment, payroll, timekeeping, billing/collections, AP, and POS.",
-        "Administered Windows Server, SCO UNIX, Novell NetWare, Oracle OPERA 4.04 PMS, and Micros-Fidelio.",
-        "Day-to-day monitoring of systems and databases (99% uptime target); custom programs; vendor evaluation."
+        "As Senior Programmer: automated core club operations by designing and building in-house systems for employment, payroll, timekeeping, billing/collections, accounts payable, and POS across revenue centres and retail — replacing fully manual, paper-based processes.",
+        "Administered and tuned multi-platform infrastructure — Windows Server, SCO UNIX, Novell NetWare, Oracle OPERA 4.04 PMS, and Micros-Fidelio — including database indexing, security hardening, and performance optimization.",
+        "As Junior Programmer: maintained 99% system and database uptime through proactive monitoring; developed custom automation programs; conducted vendor evaluations; and provided front-line IT support for members and staff."
       ]
     }
   ] as Experience[],
