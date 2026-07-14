@@ -167,6 +167,96 @@ export const cvData = {
   ] as Experience[],
   projects: [
     {
+      id: "support-ticket-triage",
+      title: "AI Customer Support Ticket Triage",
+      tags: ["n8n", "Zapier", "OpenAI GPT", "Gmail API", "Asana API", "AI Automation", "OAuth 2.0"],
+      shortDescription: "An AI-powered support ticket triage workflow that automates email monitoring, classification, routing, and ticket creation.",
+      fullDescription: "Built an AI-powered workflow to automate customer support ticket processing. The workflow monitors a support inbox, extracts key information from incoming emails, classifies the issue, determines priority and sentiment, generates a concise summary, and automatically creates an assigned task in Asana based on predefined routing rules.\n\nThis system eliminates manual email triage, automatically routes tickets to the correct team, and dramatically improves response times for critical customer issues.",
+      image: "/images/projects/n8n-ai-customer-support-ticket-triage.png",
+      type: "personal",
+      platforms: [
+        {
+          name: "n8n",
+          image: "/images/projects/n8n-ai-customer-support-ticket-triage.png",
+          description: "Fully automated workflow running on n8n. It leverages the Gmail API to trigger on new emails, uses OpenAI GPT for structured JSON-based extraction and classification, and routes the ticket to the correct team via the Asana API using custom routing rules.",
+          timeSavings: {
+            totalManual: "3-5 Minutes",
+            totalAutomated: "10-20 Seconds",
+            percentSaved: "95% Faster",
+            stages: [
+              { stage: "1. Monitor & Ingest", manual: "30s", automated: "Instant", saved: "100%" },
+              { stage: "2. Extract & Summarize", manual: "2m", automated: "8s", saved: "93%" },
+              { stage: "3. Classify & Prioritize", manual: "1m", automated: "5s", saved: "91%" },
+              { stage: "4. Route & Create Task", manual: "1m", automated: "2s", saved: "96%" }
+            ]
+          }
+        },
+        {
+          name: "Zapier",
+          image: "/images/projects/zapier-ai-customer-support-ticket-triage.png",
+          description: "Equivalent automation pipeline built on Zapier. Utilizes Zapier's built-in Gmail triggers, OpenAI integration, Paths logic for routing, and Asana integrations.",
+          timeSavings: {
+            totalManual: "3-5 Minutes",
+            totalAutomated: "15-25 Seconds",
+            percentSaved: "92% Faster",
+            stages: [
+              { stage: "1. Monitor & Ingest", manual: "30s", automated: "Instant", saved: "100%" },
+              { stage: "2. Extract & Summarize", manual: "2m", automated: "12s", saved: "90%" },
+              { stage: "3. Classify & Prioritize", manual: "1m", automated: "6s", saved: "90%" },
+              { stage: "4. Route & Create Task", manual: "1m", automated: "3s", saved: "95%" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      id: "ai-invoice-processing",
+      title: "AI Invoice Processing & Approval Workflow",
+      tags: ["n8n", "Zapier", "Google Gemini AI", "Gmail API", "Xero API", "Google Drive", "Google Sheets", "Asana", "Slack", "AI Automation"],
+      shortDescription: "An AI-powered accounts payable automation that monitors an inbox, extracts invoice data using Gemini, validates duplicates, and routes approvals.",
+      fullDescription: "Designed an AI-powered accounts payable automation using n8n, Google Gemini, Gmail, Xero, Google Sheets, Google Drive, Slack, and Asana.\n\nThe workflow automatically monitors an invoice inbox, extracts invoice data from PDF attachments using AI, validates and checks for duplicate invoices, creates a Draft Bill in Xero, archives the original invoice in Google Drive, creates an approval task in Asana for the finance team, logs processed invoices in Google Sheets, and sends Slack notifications for successful processing or duplicate detection.\n\nBusiness Value:\n• Eliminates manual invoice data entry\n• Reduces processing time from 5–8 minutes to under 1 minute per invoice\n• Prevents duplicate invoice processing\n• Maintains a human approval step before payment\n• Improves traceability with centralized document storage and audit logs",
+      image: "/images/projects/n8n-ai-invoice-processing.png",
+      type: "personal",
+      platforms: [
+        {
+          name: "n8n",
+          image: "/images/projects/n8n-ai-invoice-processing.png",
+          description: "Fully automated invoice processing workflow running on n8n. It monitors a dedicated inbox for PDF invoices, extracts and structures data via Google Gemini, checks for duplicates, creates a draft bill in Xero, archives files to Google Drive, logs rows to Google Sheets, and raises an approval task in Asana.",
+          timeSavings: {
+            totalManual: "5-8 Minutes",
+            totalAutomated: "Under 1 Minute",
+            percentSaved: "91% Faster",
+            stages: [
+              { stage: "1. Invoice Intake", manual: "1m", automated: "Instant", saved: "100%" },
+              { stage: "2. AI Data Extraction", manual: "3m", automated: "15s", saved: "92%" },
+              { stage: "3. Duplicate Validation", manual: "1m", automated: "5s", saved: "92%" },
+              { stage: "4. Xero Draft Bill", manual: "1m 30s", automated: "10s", saved: "89%" },
+              { stage: "5. Document Archiving", manual: "1m", automated: "5s", saved: "92%" },
+              { stage: "6. Approval Workflow", manual: "1m", automated: "5s", saved: "92%" }
+            ]
+          }
+        },
+        {
+          name: "Zapier",
+          image: "/images/projects/zapier-ai-invoice-processing.png",
+          description: "Equivalent accounts payable pipeline built on Zapier. It integrates Gmail triggers, Gemini-powered parser, Google Sheets/Drive lookups, Xero draft creation, and Asana tasks using multi-step Zaps.",
+          timeSavings: {
+            totalManual: "5-8 Minutes",
+            totalAutomated: "Under 1 Minute",
+            percentSaved: "90% Faster",
+            stages: [
+              { stage: "1. Invoice Intake", manual: "1m", automated: "Instant", saved: "100%" },
+              { stage: "2. AI Data Extraction", manual: "3m", automated: "20s", saved: "89%" },
+              { stage: "3. Duplicate Validation", manual: "1m", automated: "8s", saved: "87%" },
+              { stage: "4. Xero Draft Bill", manual: "1m 30s", automated: "12s", saved: "87%" },
+              { stage: "5. Document Archiving", manual: "1m", automated: "6s", saved: "90%" },
+              { stage: "6. Approval Workflow", manual: "1m", automated: "6s", saved: "90%" }
+            ]
+          }
+        }
+      ]
+    },
+    {
       id: "altomatiko",
       title: "Altomatiko — AI-Powered Content Automation Pipeline",
       tags: ["n8n", "ASP.NET Core", "React", "Postgre", "Antigravity", "AI Automation"],
@@ -542,6 +632,13 @@ export interface DeploymentCosts {
   tiers: CostTier[];
 }
 
+export interface ProjectPlatform {
+  name: 'n8n' | 'Zapier' | 'Make';
+  image: string;
+  description: string;
+  timeSavings?: TimeSavings;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -552,5 +649,6 @@ export interface Project {
   timeSavings?: TimeSavings;
   deploymentCosts?: DeploymentCosts;
   type: 'personal' | 'enterprise';
+  platforms?: ProjectPlatform[];
 }
 
