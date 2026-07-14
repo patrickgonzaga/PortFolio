@@ -6,6 +6,97 @@ import { Modal } from '../../ui/Modal/Modal';
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeCostTierIndex, setActiveCostTierIndex] = useState<number>(0);
+  const [selectedPlatform, setSelectedPlatform] = useState<'n8n' | 'Zapier' | 'Make' | null>(null);
+  const [availablePlatforms, setAvailablePlatforms] = useState<('n8n' | 'Zapier' | 'Make')[]>([]);
+
+  const stagesScrollRef = React.useRef<HTMLDivElement>(null);
+  const [isDraggingStages, setIsDraggingStages] = useState(false);
+  const stagesStartXRef = React.useRef(0);
+  const stagesScrollLeftRef = React.useRef(0);
+  const isStagesDownRef = React.useRef(false);
+
+  const handleWindowStagesMouseMove = React.useCallback((e: MouseEvent) => {
+    if (!isStagesDownRef.current || !stagesScrollRef.current) return;
+    const x = e.pageX;
+    const walk = (x - stagesStartXRef.current) * 1.5;
+    stagesScrollRef.current.scrollLeft = stagesScrollLeftRef.current - walk;
+  }, []);
+
+  const handleWindowStagesMouseUp = React.useCallback(() => {
+    isStagesDownRef.current = false;
+    setIsDraggingStages(false);
+    window.removeEventListener('mousemove', handleWindowStagesMouseMove);
+    window.removeEventListener('mouseup', handleWindowStagesMouseUp);
+  }, [handleWindowStagesMouseMove]);
+
+  const handleStagesMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return; // Left click only
+    if (!stagesScrollRef.current) return;
+    
+    isStagesDownRef.current = true;
+    setIsDraggingStages(true);
+    
+    stagesStartXRef.current = e.pageX;
+    stagesScrollLeftRef.current = stagesScrollRef.current.scrollLeft;
+
+    window.addEventListener('mousemove', handleWindowStagesMouseMove);
+    window.addEventListener('mouseup', handleWindowStagesMouseUp);
+  };
+
+  React.useEffect(() => {
+    return () => {
+      window.removeEventListener('mousemove', handleWindowStagesMouseMove);
+      window.removeEventListener('mouseup', handleWindowStagesMouseUp);
+    };
+  }, [handleWindowStagesMouseMove, handleWindowStagesMouseUp]);
+
+  const currentPlatformData = selectedProject?.platforms?.find(p => p.name === selectedPlatform);
+  const displayedImage = currentPlatformData?.image || selectedProject?.image;
+  const displayedDescription = currentPlatformData?.description || selectedProject?.fullDescription;
+  const displayedTimeSavings = currentPlatformData?.timeSavings || selectedProject?.timeSavings;
+
+  React.useEffect(() => {
+    const platforms = selectedProject?.platforms;
+    if (platforms) {
+      const checkPlatformImages = async () => {
+        const checks = await Promise.all(
+          platforms.map(async (platform) => {
+            try {
+              const res = await fetch(platform.image, { method: 'HEAD' });
+              if (res.ok) {
+                return { name: platform.name, ok: true };
+              }
+              if (res.status !== 404) {
+                const getRes = await fetch(platform.image, { method: 'GET' });
+                return { name: platform.name, ok: getRes.ok };
+              }
+              return { name: platform.name, ok: false };
+            } catch {
+              try {
+                const getRes = await fetch(platform.image, { method: 'GET' });
+                return { name: platform.name, ok: getRes.ok };
+              } catch {
+                return { name: platform.name, ok: false };
+              }
+            }
+          })
+        );
+        const active = checks
+          .filter(c => c.ok)
+          .map(c => c.name as 'n8n' | 'Zapier' | 'Make');
+        setAvailablePlatforms(active);
+        if (active.length > 0) {
+          setSelectedPlatform(active[0]);
+        } else {
+          setSelectedPlatform(null);
+        }
+      };
+      checkPlatformImages();
+    } else {
+      setAvailablePlatforms([]);
+      setSelectedPlatform(null);
+    }
+  }, [selectedProject]);
 
   const personalProjects = cvData.projects.filter(p => p.type === 'personal');
   const enterpriseProjects = cvData.projects.filter(p => p.type === 'enterprise');
@@ -148,16 +239,41 @@ export const Projects: React.FC = () => {
       >
         {selectedProject && (
           <div className="flex flex-col gap-6">
-            {selectedProject.image && (
+            {/* Platform Selector Tabs */}
+            {selectedProject.platforms && availablePlatforms.length > 1 && (
+              <div className="flex flex-wrap gap-2 border-b border-border-color/30 pb-4">
+                {selectedProject.platforms.map((platform) => {
+                  const isAvailable = availablePlatforms.includes(platform.name);
+                  if (!isAvailable) return null;
+
+                  const isActive = selectedPlatform === platform.name;
+                  return (
+                    <button
+                      key={platform.name}
+                      onClick={() => setSelectedPlatform(platform.name)}
+                      className={`px-4 py-2 text-xs font-mono tracking-wider uppercase border transition-all duration-300 rounded-full cursor-pointer ${
+                        isActive
+                          ? 'bg-text-primary text-bg-color border-text-primary font-bold'
+                          : 'border-border-color text-text-secondary hover:border-text-primary hover:text-text-primary'
+                      }`}
+                    >
+                      {platform.name}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {displayedImage && (
               <a 
-                href={selectedProject.image} 
+                href={displayedImage} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-full h-64 md:h-96 overflow-hidden border border-border-color flex items-center justify-center bg-black/10 dark:bg-black/30 block group relative cursor-zoom-in"
                 title="Click to view full image in a new tab"
               >
                 <img 
-                  src={selectedProject.image} 
+                  src={displayedImage} 
                   alt={selectedProject.title} 
                   className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
                 />
@@ -176,42 +292,52 @@ export const Projects: React.FC = () => {
               ))}
             </div>
             <div className="text-lg leading-relaxed text-text-secondary flex flex-col gap-4">
-              {selectedProject.fullDescription.split('\n\n').map((paragraph, idx) => (
+              {displayedDescription && displayedDescription.split('\n\n').map((paragraph, idx) => (
                 <p key={idx} className="whitespace-pre-line">{paragraph}</p>
               ))}
             </div>
 
-            {selectedProject.timeSavings && (
+            {displayedTimeSavings && (
               <div className="mt-6 border-t border-border-color pt-6">
                 <h4 className="text-xs font-mono tracking-widest uppercase text-text-secondary mb-4 flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-                  Pipeline Time Savings Analysis
+                  {selectedProject.platforms && selectedPlatform
+                    ? `${selectedPlatform} Workflow Time Savings Analysis`
+                    : selectedProject.id === 'altomatiko'
+                    ? 'Pipeline Time Savings Analysis'
+                    : 'Time Savings Analysis'}
                 </h4>
                 
                 {/* Summary Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
                   <div className="p-3 border border-border-color bg-black/5 dark:bg-white/5 rounded-xl">
                     <span className="text-[10px] text-text-secondary font-mono">Manual Workflow</span>
-                    <div className="text-base md:text-lg font-bold text-red-400/90 mt-1">{selectedProject.timeSavings.totalManual}</div>
+                    <div className="text-base md:text-lg font-bold text-red-400/90 mt-1">{displayedTimeSavings.totalManual}</div>
                   </div>
                   <div className="p-3 border border-border-color bg-black/5 dark:bg-white/5 rounded-xl">
-                    <span className="text-[10px] text-text-secondary font-mono">Altomatiko</span>
-                    <div className="text-base md:text-lg font-bold text-green-400/90 mt-1">{selectedProject.timeSavings.totalAutomated}</div>
+                    <span className="text-[10px] text-text-secondary font-mono">
+                      {selectedProject.platforms && selectedPlatform ? `${selectedPlatform} Automated` : 'Automated'}
+                    </span>
+                    <div className="text-base md:text-lg font-bold text-green-400/90 mt-1">{displayedTimeSavings.totalAutomated}</div>
                   </div>
                   <div className="p-3 border border-blue-500/20 bg-blue-500/10 rounded-xl">
                     <span className="text-[10px] text-blue-400 font-mono font-bold">Total Saved</span>
-                    <div className="text-base md:text-lg font-bold text-blue-300 mt-1">{selectedProject.timeSavings.percentSaved}</div>
+                    <div className="text-base md:text-lg font-bold text-blue-300 mt-1">{displayedTimeSavings.percentSaved}</div>
                   </div>
                 </div>
 
                 {/* Horizontal Scrollable Stages Timeline */}
                 <div 
-                  className="overflow-x-auto pb-2 scrollbar-none"
+                  ref={stagesScrollRef}
+                  onMouseDown={handleStagesMouseDown}
+                  className={`overflow-x-auto pb-2 scrollbar-none select-none ${
+                    isDraggingStages ? 'cursor-grabbing' : 'cursor-grab'
+                  }`}
                 >
                   <div 
                     className="flex gap-4 w-max select-none"
                   >
-                    {selectedProject.timeSavings.stages.map((stage) => (
+                    {displayedTimeSavings.stages.map((stage) => (
                       <div key={stage.stage} className="flex-1 min-w-[170px] p-4 border border-border-color bg-card-bg rounded-xl relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300">
                         <div>
                           <div className="text-xs font-mono font-bold text-text-primary mb-3">
@@ -235,7 +361,7 @@ export const Projects: React.FC = () => {
                   </div>
                 </div>
                 <div className="text-[9px] font-mono text-text-secondary text-right mt-1.5 opacity-60">
-                  ← Scroll to view all {selectedProject.timeSavings.stages.length} stages →
+                  ← Scroll to view all {displayedTimeSavings.stages.length} stages →
                 </div>
               </div>
             )}
