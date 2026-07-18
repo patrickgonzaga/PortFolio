@@ -40,7 +40,7 @@ const AppContent: React.FC = () => {
         <Projects />
         
         {/* 5. Grouped Skills section with spring tabs */}
-        <Skills />
+        <Skills/>
         
         {/* 6. Form/Mail contact banner and social links */}
         <Contact />
