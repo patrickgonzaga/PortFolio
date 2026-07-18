@@ -8,7 +8,7 @@ export const useNavbar = () => {
   const links: NavLink[] = [
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
+    { label: 'Expertise', href: '#skills' },
     { label: 'Contact', href: '#contact' },
   ];
 

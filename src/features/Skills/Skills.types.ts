@@ -1,15 +1,13 @@
-export type SkillCategoryKey = 'frontend' | 'backend' | 'tools';
-
-export interface SkillItem {
-  name: string;
-  level?: string; // e.g., 'Expert', 'Intermediate'
+export interface SkillProgressionItem {
+  level: string;
+  description: string;
 }
 
 export interface SkillCategoryGroup {
-  key: SkillCategoryKey;
-  label: string;
-  description: string;
-  skills: SkillItem[];
+  category: string;
+  skills: string[];
+  image?: string;
+  progression?: SkillProgressionItem[];
 }
 
 export interface SkillsProps {

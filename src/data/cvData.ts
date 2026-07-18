@@ -81,7 +81,7 @@ export const cvData = {
     },
     {
       category: "AI-Assisted Dev",
-      skills: ["Cursor"],
+      skills: ["Cursor", "Antigravity"],
       image: "/images/expertise/expertise-ai.png"
     },
     {
