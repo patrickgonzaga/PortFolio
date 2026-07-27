@@ -303,8 +303,6 @@ export const Projects: React.FC = () => {
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
                   {selectedProject.platforms && selectedPlatform
                     ? `${selectedPlatform} Workflow Time Savings Analysis`
-                    : selectedProject.id === 'altomatiko'
-                    ? 'Pipeline Time Savings Analysis'
                     : 'Time Savings Analysis'}
                 </h4>
                 

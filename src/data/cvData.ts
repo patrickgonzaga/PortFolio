@@ -167,6 +167,33 @@ export const cvData = {
   ] as Experience[],
   projects: [
     {
+      id: "ai-resume-screener",
+      title: "AI Resume Screener & Candidate Evaluation Workflow",
+      tags: ["n8n", "OpenAI GPT", "Google Drive", "Google Sheets", "Gmail API", "AI Automation", "HR Tech"],
+      shortDescription: "An AI-powered recruitment workflow that automatically parses candidate resumes, evaluates skills against job requirements, and updates candidate tracking.",
+      fullDescription: "Built an automated AI resume screening workflow to streamline candidate evaluation for recruitment pipelines.\n\nThe workflow automatically monitors candidate applications, parses PDF/Document resumes using OpenAI GPT, extracts structured candidate details and experience, evaluates qualifications against defined role requirements, logs candidate status in Google Sheets, archives documents in Google Drive, and routes notification alerts for top candidates.\n\nBusiness Value:\n• Eliminates manual resume scanning and initial candidate evaluation\n• Reduces resume review time from 10–15 minutes to under 30 seconds per application\n• Standardizes objective, criteria-driven scoring across candidates\n• Centralizes candidate records and documents with automated audit trails",
+      image: "/images/projects/n8n-ai-resume-screener.png",
+      type: "personal",
+      platforms: [
+        {
+          name: "n8n",
+          image: "/images/projects/n8n-ai-resume-screener.png",
+          description: "Fully automated resume screening pipeline built on n8n. It ingests candidate application emails, extracts structured data from attached resumes using OpenAI GPT, scores qualification match, logs tracking records into Google Sheets, and stores documents in Google Drive.",
+          timeSavings: {
+            totalManual: "10-15 Minutes",
+            totalAutomated: "Under 30 Seconds",
+            percentSaved: "96% Faster",
+            stages: [
+              { stage: "1. Intake & Document Processing", manual: "2m", automated: "Instant", saved: "100%" },
+              { stage: "2. AI Resume Parsing & Extraction", manual: "5m", automated: "12s", saved: "96%" },
+              { stage: "3. Qualifications & Fit Scoring", manual: "5m", automated: "10s", saved: "97%" },
+              { stage: "4. Candidate Logging & Archiving", manual: "3m", automated: "5s", saved: "97%" }
+            ]
+          }
+        }
+      ]
+    },
+    {
       id: "support-ticket-triage",
       title: "AI Customer Support Ticket Triage",
       tags: ["n8n", "Zapier", "OpenAI GPT", "Gmail API", "Asana API", "AI Automation", "OAuth 2.0"],
@@ -255,111 +282,6 @@ export const cvData = {
           }
         }
       ]
-    },
-    {
-      id: "altomatiko",
-      title: "Altomatiko — AI-Powered Content Automation Pipeline",
-      tags: ["n8n", "ASP.NET Core", "React", "Postgre", "Antigravity", "AI Automation"],
-      shortDescription: "A portfolio project built to explore agentic workflow design, featuring a multi-stage n8n pipeline and a .NET backend.",
-      fullDescription: "Altomatiko is a portfolio project built to learn and explore agentic workflow design rather than simple, single-prompt AI calls.\n\nAt its core, n8n orchestrates a 9-stage content pipeline (discover → research → write → metadata → approve → generate media → publish → analyze → repeat) supported by a backend in ASP.NET Core 8 following CQRS patterns (MediatR), EF Core + Dapper, and PostgreSQL/Supabase. The user dashboard is a modern React 18 + Vite + TypeScript application.\n\nThis project demonstrates human-in-the-loop AI automation, ensuring AI agents collaborate with human editors before performing side-effect operations like media creation or publishing.\n\nTech Stack:\n• n8n (Orchestration)\n• ASP.NET Core 8 & MediatR (CQRS)\n• React + Vite + TypeScript & Zustand\n• PostgreSQL / Supabase\n• EF Core & Dapper\n• FluentValidation\n• Docker Compose\n• Tailwind CSS\n• Gemini / OpenRouter / OpenAI\n• Cloudinary",
-      image: "/images/projects/AItomatiko.png",
-      type: "personal",
-      timeSavings: {
-        totalManual: "6 Hours",
-        totalAutomated: "3 Minutes",
-        percentSaved: "99% Faster",
-        stages: [
-          { stage: "1. Discover", manual: "30m", automated: "10s", saved: "99.4%" },
-          { stage: "2. Research", manual: "60m", automated: "30s", saved: "99.1%" },
-          { stage: "3. Write", manual: "120m", automated: "45s", saved: "99.3%" },
-          { stage: "4. Metadata", manual: "15m", automated: "5s", saved: "99.4%" },
-          { stage: "5. Approve", manual: "10m", automated: "60s (Human Review)", saved: "90.0%" },
-          { stage: "6. Media Gen", manual: "45m", automated: "20s", saved: "99.2%" },
-          { stage: "7. Publish", manual: "30m", automated: "5s", saved: "99.7%" },
-          { stage: "8. Analyze", manual: "40m", automated: "10s", saved: "99.5%" },
-          { stage: "9. Repeat", manual: "10m", automated: "Instant", saved: "100%" }
-        ]
-      },
-      deploymentCosts: {
-        tiers: [
-          {
-            name: "Small Business",
-            totalSelfHosted: "$50 - $70/mo",
-            totalManaged: "$90 - $100/mo",
-            breakdown: [
-              {
-                service: "n8n Workflow Engine",
-                selfHosted: "$15 - $20/mo (Hetzner VPS)",
-                managed: "$20/mo (n8n Cloud)",
-                notes: "Hetzner CPX (4GB RAM, shared with API)"
-              },
-              {
-                service: "C# Web API on Azure",
-                selfHosted: "$0/mo (Co-hosted on same VPS)",
-                managed: "$15/mo (Azure App Service B1)",
-                notes: "Azure App Service basic B1 tier"
-              },
-              {
-                service: "PostgreSQL & Database",
-                selfHosted: "$10/mo (Managed Postgres)",
-                managed: "$25/mo (Supabase Pro)",
-                notes: "Managed Postgres with daily backups / Supabase Pro"
-              },
-              {
-                service: "Infrastructure (SSL, DNS, Backups)",
-                selfHosted: "$7/mo",
-                managed: "$17/mo (Included/Managed)",
-                notes: "Backup storage, domain, SSL & basic monitoring"
-              },
-              {
-                service: "APIs (Google Docs & LLMs)",
-                selfHosted: "$15 - $20/mo",
-                managed: "$15 - $20/mo",
-                notes: "Consumption-based LLM costs; free Google API quota"
-              }
-            ]
-          },
-          {
-            name: "Large Business",
-            totalSelfHosted: "$210 - $320/mo",
-            totalManaged: "$285 - $405/mo",
-            breakdown: [
-              {
-                service: "n8n Workflow Engine",
-                selfHosted: "$40 - $60/mo (Dedicated VPS)",
-                managed: "$50 - $70/mo (n8n Cloud Pro)",
-                notes: "Sized for high concurrent execution limits"
-              },
-              {
-                service: "C# Web API on Azure",
-                selfHosted: "$25 - $40/mo (Separate VPS)",
-                managed: "$55 - $75/mo (Azure App S1)",
-                notes: "Separate production API node, auto-scale & staging slots"
-              },
-              {
-                service: "PostgreSQL Database",
-                selfHosted: "$30 - $50/mo (Managed Postgres)",
-                managed: "$50 - $100/mo (Azure Flexible PG)",
-                notes: "Larger dedicated storage and Point-in-Time recovery"
-              },
-              {
-                service: "Infrastructure (SSL, APM, CDN)",
-                selfHosted: "$35 - $60/mo",
-                managed: "$50/mo",
-                notes: "Datadog/Azure Monitor APM, automated backups, and Cloudflare CDN"
-              },
-              {
-                service: "APIs (Google Workspace & LLMs)",
-                selfHosted: "$80 - $110/mo",
-                managed: "$80 - $110/mo",
-                notes: "Heavy LLM consumption, paid Google Workspace account seats"
-              }
-            ]
-          }
-        ]
-      }
-
-
     },
     {
       id: "wikicamps-admin",
