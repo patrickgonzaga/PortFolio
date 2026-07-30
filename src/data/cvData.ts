@@ -31,8 +31,8 @@ export interface SkillCategory {
 export const cvData = {
   personal: {
     name: "Patrick James Lee Gonzaga",
-    title: "Senior Software Engineer | Enterprise Systems, SAP, AI Assisted Dev & Automation, .NET & Azure Cloud Solutions",
-    overview: "Senior Software Engineer with over 15 years of experience building enterprise software, systems integrations, and business process automations. I’ve always enjoyed finding ways to eliminate manual work through technology—whether by developing custom applications, integrating enterprise systems, or automating workflows. Today, I'm expanding that foundation into AI, LLMs, and modern automation platforms like n8n and Zapier."
+    title: "Senior Engineer | Software Development | Database | Cloud Technologies | SAP | Business Process Automation | AI Automation",
+    overview: "With over 15 years of experience in software development, backend engineering, and database architecture, I build reliable and maintainable enterprise systems. Throughout my career, I have focused on business process automation to optimize workflows and increase productivity. Currently, I am bridging this foundational experience with modern AI tools and agentic workflows to build intelligent, forward-looking solutions."
   },
   skills: [
     {
@@ -263,24 +263,6 @@ export const cvData = {
             ]
           }
         },
-        {
-          name: "Zapier",
-          image: "/images/projects/zapier-ai-invoice-processing.png",
-          description: "Equivalent accounts payable pipeline built on Zapier. It integrates Gmail triggers, Gemini-powered parser, Google Sheets/Drive lookups, Xero draft creation, and Asana tasks using multi-step Zaps.",
-          timeSavings: {
-            totalManual: "5-8 Minutes",
-            totalAutomated: "Under 1 Minute",
-            percentSaved: "90% Faster",
-            stages: [
-              { stage: "1. Invoice Intake", manual: "1m", automated: "Instant", saved: "100%" },
-              { stage: "2. AI Data Extraction", manual: "3m", automated: "20s", saved: "89%" },
-              { stage: "3. Duplicate Validation", manual: "1m", automated: "8s", saved: "87%" },
-              { stage: "4. Xero Draft Bill", manual: "1m 30s", automated: "12s", saved: "87%" },
-              { stage: "5. Document Archiving", manual: "1m", automated: "6s", saved: "90%" },
-              { stage: "6. Approval Workflow", manual: "1m", automated: "6s", saved: "90%" }
-            ]
-          }
-        }
       ]
     },
     {
