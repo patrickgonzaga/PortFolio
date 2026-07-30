@@ -167,28 +167,27 @@ export const cvData = {
   ] as Experience[],
   projects: [
     {
-      id: "ai-resume-filtering",
-      title: "AI Resume Filtering & Candidate Screening Workflow",
-      tags: ["n8n", "Google Gemini AI", "Gmail API", "Google Drive", "Google Sheets", "Asana", "AI Automation"],
-      shortDescription: "An AI-powered recruitment workflow that automatically ingests applicant resumes, evaluates candidate qualifications using Gemini AI, and routes top applicants.",
-      fullDescription: "Designed an AI-driven candidate screening and resume filtering workflow using n8n, Google Gemini AI, Gmail, Google Drive, Google Sheets, and Asana.\n\nThe workflow automatically monitors candidate applications from email, parses PDF/document resumes using Gemini AI, extracts candidate qualifications, work history, and key skills, evaluates fit against target job requirements, archives original resumes in Google Drive, logs applicant data in Google Sheets, and creates assigned interview preparation tasks in Asana for top-matching candidates.\n\nBusiness Value:\n• Eliminates manual resume screening bottlenecks for recruitment teams\n• Cuts initial candidate screening time from 10–15 minutes down to seconds\n• Standardizes candidate evaluation criteria across all applications\n• Accelerates candidate routing and interview scheduling",
-      image: "/images/projects/n8n-ai-resume-filter.png",
+      id: "ai-resume-screener",
+      title: "AI Resume Screener & Candidate Evaluation Workflow",
+      tags: ["n8n", "OpenAI GPT", "Google Drive", "Google Sheets", "Gmail API", "AI Automation", "HR Tech"],
+      shortDescription: "An AI-powered recruitment workflow that automatically parses candidate resumes, evaluates skills against job requirements, and updates candidate tracking.",
+      fullDescription: "Built an automated AI resume screening workflow to streamline candidate evaluation for recruitment pipelines.\n\nThe workflow automatically monitors candidate applications, parses PDF/Document resumes using OpenAI GPT, extracts structured candidate details and experience, evaluates qualifications against defined role requirements, logs candidate status in Google Sheets, archives documents in Google Drive, and routes notification alerts for top candidates.\n\nBusiness Value:\n• Eliminates manual resume scanning and initial candidate evaluation\n• Reduces resume review time from 10–15 minutes to under 30 seconds per application\n• Standardizes objective, criteria-driven scoring across candidates\n• Centralizes candidate records and documents with automated audit trails",
+      image: "/images/projects/n8n-ai-resume-screener.png",
       type: "personal",
       platforms: [
         {
           name: "n8n",
-          image: "/images/projects/n8n-ai-resume-filter.png",
-          description: "Fully automated candidate screening workflow running on n8n. It leverages the Gmail API for application intake, Google Gemini AI for structured resume parsing and match scoring, Google Drive for resume archiving, Google Sheets for tracking, and Asana for candidate task routing.",
+          image: "/images/projects/n8n-ai-resume-screener.png",
+          description: "Fully automated resume screening pipeline built on n8n. It ingests candidate application emails, extracts structured data from attached resumes using OpenAI GPT, scores qualification match, logs tracking records into Google Sheets, and stores documents in Google Drive.",
           timeSavings: {
             totalManual: "10-15 Minutes",
-            totalAutomated: "15-30 Seconds",
+            totalAutomated: "Under 30 Seconds",
             percentSaved: "96% Faster",
             stages: [
-              { stage: "1. Application Intake", manual: "1m", automated: "Instant", saved: "100%" },
-              { stage: "2. Resume AI Parsing", manual: "5m", automated: "12s", saved: "96%" },
-              { stage: "3. Match & Fit Scoring", manual: "5m", automated: "10s", saved: "97%" },
-              { stage: "4. Document Archiving", manual: "1m", automated: "3s", saved: "95%" },
-              { stage: "5. Candidate Routing", manual: "2m", automated: "5s", saved: "96%" }
+              { stage: "1. Intake & Document Processing", manual: "2m", automated: "Instant", saved: "100%" },
+              { stage: "2. AI Resume Parsing & Extraction", manual: "5m", automated: "12s", saved: "96%" },
+              { stage: "3. Qualifications & Fit Scoring", manual: "5m", automated: "10s", saved: "97%" },
+              { stage: "4. Candidate Logging & Archiving", manual: "3m", automated: "5s", saved: "97%" }
             ]
           }
         }
