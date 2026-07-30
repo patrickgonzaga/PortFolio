@@ -15,7 +15,7 @@ export const useHero = () => {
   const lastName = nameParts[nameParts.length - 1];
 
   // Role keyword extracted or custom defined
-  const roleKeyword = "AI Automation & Backend";
+  const roleKeyword = "Backend | Database | Cloud Technologies | SAP | Business Process Automation | AI Automation";
 
   return {
     personal,

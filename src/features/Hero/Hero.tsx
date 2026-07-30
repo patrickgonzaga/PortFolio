@@ -5,7 +5,7 @@ import { useHero } from './useHero';
 import { Hero3D } from './Hero3D';
 
 export const Hero: React.FC = () => {
-  const { personal, firstName, lastName, roleKeyword } = useHero();
+  const { personal, firstName, lastName } = useHero();
 
   return (
     <section
@@ -54,7 +54,7 @@ export const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           className="text-lg sm:text-2xl font-semibold tracking-tight text-text-secondary mt-6 max-w-2xl font-mono uppercase"
         >
-          Senior Engineer | <span className="text-accent-color">{roleKeyword}</span>
+        <span className="text-accent-color">{personal.title}</span>
         </motion.h2>
 
         {/* Tags / Personal Overview paragraph */}
