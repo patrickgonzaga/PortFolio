@@ -1,4 +1,3 @@
-import type { IconType } from 'react-icons';
 import {
   TbBrandCSharp,
   TbBrandAzure,
@@ -21,11 +20,7 @@ import {
 import { DiMsqlServer, DiRedis } from 'react-icons/di';
 import { VscAzure, VscDatabase } from 'react-icons/vsc';
 
-export interface TechItem {
-  name: string;
-  icon: IconType;
-  color: string;
-}
+import type { TechItem } from './TechMarquee.types';
 
 export const useTechMarquee = () => {
   const techItems: TechItem[] = [
