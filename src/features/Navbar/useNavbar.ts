@@ -6,9 +6,11 @@ export const useNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const links: NavLink[] = [
+    { label: 'Home', href: '#home' },
     { label: 'About', href: '#about' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Expertise', href: '#skills' },
+    { label: 'AI & Automation', href: '#ai-automation' },
+    { label: 'Experience', href: '#experience' },
     { label: 'Contact', href: '#contact' },
   ];
 

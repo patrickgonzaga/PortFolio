@@ -1,8 +1,8 @@
 import { cvData } from '../../data/cvData';
-import type { SkillCategoryGroup } from './Skills.types';
+import type { SkillGroup } from './Skills.types';
 
 export const useSkills = () => {
-  const skillCategories: SkillCategoryGroup[] = cvData.skills;
+  const skillCategories: SkillGroup[] = cvData.skills;
 
   return {
     skillCategories,

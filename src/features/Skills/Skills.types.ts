@@ -1,15 +1,5 @@
-export interface SkillProgressionItem {
-  level: string;
-  description: string;
-}
-
-export interface SkillCategoryGroup {
+export interface SkillGroup {
   category: string;
+  description: string;
   skills: string[];
-  image?: string;
-  progression?: SkillProgressionItem[];
-}
-
-export interface SkillsProps {
-  // Option to extend later
 }

@@ -1,54 +1,51 @@
 import React from 'react';
-import { CustomCursor } from './components/ui/CustomCursor/CustomCursor';
-import { Terminal } from './components/ui/Terminal/Terminal';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { Navbar } from './features/Navbar';
 import { Hero } from './features/Hero';
 import { TechMarquee } from './features/TechMarquee';
 import { About } from './features/About';
+import { Experience } from './features/Experience';
 import { Projects } from './features/Projects';
 import { Skills } from './features/Skills';
+import { AIAutomation } from './features/AIAutomation';
 import { Contact } from './features/Contact';
 import { Footer } from './features/Footer';
-import { ThemeProvider } from './contexts/ThemeContext';
 
 const AppContent: React.FC = () => {
   return (
-    <>
-      {/* Noise background texture overlay */}
-      <div className="noise-overlay" />
-      
-      {/* Custom desktop cursor */}
-      <CustomCursor />
-      
-      {/* Sticky navigation header */}
+    <div className="min-h-screen bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-slate-100 font-sans selection:bg-sky-500 selection:text-white transition-colors duration-300">
+      {/* Sticky Navigation Header */}
       <Navbar />
-      
-      {/* Interactive terminal tool */}
-      <Terminal />
-      
+
       <main className="relative z-10">
-        {/* 1. Hero with 3D canvas and dynamic typography */}
+        {/* 1. Hero Section */}
         <Hero />
-        
-        {/* 2. Auto-scrolling tech stack logos */}
+
+        {/* 2. Scrolling Tech Stack */}
         <TechMarquee />
-        
-        {/* 3. Splitted biography and stat counter */}
+
+        {/* 3. About & Engineering Evolution */}
         <About />
-        
-        {/* 4. Upgrade projects with tilt spotlight hover cards */}
+
+        {/* 4. Software Engineering Case Studies */}
         <Projects />
-        
-        {/* 5. Grouped Skills section with spring tabs */}
-        <Skills/>
-        
-        {/* 6. Form/Mail contact banner and social links */}
+
+        {/* 5. Technical Expertise & Stack */}
+        <Skills />
+
+        {/* 6. Secondary: AI & Automation */}
+        <AIAutomation />
+
+        {/* 7. Professional Experience Timeline */}
+        <Experience />
+
+        {/* 8. Contact Banner */}
         <Contact />
       </main>
 
-      {/* 7. Footer branding elements */}
+      {/* 9. Footer */}
       <Footer />
-    </>
+    </div>
   );
 };
 

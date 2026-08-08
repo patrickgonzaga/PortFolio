@@ -3,7 +3,3 @@ export interface ContactFormState {
   email: string;
   message: string;
 }
-
-export interface ContactProps {
-  // Option to extend later
-}
