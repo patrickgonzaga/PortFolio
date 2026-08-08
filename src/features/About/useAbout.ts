@@ -1,39 +1,33 @@
-import { useTheme } from '../../contexts/ThemeContext';
-import type { AboutStats } from './About.types';
+import { cvData } from '../../data/cvData';
 
 export const useAbout = () => {
-  const { theme } = useTheme();
-
-  /*
-   * PLACEHOLDER CONTENT COMMENTS FOR PATRICK:
-   * You can easily customize these bio paragraphs to describe your background,
-   * journey, and goals. Just edit the strings in the array below.
-   */
   const bioParagraphs = [
-    "I am a Senior Software Engineer with over 15 years of experience building and integrating high-performance enterprise systems. Over the course of my career, I've specialized in creating robust backends, cloud architectures, and databases that sustain 24/7 manufacturing and business operations.",
-    "Driven by a passion for automation, I focus on building smart digital workflows. I bridge the gap between traditional enterprise backends (like SAP MES, SQL Server, and .NET Core APIs) and state-of-the-art agentic AI systems using tools like n8n and Zapier to save teams thousands of hours of manual labor.",
-    "When I'm not coding or designing automation scripts, I explore new technologies, configure custom development environments, and refine software architectures to adhere to strict SOLID guidelines."
+    "My software engineering career spans two decades building applications, database systems, and enterprise infrastructure. My earlier background was built on desktop and web development, database architecture (SQL Server, Oracle), SAP/MES manufacturing integration, and production systems.",
+    "Over the last 5+ years, I have focused professionally on modern C#/.NET, ASP.NET Core RESTful APIs, Microsoft Azure cloud architecture, distributed messaging, and high-throughput data processing. My career has naturally evolved from broader software and IT systems into specialized backend and cloud engineering.",
+    "I operate on a fundamental principle: I don't just write code — I close gaps. I approach complex software engineering by understanding the entire system architecture, identifying operational bottlenecks, engineering clean solutions with Entity Framework Core and cloud services, and delivering reliable code in production."
   ];
 
-  /*
-   * PLACEHOLDER CONTENT COMMENTS FOR PATRICK:
-   * You can edit these stats to showcase your personal records.
-   * e.g., Years of Experience, Projects Completed, Hours Automated, etc.
-   */
-  const stats: AboutStats[] = [
-    { value: "15+", label: "Years of Experience" },
-    { value: "50+", label: "Systems Integrated" },
-    { value: "75%", label: "Floor Productivity Gains" },
-    { value: "1M+", label: "MYR in Automation Savings" }
+  const principles = [
+    { step: "01", title: "Understand the system", description: "Analyze end-to-end domain logic, data flows, and infrastructure constraints before writing code." },
+    { step: "02", title: "Identify the gap", description: "Pinpoint performance bottlenecks, process friction, error rates, or missing integration layers." },
+    { step: "03", title: "Build the solution", description: "Architect resilient C#/.NET services, clean APIs, EF Core access, and cloud pipelines." },
+    { step: "04", title: "Deliver it in production", description: "Deploy through CI/CD with automated testing, observability, and long-term maintainability." }
   ];
 
-  // Placeholder avatar picture URL
-  const avatarUrl = "/pat.png";
+  const stats = [
+    { value: "20+", label: "Years Software & IT" },
+    { value: "5+", label: "Years Professional .NET" },
+    { value: ">MYR 1M", label: "Renesas Savings" },
+    { value: "99%", label: "MES Uptime (100+ Servers)" }
+  ];
+
+  const avatarUrl = "/hero-profile.png";
 
   return {
+    personal: cvData.personal,
     bioParagraphs,
+    principles,
     stats,
     avatarUrl,
-    theme,
   };
 };
