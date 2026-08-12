@@ -35,7 +35,7 @@ export const Terminal: React.FC<TerminalProps> = ({ onCommand }) => {
       case 'whoami':
         return 'Software engineer with 15+ years of experience across backend development, system integration, and enterprise platforms. Focus: .NET, Azure, APIs.';
       case 'skills':
-        return 'C#, ASP.NET Core, Azure (Functions, Service Bus), SQL Server, React, TypeScript, SOLID Architecture.';
+        return 'C#, VB.NET, ASP.NET Core, Azure (Functions, Service Bus), SQL Server, React, TypeScript, SOLID Architecture.';
       case 'experience':
         return 'Current: .NET Developer @ EMAPTA (Client: Discovery Holiday Parks)\nBuilding REST APIs, shared microservices, and integrating Azure services.';
       case 'clear':

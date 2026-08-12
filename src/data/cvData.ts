@@ -66,9 +66,9 @@ export const cvData = {
     title: "Senior Software Engineer",
     primaryStatement: "I don't just write code — I close gaps.",
     supportingStatement: "Understand the system. Identify the gap. Build the solution. Deliver it in production.",
-    techBadges: ["C# / .NET", "ASP.NET Core", "Azure", "SQL Server", "APIs & Integrations"],
-    overview: "Software engineer with 2 decades of experience across software development, enterprise applications, databases, integrations and IT systems, including 15+ years of .NET development experience.",
-    longAbout: "My engineering career spans two decades of building software, enterprise applications, and production systems. My earlier foundation was built on desktop and web application development, database architecture (SQL Server, Oracle), manufacturing systems, and enterprise integrations. Across 15+ years of .NET development, I have focused professionally on modern C#/.NET, ASP.NET Core, Azure cloud infrastructure, and robust backend microservices.\n\nI approach engineering with a systems mindset: understand the business domain, pinpoint operational gaps, build clean and maintainable software, and ensure reliable execution in production.",
+    techBadges: ["C# / VB.NET / .NET", "ASP.NET Core", "Azure", "SQL Server", "APIs & Integrations"],
+    overview: "Software engineer with 2 decades of experience across software development, enterprise applications, databases, integrations and IT systems, with 5+ years of C# / modern .NET and 15+ years of VB.NET enterprise experience.",
+    longAbout: "My engineering career spans two decades of building software, enterprise applications, and production systems. My earlier foundation was built on desktop and web application development, database architecture (SQL Server, Oracle), manufacturing systems, and enterprise integrations using VB.NET. Over the last 5+ years, I have focused professionally on modern C#/.NET, ASP.NET Core, Azure cloud infrastructure, and robust backend microservices.\n\nI approach engineering with a systems mindset: understand the business domain, pinpoint operational gaps, build clean and maintainable software, and ensure reliable execution in production.",
     location: "Available for Senior .NET & Azure Roles (Remote International)",
     email: "patrickgonzaga@gmail.com",
     linkedin: "https://www.linkedin.com/in/patgonzaga/",
@@ -80,7 +80,7 @@ export const cvData = {
     {
       category: "Primary Engineering Stack",
       description: "Core technologies used daily in modern backend and enterprise systems",
-      skills: ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "SQL Server", "Microsoft Azure", "REST APIs", "Enterprise Integrations"]
+      skills: ["C#", "VB.NET", ".NET", "ASP.NET Core", "Entity Framework Core", "SQL Server", "Microsoft Azure", "REST APIs", "Enterprise Integrations"]
     },
     {
       category: "Azure & Cloud Infrastructure",
@@ -250,7 +250,7 @@ export const cvData = {
       id: "resort-systems",
       title: "Resort Operations System Suite",
       client: "Grand Dragon Resorts",
-      tags: ["VB.NET", "SQL Server", "POS", "Biometrics", "System Architecture"],
+      tags: ["PHP", "MySQL", "POS", "Biometrics", "System Architecture"],
       shortDescription: "End-to-end system suite replacing manual resort operations across departments.",
       fullDescription: "Led development of multiple in-house systems including Point of Sale (POS), Casino Management System (CMS), and Biometric Timekeeping (ATS). Automated manual workflows and centralized data management.",
       problem: "Manual paper-based resort tracking created revenue leakages and delay in department reporting.",
@@ -271,6 +271,20 @@ export const cvData = {
       engineeringDecisions: "Implemented optimized SQL views, index tuning, and custom Spotfire script actions for instantaneous query performance.",
       impact: "Provided executive visibility into floor operations, supporting data-driven decisions across 24/7 manufacturing cycles.",
       image: "/images/projects/enterprise-reporting.png",
+      type: "enterprise"
+    },
+    {
+      id: "rskl-helpdesk",
+      title: "RSKL IT Helpdesk & Service Management System",
+      client: "Renesas Semiconductor",
+      tags: ["VB.NET", "ASP.NET", "SQL Server", "IIS", "IT Service Management"],
+      shortDescription: "Centralized IT ticketing and automated SLA tracking system powering 24/7 semiconductor manufacturing floor support.",
+      fullDescription: "Engineered and deployed an internal web-based IT ticketing system to centralize helpdesk requests, hardware maintenance dispatches, and infrastructure incident reporting across Renesas KL manufacturing operations. The system introduced automated SLA escalation workflows, technician workload assignment, and real-time resolution metrics.",
+      problem: "Unstructured email and phone calls for floor IT issues caused response delays, lost support requests, and zero visibility into SLAs or equipment downtime.",
+      solution: "Engineered a web-based IT Service Management portal in VB.NET, ASP.NET, and SQL Server with automated ticket routing, SLA timers, and email notifications.",
+      engineeringDecisions: "Built background SLA tracking jobs in SQL Server, role-based ticket assignment rules, and automated technician notification alerts to ensure continuous 24/7 support readiness.",
+      impact: "Streamlined IT service delivery across 100+ production servers and manufacturing departments, achieving > 99% SLA compliance and reducing ticket turnaround times.",
+      image: "/images/projects/rskl-helpdesk.png",
       type: "enterprise"
     }
   ] as Project[],
