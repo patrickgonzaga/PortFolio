@@ -67,8 +67,8 @@ export const cvData = {
     primaryStatement: "I don't just write code — I close gaps.",
     supportingStatement: "Understand the system. Identify the gap. Build the solution. Deliver it in production.",
     techBadges: ["C# / .NET", "ASP.NET Core", "Azure", "SQL Server", "APIs & Integrations"],
-    overview: "Software engineer with 2 decades of experience across software development, enterprise applications, databases, integrations and IT systems, including 5+ years of professional C#/.NET experience.",
-    longAbout: "My engineering career spans two decades of building software, enterprise applications, and production systems. My earlier foundation was built on desktop and web application development, database architecture (SQL Server, Oracle), manufacturing systems, and enterprise integrations. Over the last 5+ years, I have focused professionally on modern C#/.NET, ASP.NET Core, Azure cloud infrastructure, and robust backend microservices.\n\nI approach engineering with a systems mindset: understand the business domain, pinpoint operational gaps, build clean and maintainable software, and ensure reliable execution in production.",
+    overview: "Software engineer with 2 decades of experience across software development, enterprise applications, databases, integrations and IT systems, including 15+ years of .NET development experience.",
+    longAbout: "My engineering career spans two decades of building software, enterprise applications, and production systems. My earlier foundation was built on desktop and web application development, database architecture (SQL Server, Oracle), manufacturing systems, and enterprise integrations. Across 15+ years of .NET development, I have focused professionally on modern C#/.NET, ASP.NET Core, Azure cloud infrastructure, and robust backend microservices.\n\nI approach engineering with a systems mindset: understand the business domain, pinpoint operational gaps, build clean and maintainable software, and ensure reliable execution in production.",
     location: "Available for Senior .NET & Azure Roles (Remote International)",
     email: "patrickgonzaga@gmail.com",
     linkedin: "https://www.linkedin.com/in/patgonzaga/",
@@ -144,7 +144,7 @@ export const cvData = {
       description: [
         "Served as sole software engineer managing and scaling 24/7 Manufacturing Execution Systems (MES) and enterprise IT applications across 100+ production, VMware, and Hyper-V servers.",
         "Engineered custom VB.NET, SQL Server, and Oracle solutions that boosted floor productivity by 75% and delivered > MYR 1M in verified time-saving operational benefits.",
-        "Architected the Electronic Lot Control Slip (e-LCS), introducing system-driven 'poka-yoke' (mistake-proofing) validation that blocked incorrect lot processing steps in real time.",
+        "Architected the Electronic Lot Control Slip (e-LCS) and e-Counting Balance System, implementing poka-yoke validation to eliminate lot-mixing defects and save up to 800,000 scrapped component pieces.",
         "Integrated SAP with MES to fully automate material master registration and production planning runs, eliminating manual data entry cycles.",
         "Built internal RSKL Helpdesk ticketing system (VB.NET, ASP.NET, SQL Server) and real-time Spotfire manufacturing analytics dashboards for operational leadership."
       ]
@@ -185,7 +185,7 @@ export const cvData = {
       fullDescription: "Built and maintained RESTful APIs powering the Deals and WikiCamps platforms, integrated with a low-code Retool admin portal used daily by internal operations. Implemented secure configuration via Azure Key Vault, response caching via Redis, and resilient HTTP client integrations with Polly.",
       problem: "High-volume hospitality platform required resilient backend services, real-time booking synchronization, and efficient internal admin tools.",
       solution: "Engineered ASP.NET Core REST APIs with EF Core data access, integrated BookEasy and OSRM with Polly resilience policies, and built custom Retool admin portals.",
-      engineeringDecisions: "Implemented Azure Service Bus event handlers, Redis response caching, Key Vault secret management, and Cursor AI workflows with strict human code review.",
+      engineeringDecisions: "Contributed to existing infrastructure including Azure Service Bus event handlers, Redis response caching, and Key Vault secret management, while creating custom Cursor AI error-checking workflows with strict human code review.",
       impact: "Delivered reliable production APIs and internal tools powering daily operations for Australian holiday park users.",
       image: "/images/projects/wikicamps-admin.png",
       type: "enterprise"
@@ -230,6 +230,20 @@ export const cvData = {
       engineeringDecisions: "Implemented real-time poka-yoke (error-proofing) rules that automatically verify the lot's current routing step in SQL Server and block mismatched steps before physical processing.",
       impact: "Completely eliminated routing mismatch defects, saving 23 minutes per lot cycle (92% time savings).",
       image: "/images/projects/e-lot-control.png",
+      type: "enterprise"
+    },
+    {
+      id: "e-counting-balance",
+      title: "e-Counting Balance System (eCB)",
+      client: "Renesas Semiconductor",
+      tags: ["VB.NET", "SQL Server", "Oracle", "MES", "Poka-Yoke", "Inventory Control"],
+      shortDescription: "Automated tracking and lot consolidation system preventing material scrap of partial component lots.",
+      fullDescription: "Architected and deployed the e-Counting Balance system to eliminate scrap of partial component lots in semiconductor manufacturing. Previously, up to 800,000 residual component pieces that did not form a complete lot were discarded to prevent lot mixing. The system logged, validated, and safely combined matching partial inventory into full production lots.",
+      problem: "Residual component pieces (ranging up to 800,000 pieces) that did not make a complete lot were routinely scrapped to prevent lot mixing, causing severe material waste.",
+      solution: "Engineered an automated e-Counting Balance tracking and poka-yoke (mistake-proofing) validation system in VB.NET and SQL Server to safely combine residual pieces into full production lots.",
+      engineeringDecisions: "Built real-time lot combination logic with barcode verification and database constraints to guarantee zero lot mixing while consolidating partial lots.",
+      impact: "Eliminated the scrapping of up to 800,000 component pieces, dramatically reducing material waste and driving substantial cost savings.",
+      image: "/images/projects/e-counting-balance.png",
       type: "enterprise"
     },
     {
