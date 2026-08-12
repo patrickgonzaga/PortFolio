@@ -137,12 +137,12 @@ export const cvData = {
     {
       id: "renesas",
       company: "Renesas Semiconductor KL SDN BHD",
-      role: "Senior Engineer (Sole Software Engineer)",
+      role: "Senior Engineer",
       period: "2011 – 2021",
       location: "Kuala Langat, Malaysia",
       flag: "my",
       description: [
-        "Served as sole software engineer managing and scaling 24/7 Manufacturing Execution Systems (MES) and enterprise IT applications across 100+ production, VMware, and Hyper-V servers.",
+        "Served as a senior engineer managing and scaling 24/7 Manufacturing Execution Systems (MES) and enterprise IT applications across 100+ production, VMware, and Hyper-V servers.",
         "Engineered custom VB.NET, SQL Server, and Oracle solutions that boosted floor productivity by 75% and delivered > MYR 1M in verified time-saving operational benefits.",
         "Architected the Electronic Lot Control Slip (e-LCS) and e-Counting Balance System, implementing poka-yoke validation to eliminate lot-mixing defects and save up to 800,000 scrapped component pieces.",
         "Integrated SAP with MES to fully automate material master registration and production planning runs, eliminating manual data entry cycles.",
