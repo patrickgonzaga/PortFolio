@@ -56,17 +56,17 @@ export const Contact: React.FC = () => {
             href={cvData.personal.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-sky-500/40 transition-all flex flex-col items-center group shadow-sm hover:shadow-md dark:shadow-xl font-sans"
+            className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-[#0A66C2] transition-all flex flex-col items-center group shadow-sm hover:shadow-md dark:shadow-xl font-sans"
           >
-            <div className="p-3.5 rounded-xl bg-sky-50 dark:bg-sky-500/10 border border-sky-200 dark:border-sky-500/20 text-sky-600 dark:text-sky-400 mb-3 group-hover:scale-110 transition-transform">
-              <svg className="w-[22px] h-[22px] fill-currentColor" viewBox="0 0 24 24">
+            <div className="p-3.5 rounded-xl bg-[#0A66C2] text-white mb-3 group-hover:scale-110 transition-transform shadow-md">
+              <svg className="w-[22px] h-[22px] fill-white" viewBox="0 0 24 24">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
               </svg>
             </div>
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
               LinkedIn Profile
             </span>
-            <span className="text-sm font-semibold text-slate-900 dark:text-white font-mono group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
+            <span className="text-sm font-semibold text-slate-900 dark:text-white font-mono group-hover:text-[#0A66C2] dark:group-hover:text-[#38BDF8] transition-colors">
               in/patgonzaga
             </span>
           </a>

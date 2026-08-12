@@ -67,7 +67,7 @@ export const Experience: React.FC = () => {
                         </h3>
                         {isRenesas && (
                           <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-900/60 border border-emerald-300 dark:border-emerald-700/60 text-emerald-800 dark:text-emerald-300">
-                            Sole Software Engineer • Enterprise Ownership
+                             Enterprise Ownership
                           </span>
                         )}
                         {isDiscovery && (
