@@ -9,7 +9,7 @@ export const Skills: React.FC = () => {
       badge: "Core Expertise",
       icon: Code2,
       isPrimary: true,
-      skills: ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "SQL Server", "Microsoft Azure", "REST APIs", "Enterprise Integrations"],
+      skills: ["C#", "VB.NET", ".NET", "ASP.NET Core", "Entity Framework Core", "SQL Server", "Microsoft Azure", "REST APIs", "Enterprise Integrations"],
       description: "Primary backend stack used daily for building robust enterprise applications, microservices, and API platforms."
     },
     {

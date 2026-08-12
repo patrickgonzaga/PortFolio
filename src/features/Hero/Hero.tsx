@@ -147,7 +147,7 @@ export const Hero: React.FC = () => {
           className="mt-8 flex items-center gap-2 text-xs font-mono text-slate-500 dark:text-slate-400"
         >
           <ShieldCheck size={14} className="text-sky-600 dark:text-sky-400" />
-          <span>Production-Proven Systems Engineer • 20+ Yrs Enterprise IT • 15+ Yrs .NET & C#</span>
+          <span>Production-Proven Systems Engineer • 20+ Yrs Enterprise IT • 5+ Yrs C# & 15+ Yrs VB.NET</span>
         </motion.div>
       </div>
     </section>

@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
         {/* Center: System Tag */}
         <div className="flex items-center gap-2 text-slate-500">
           <Shield size={14} className="text-sky-600 dark:text-sky-500" />
-          <span>C# / .NET • Azure • Enterprise Systems</span>
+          <span>C# / VB.NET / .NET • Azure • Enterprise Systems</span>
         </div>
 
         {/* Right Links & Back to Top */}

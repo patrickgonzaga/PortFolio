@@ -22,7 +22,7 @@ export const Experience: React.FC = () => {
             Engineering Experience & Progression<span className="text-sky-600 dark:text-sky-400">.</span>
           </h2>
           <p className="text-slate-600 dark:text-slate-400 mt-3 max-w-2xl text-sm sm:text-base">
-            Demonstrating career evolution from enterprise IT & systems engineering into modern C#/.NET and cloud architecture.
+            Demonstrating career evolution from enterprise VB.NET & IT systems engineering into modern C#/.NET and cloud architecture.
           </p>
         </motion.div>
 
