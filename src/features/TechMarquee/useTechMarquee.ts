@@ -4,6 +4,7 @@ import {
   TbBrandOpenai,
   TbBrandGit,
   TbBrandDocker,
+  TbBrandVisualStudio,
 } from 'react-icons/tb';
 import {
   SiDotnet,
@@ -16,6 +17,8 @@ import {
   SiJavascript,
   SiGooglegemini,
   SiCursor,
+  SiSnyk,
+  SiSonarqubeserver,
 } from 'react-icons/si';
 import { DiMsqlServer, DiRedis } from 'react-icons/di';
 import { VscAzure, VscDatabase } from 'react-icons/vsc';
@@ -26,6 +29,7 @@ export const useTechMarquee = () => {
   const techItems: TechItem[] = [
     { name: 'C#', icon: TbBrandCSharp, color: '#512BD4' },
     { name: '.NET / ASP.NET Core', icon: SiDotnet, color: '#512BD4' },
+    { name: 'VB.NET', icon: TbBrandVisualStudio, color: '#5C2D91' },
     { name: 'Microsoft Azure', icon: TbBrandAzure, color: '#0089D6' },
     { name: 'SQL Server', icon: DiMsqlServer, color: '#CC292B' },
     { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
@@ -43,6 +47,8 @@ export const useTechMarquee = () => {
     { name: 'OpenAI GPT', icon: TbBrandOpenai, color: '#10A37F' },
     { name: 'Google Gemini', icon: SiGooglegemini, color: '#8E75FF' },
     { name: 'Cursor AI', icon: SiCursor, color: '#38BDF8' },
+    { name: 'SonarQube', icon: SiSonarqubeserver, color: '#126ED3' },
+    { name: 'Snyk', icon: SiSnyk, color: '#4C4A73' },
   ];
 
   return {

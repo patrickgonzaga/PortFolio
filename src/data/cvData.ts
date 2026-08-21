@@ -88,6 +88,11 @@ export const cvData = {
       skills: ["Azure App Service", "Azure Functions", "Azure Service Bus", "Azure Redis", "Azure Blob Storage", "Azure Key Vault", "Application Insights", "CI/CD", "Git", "GitHub", "Azure DevOps", "xUnit", "NSubstitute", "Polly"]
     },
     {
+      category: "Code Quality & Security",
+      description: "Static analysis and dependency/vulnerability scanning integrated into CI pipelines",
+      skills: ["SonarQube", "Snyk"]
+    },
+    {
       category: "Databases & Data Systems",
       description: "Relational, document, and high-performance database management systems",
       skills: ["SQL Server", "Oracle", "PostgreSQL", "MySQL", "MongoDB"]
@@ -117,6 +122,7 @@ export const cvData = {
         "Orchestrated reliable event-driven backend workflows using Azure Service Bus, Azure Functions (scheduled jobs, offline builder), Redis Cache, Blob Storage, Key Vault, and Application Insights.",
         "Integrated third-party service pipelines including BookEasy (booking sync), OSRM (routing) with Polly resilience policies, and Azure AI Search for automated content indexing.",
         "Took full ownership of the internal Retool Admin Portal, configuring resources, complex SQL queries, and multi-environment pipelines used daily by operations teams.",
+        "Enforced code quality and maintainability standards on the Deals backend using SonarQube static analysis, addressing code smells, vulnerabilities, and coverage gaps as part of the CI pipeline.",
         "Accelerated development velocity using AI-assisted tooling (Cursor with repository-level rules and MCP for read-only Azure/SQL access), ensuring all generated changes were thoroughly tested and validated before merge."
       ]
     },
@@ -131,7 +137,8 @@ export const cvData = {
         "Engineered C#/.NET applications for high-throughput energy metering systems, leveraging AWS S3 and SQS for scalable storage and asynchronous message handling.",
         "Refactored legacy energy data pipelines to Clean Architecture, improving long-term maintainability, system resilience, and overall code quality.",
         "Automated release workflows across Test, UAT, and Production environments using Buildkite CI/CD pipelines.",
-        "Enforced high code quality standards through active code reviews and achieved 99% meter data accuracy through automated validation checks."
+        "Enforced high code quality standards through active code reviews and achieved 99% meter data accuracy through automated validation checks.",
+        "Integrated Snyk into the development workflow for automated dependency vulnerability and security scanning."
       ]
     },
     {
@@ -180,7 +187,7 @@ export const cvData = {
       id: "wikicamps-admin",
       title: "Deals & WikiCamps Platform",
       client: "Discovery Holiday Parks / Emapta",
-      tags: ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "Azure", "Retool", "Polly", "REST API"],
+      tags: ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "Azure", "Retool", "Polly", "REST API", "SonarQube"],
       shortDescription: "Production APIs, event-driven microservices, and internal admin portal supporting holiday park deals and travel bookings.",
       fullDescription: "Built and maintained RESTful APIs powering the Deals and WikiCamps platforms, integrated with a low-code Retool admin portal used daily by internal operations. Implemented secure configuration via Azure Key Vault, response caching via Redis, and resilient HTTP client integrations with Polly.",
       problem: "High-volume hospitality platform required resilient backend services, real-time booking synchronization, and efficient internal admin tools.",
@@ -194,7 +201,7 @@ export const cvData = {
       id: "optimatech-cloud",
       title: "Cloud Meter Data Processing System",
       client: "BidEnergy / Optima Technology",
-      tags: ["C#", ".NET", "AWS S3", "AWS SQS", "Buildkite CI/CD", "Clean Architecture"],
+      tags: ["C#", ".NET", "AWS S3", "AWS SQS", "Buildkite CI/CD", "Clean Architecture", "Snyk"],
       shortDescription: "High-throughput cloud backend system ensuring reliable ingestion and processing of energy meter reads.",
       fullDescription: "Contributed to the design and development of a scalable cloud architecture using AWS S3 for storage and SQS for asynchronous messaging. Handled large volumes of meter data with a focus on reliability, data integrity, and automated CI/CD releases.",
       problem: "Large-scale energy metering platform needed to ingest and process high volumes of meter read data with guaranteed accuracy.",

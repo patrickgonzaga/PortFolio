@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Layers, Server, Database, Code2, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Layers, Server, Database, Code2, Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export const Skills: React.FC = () => {
   const categories = [
@@ -19,6 +19,14 @@ export const Skills: React.FC = () => {
       isPrimary: false,
       skills: ["Azure App Service", "Azure Functions", "Azure Service Bus", "Azure Redis", "Azure Blob Storage", "Azure Key Vault", "Application Insights", "CI/CD", "Git", "GitHub", "Azure DevOps", "xUnit"],
       description: "Cloud-native Azure ecosystem, messaging queues, caching, resilience policies, unit testing, and CI/CD pipelines."
+    },
+    {
+      title: "CODE QUALITY & SECURITY",
+      badge: "Static Analysis & Scanning",
+      icon: ShieldCheck,
+      isPrimary: false,
+      skills: ["SonarQube", "Snyk"],
+      description: "Static code analysis and dependency/vulnerability scanning integrated into CI pipelines."
     },
     {
       title: "DATABASE & DATA SYSTEMS",
