@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Bot, Code, Workflow, ArrowUpRight, X, ZoomIn, Cpu, Wrench, CheckCircle2, Layers, Clock } from 'lucide-react';
+import { Sparkles, Bot, Code, Workflow, ArrowUpRight, X, ZoomIn, Cpu, Wrench, CheckCircle2, Layers, Clock, LayoutGrid } from 'lucide-react';
 import { cvData, type AIIndependentProject } from '../../data/cvData';
 
 export const AIAutomation: React.FC = () => {
   const { professionalWork, independentProjects } = cvData.aiAutomationData;
   const [selectedImage, setSelectedImage] = useState<{ url: string; title: string } | null>(null);
   const [selectedProject, setSelectedProject] = useState<AIIndependentProject | null>(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
+  const VISIBLE_COUNT = 3;
+  const visibleProjects = independentProjects.slice(0, VISIBLE_COUNT);
+  const hasMoreProjects = independentProjects.length > VISIBLE_COUNT;
 
   // Prevent background scrolling when modal is open
   useEffect(() => {
-    if (selectedImage || selectedProject) {
+    if (selectedImage || selectedProject || showAllProjects) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -18,7 +23,7 @@ export const AIAutomation: React.FC = () => {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [selectedImage, selectedProject]);
+  }, [selectedImage, selectedProject, showAllProjects]);
 
   // Handle escape key to close modal
   useEffect(() => {
@@ -26,13 +31,14 @@ export const AIAutomation: React.FC = () => {
       if (e.key === 'Escape') {
         setSelectedImage(null);
         setSelectedProject(null);
+        setShowAllProjects(false);
       }
     };
-    if (selectedImage || selectedProject) {
+    if (selectedImage || selectedProject || showAllProjects) {
       window.addEventListener('keydown', handleKeyDown);
     }
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage, selectedProject]);
+  }, [selectedImage, selectedProject, showAllProjects]);
 
   return (
     <section id="ai-automation" className="py-24 px-6 md:px-12 lg:px-20 relative bg-white dark:bg-[#0b1120] text-slate-900 dark:text-slate-100 border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
@@ -115,7 +121,7 @@ export const AIAutomation: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {independentProjects.map((project: AIIndependentProject, idx: number) => (
+            {visibleProjects.map((project: AIIndependentProject, idx: number) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -213,8 +219,89 @@ export const AIAutomation: React.FC = () => {
               </motion.div>
             ))}
           </div>
+
+          {hasMoreProjects && (
+            <div className="mt-8 flex justify-center">
+              <button
+                onClick={() => setShowAllProjects(true)}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:border-sky-500/40 hover:text-sky-600 dark:hover:text-sky-400 transition-all font-sans"
+              >
+                <LayoutGrid size={16} />
+                View All {independentProjects.length} Automation Projects
+              </button>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* View All Projects Modal */}
+      <AnimatePresence>
+        {showAllProjects && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 dark:bg-black/80 backdrop-blur-md cursor-pointer"
+            onClick={() => setShowAllProjects(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-2xl text-slate-900 dark:text-slate-100 font-sans cursor-default"
+            >
+              <div className="flex items-center justify-between gap-4 mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-sans">
+                  All Automation Projects
+                </h3>
+                <button
+                  onClick={() => setShowAllProjects(false)}
+                  className="p-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all shrink-0"
+                  aria-label="Close modal"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <div className="space-y-3">
+                {independentProjects.map((project: AIIndependentProject) => (
+                  <button
+                    key={project.id}
+                    onClick={() => {
+                      setShowAllProjects(false);
+                      setSelectedProject(project);
+                    }}
+                    className="w-full text-left p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-sky-500/40 transition-all flex items-start justify-between gap-4 group"
+                  >
+                    {project.image && (
+                      <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-950">
+                        <img
+                          src={project.image}
+                          alt={`${project.title} Flow Diagram`}
+                          className="w-full h-full object-cover object-top"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.display = 'none';
+                          }}
+                        />
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <span className="text-[10px] font-mono uppercase tracking-widest text-sky-700 dark:text-sky-400 font-bold block mb-1">
+                        {project.badge}
+                      </span>
+                      <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors mb-1">
+                        {project.title}
+                      </h4>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+                        {project.shortDescription}
+                      </p>
+                    </div>
+                    <ArrowUpRight size={18} className="shrink-0 mt-1 text-slate-400 dark:text-slate-500 group-hover:text-sky-600 dark:group-hover:text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* AI Automation Project Detailed Case Study Modal */}
       <AnimatePresence>
