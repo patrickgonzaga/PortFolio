@@ -345,6 +345,46 @@ export const cvData = {
         ]
       },
       {
+        id: "recruitment-automation-system",
+        title: "Recruitment Automation System — Remote Job Aggregator",
+        badge: "Independent Portfolio Project",
+        tags: ["n8n", "Remotive API", "Airtable", "Slack API", "REST API"],
+        shortDescription: "Scheduled pipeline that pulls remote developer job listings and syncs them into a deduplicated Airtable database.",
+        fullDescription: "Built an independent n8n workflow that polls the Remotive public job board API on a daily schedule, validates and flattens the response, then upserts each listing into an Airtable 'Job Openings' table using the external job ID as an idempotency key to prevent duplicates. Empty or malformed API responses are automatically routed to a Slack alert instead of failing silently.",
+        problem: "Manually checking remote job boards for new developer openings is repetitive and easy to miss postings, with no single source of truth for tracking title, company, location, salary, and posting date.",
+        solution: "Automated a scheduled n8n workflow that fetches listings from the Remotive API, validates the payload, flattens each job into a normalized record, and upserts it into Airtable keyed on External Job ID so records update in place instead of duplicating.",
+        techDetails: "Configured HTTP Request retries with exponential backoff (max 3 attempts) to gracefully handle 429/5xx responses from the Remotive API. Used an If node to short-circuit on an empty jobs payload, routing that path to a Slack notification via OAuth2 instead of the database write. The Airtable upsert matches on 'External Job ID' across a defined field schema (Title, Status, Salary, Location, Date Posted, Job URL).",
+        timeSavings: "Replaces manual daily job-board checking with a fully automated, deduplicated feed that runs unattended on a daily schedule.",
+        image: "/images/projects/n8n-recruitment-automation-system.png",
+        flowSteps: [
+          {
+            step: 1,
+            title: "Scheduled Trigger",
+            description: "Runs daily (with manual trigger support) to keep the job database current with the latest market listings."
+          },
+          {
+            step: 2,
+            title: "Remotive API Extraction",
+            description: "Polls the Remotive REST API for developer roles, with exponential backoff retries on rate limits or server errors."
+          },
+          {
+            step: 3,
+            title: "Validate & Flatten",
+            description: "Checks the response contains a non-empty jobs array, then splits the nested payload into individual job records."
+          },
+          {
+            step: 4,
+            title: "Airtable Upsert",
+            description: "Maps each record to the Airtable schema and upserts by External Job ID, guaranteeing zero duplicate entries."
+          },
+          {
+            step: 5,
+            title: "Error Alerting",
+            description: "Empty or invalid payloads are routed to a Slack channel alert instead of silently failing the pipeline."
+          }
+        ]
+      },
+      {
         id: "support-ticket-triage",
         title: "AI Support Ticket Classification & Triage",
         badge: "Independent Portfolio Project",
