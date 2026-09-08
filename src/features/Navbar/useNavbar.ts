@@ -11,6 +11,7 @@ export const useNavbar = () => {
     { label: 'Projects', href: '#projects' },
     { label: 'AI & Automation', href: '#ai-automation' },
     { label: 'Experience', href: '#experience' },
+    { label: 'Certifications', href: '#certifications' },
     { label: 'Contact', href: '#contact' },
   ];
 

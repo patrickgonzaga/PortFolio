@@ -69,3 +69,12 @@ html.dark ::-webkit-scrollbar-thumb {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Hide scrollbar utility (used by drag-to-scroll carousels) */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

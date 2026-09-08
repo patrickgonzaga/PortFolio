@@ -459,12 +459,39 @@ export const cvData = {
 
   certifications: [
     {
-      id: "udemy-azure-devops",
-      title: "Learn Azure DevOps CI/CD pipelines",
+      id: "openai-workflow",
+      title: "Agents and Workflow",
+      issuer: "OpenAI",
+      date: "2026",
+      url: "https://academy.openai.com/home/certificate/zs18d7fk5h",
+      image: "/images/certificates/openai-workflow.jpg",
+      type: "ai"
+    },
+    {
+      id: "taraai-zapier",
+      title: "No Code Automation with Zapier",
+      issuer: "TaraAI",
+      date: "2026",
+      url: "https://my-certificates.com/certificates/6a49ff4481683ab63964cd56",
+      image: "/images/certificates/taraai-zapier.jpg",
+      type: "ai"
+    },
+    {
+      id: "taraai-make",
+      title: "No Code Automation with Make.com",
+      issuer: "TaraAI",
+      date: "2026",
+      url: "https://my-certificates.com/certificates/6a5216d083f03b163af9fa8e",
+      image: "/images/certificates/taraai-make.jpg",
+      type: "ai"
+    },
+    {
+      id: "udemy-react",
+      title: "The Complete ReactJs Course - Basics to Advanced",
       issuer: "Udemy",
-      date: "2025",
-      url: "https://www.udemy.com/certificate/UC-56b397a8-e1e8-4468-8ef4-c515c04e1518/",
-      image: "/images/certificates/udemy-azure-devops.jpg",
+      date: "2026",
+      url: "https://www.udemy.com/certificate/UC-42f4b61e-e673-4ed5-b8bc-42fdb952837f",
+      image: "/images/certificates/udemy-react.jpg",
       type: "professional"
     },
     {
@@ -477,6 +504,15 @@ export const cvData = {
       type: "professional"
     },
     {
+      id: "udemy-azure-devops",
+      title: "Learn Azure DevOps CI/CD pipelines",
+      issuer: "Udemy",
+      date: "2025",
+      url: "https://www.udemy.com/certificate/UC-56b397a8-e1e8-4468-8ef4-c515c04e1518/",
+      image: "/images/certificates/udemy-azure-devops.jpg",
+      type: "professional"
+    },
+    {
       id: "udemy-code-reviews",
       title: "Code Reviews for Secure, Clean, and Scalable Code",
       issuer: "Udemy",
@@ -486,22 +522,13 @@ export const cvData = {
       type: "professional"
     },
     {
-      id: "udemy-react",
-      title: "The Complete ReactJs Course - Basics to Advanced",
-      issuer: "Udemy",
-      date: "2026",
-      url: "https://www.udemy.com/certificate/UC-42f4b61e-e673-4ed5-b8bc-42fdb952837f",
-      image: "/images/certificates/udemy-react.jpg",
+      id: "project-sparta-data-engineering",
+      title: "Data Engineering Pathway",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-engineering.jpg",
       type: "professional"
-    },
-    {
-      id: "openai-workflow",
-      title: "Agents and Workflow",
-      issuer: "OpenAI",
-      date: "2026",
-      url: "https://academy.openai.com/home/certificate/zs18d7fk5h",
-      image: "/images/certificates/openai-workflow.jpg",
-      type: "ai"
     },
     {
       id: "n8n-quickstart",
@@ -511,6 +538,78 @@ export const cvData = {
       url: "https://badges.n8n.io/a8780446-ca11-44a5-872d-d30e2bd4cead#acc.qTuCVHO6",
       image: "/images/certificates/n8n-quickstart.jpg",
       type: "ai"
+    },
+    {
+      id: "project-sparta-data-visualization",
+      title: "Data Visualization Fundamentals",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-visualization.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-data-science",
+      title: "Data Science and Machine Learning Using Python",
+      issuer: "Project SPARTA",
+      date: "2022",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-science.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-data-science-analytics",
+      title: "Data Science and Analytics Project Management",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-science-analytics.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-advance-data-engineering",
+      title: "Advanced Data Engineering",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-advance-data-engineering.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-data-visualization-tableau",
+      title: "Data Visualization with Tableau and Python",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-data-visualization-tableau.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-python-for-data-engineering",
+      title: "Python for Data Engineering",
+      issuer: "Project SPARTA",
+      date: "2023",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-python-data-engineering.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-deep-learning-python",
+      title: "Deep Learning using Python",
+      issuer: "Project SPARTA",
+      date: "2022",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-deep-learning-python.jpg",
+      type: "professional"
+    },
+    {
+      id: "project-sparta-computing-python",
+      title: "Computing in Python",
+      issuer: "Project SPARTA",
+      date: "2022",
+      url: "https://sparta.dap.edu.ph/",
+      image: "/images/certificates/project-sparta-computing-python.jpg",
+      type: "professional"
     }
   ] as Certification[]
 };

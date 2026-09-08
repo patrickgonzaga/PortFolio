@@ -8,6 +8,7 @@ import { Experience } from './features/Experience';
 import { Projects } from './features/Projects';
 import { Skills } from './features/Skills';
 import { AIAutomation } from './features/AIAutomation';
+import { Certifications } from './features/Certifications';
 import { Contact } from './features/Contact';
 import { Footer } from './features/Footer';
 
@@ -39,11 +40,14 @@ const AppContent: React.FC = () => {
         {/* 7. Professional Experience Timeline */}
         <Experience />
 
-        {/* 8. Contact Banner */}
+        {/* 8. Certifications */}
+        <Certifications />
+
+        {/* 9. Contact Banner */}
         <Contact />
       </main>
 
-      {/* 9. Footer */}
+      {/* 10. Footer */}
       <Footer />
     </div>
   );
