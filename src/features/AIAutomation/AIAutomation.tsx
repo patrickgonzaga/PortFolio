@@ -1,495 +1,257 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Bot, Code, Workflow, ArrowUpRight, X, ZoomIn, Cpu, Wrench, CheckCircle2, Layers, Clock, LayoutGrid } from 'lucide-react';
+﻿import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles, Bot, Brain, Code, Workflow, ArrowUpRight, Zap, ZoomIn, Layers } from 'lucide-react';
 import { cvData, type AIIndependentProject } from '../../data/cvData';
+import { TiltCard } from '../../components/ui/TiltCard/TiltCard';
+import { ResponsiveImage } from '../../components/ui/ResponsiveImage';
+import { KnowledgeBrainFlow } from '../../components/visualizer/KnowledgeBrainFlow';
+import { SectionHeader } from '../../components/ui/SectionHeader/SectionHeader';
+import { CaseStudyModal, type CaseStudy } from '../../components/ui/CaseStudyModal/CaseStudyModal';
+
+const toCaseStudy = (p: AIIndependentProject): CaseStudy => ({
+  eyebrow: p.badge,
+  title: p.title,
+  image: p.image,
+  description: p.fullDescription,
+  flowSteps: p.flowSteps,
+  visual: p.id === 'drive-knowledge-brain' ? 'knowledge-brain' : undefined,
+  tags: p.tags,
+  sections: [
+    p.problem && { kind: 'problem' as const, title: 'Manual Process & Problem', text: p.problem },
+    p.solution && { kind: 'solution' as const, title: 'Automation Architecture', text: p.solution },
+    p.techDetails && { kind: 'tech' as const, title: 'Technical & Prompt Engineering', text: p.techDetails },
+    p.timeSavings && { kind: 'impact' as const, title: 'Measured Outcome', text: p.timeSavings },
+  ].filter(Boolean) as CaseStudy['sections'],
+});
+
+/** pull a short headline metric out of the time-savings sentence, e.g. "96% faster" */
+const headlineMetric = (text?: string) => {
+  if (!text) return null;
+  const m = text.match(/\((\d+%\s*faster)\)/i);
+  return m ? m[1] : null;
+};
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export const AIAutomation: React.FC = () => {
-  const { professionalWork, independentProjects } = cvData.aiAutomationData;
-  const [selectedImage, setSelectedImage] = useState<{ url: string; title: string } | null>(null);
-  const [selectedProject, setSelectedProject] = useState<AIIndependentProject | null>(null);
-  const [showAllProjects, setShowAllProjects] = useState(false);
-
-  const VISIBLE_COUNT = 3;
-  const visibleProjects = independentProjects.slice(0, VISIBLE_COUNT);
-  const hasMoreProjects = independentProjects.length > VISIBLE_COUNT;
-
-  // Prevent background scrolling when modal is open
-  useEffect(() => {
-    if (selectedImage || selectedProject || showAllProjects) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedImage, selectedProject, showAllProjects]);
-
-  // Handle escape key to close modal
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setSelectedImage(null);
-        setSelectedProject(null);
-        setShowAllProjects(false);
-      }
-    };
-    if (selectedImage || selectedProject || showAllProjects) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedImage, selectedProject, showAllProjects]);
+  const { professionalWork, clientProjects, independentProjects } = cvData.aiAutomationData;
+  const [study, setStudy] = useState<CaseStudy | null>(null);
 
   return (
-    <section id="ai-automation" className="py-24 px-6 md:px-12 lg:px-20 relative bg-white dark:bg-[#0b1120] text-slate-900 dark:text-slate-100 border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
+    <section id="ai-automation" className="section section-glow py-24 sm:py-32 px-6 md:px-12 lg:px-20 overflow-hidden bg-white dark:bg-[#070b12] text-slate-900 dark:text-slate-100 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sky-600 dark:text-sky-400 font-mono text-xs uppercase tracking-widest mb-3">
-            <Sparkles size={14} />
-            <span>Secondary Specialization</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-            AI & Automation<span className="text-sky-600 dark:text-sky-400">.</span>
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 mt-3 max-w-2xl text-sm sm:text-base">
-            Independent Projects & Professional AI-Assisted Development Workflows.
-          </p>
-        </motion.div>
+        <SectionHeader
+          icon={Sparkles}
+          eyebrow="Specialization & Automation"
+          title="AI &"
+          highlight="Automation."
+          description="Client AI projects, professional AI-assisted development, and independent n8n automation pipelines."
+        />
 
-        {/* 1. PROFESSIONAL AI-ASSISTED DEVELOPMENT */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 p-8 rounded-2xl bg-sky-50/70 dark:bg-sky-950/20 border border-sky-200 dark:border-sky-500/30 shadow-sm dark:shadow-xl font-sans"
-        >
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-xl bg-sky-100 dark:bg-sky-500/20 text-sky-700 dark:text-sky-400 border border-sky-300 dark:border-sky-500/30">
-                <Bot size={22} />
-              </div>
-              <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-sky-700 dark:text-sky-400 font-bold block">
-                  Professional Experience
-                </span>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white font-sans">
-                  {professionalWork.title}
-                </h3>
-              </div>
-            </div>
-
-            <span className="px-3 py-1 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono text-slate-700 dark:text-slate-300 shadow-xs">
-              {professionalWork.company} ({professionalWork.role})
-            </span>
-          </div>
-
-          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
-            {professionalWork.summary}
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {professionalWork.highlights.map((item, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800/80 text-xs text-slate-700 dark:text-slate-300 leading-relaxed font-sans shadow-xs">
-                <div className="flex items-center gap-2 mb-2 text-sky-700 dark:text-sky-400 font-mono font-bold">
-                  <Code size={14} />
-                  <span>Workflow #{idx + 1}</span>
+        {/* ---------- Professional + Client: 2-col bento ---------- */}
+        <div className="grid grid-cols-1 gap-6 mb-16">
+          {/* Professional */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease }}
+          >
+            <TiltCard max={3} className="glass rounded-2xl p-7 sm:p-8 h-full border border-slate-200 dark:border-slate-800">
+              <div className="relative z-[3]">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20">
+                    <Bot size={22} />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-sky-600 dark:text-sky-400 font-bold block">
+                      Professional Experience
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">{professionalWork.title}</h3>
+                  </div>
                 </div>
-                {item}
+                <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mb-3">
+                  {professionalWork.company} · {professionalWork.role}
+                </p>
+                <p className="text-sm text-slate-700 dark:text-slate-300 mb-5 leading-relaxed">{professionalWork.summary}</p>
+                <ul className="space-y-3">
+                  {professionalWork.highlights.map((item, idx) => {
+                    const [head, ...body] = item.split(':');
+                    return (
+                      <li key={idx} className="flex gap-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                        <Code size={15} className="text-sky-500 shrink-0 mt-0.5" />
+                        <span>
+                          <strong className="text-slate-900 dark:text-white">{head}:</strong>
+                          {body.join(':')}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
-            ))}
-          </div>
-        </motion.div>
+            </TiltCard>
+          </motion.div>
 
-        {/* 2. INDEPENDENT PROJECTS & WORKFLOW FLOWS */}
-        <div>
-          <div className="flex items-center justify-between gap-4 mb-8">
-            <div className="flex items-center gap-2">
-              <Workflow size={20} className="text-sky-600 dark:text-sky-400" />
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white font-sans tracking-tight">
-                Independent Projects & Automation Flows
-              </h3>
+          {/* Featured client architecture */}
+          {clientProjects.map(project => (
+            <motion.div key={project.id} className="order-first" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.35 }}>
+              <TiltCard max={2} className="glass rounded-3xl p-4 sm:p-7 lg:p-8">
+                <div className="relative z-[3] grid grid-cols-1 gap-7">
+                  <div className="min-w-0">
+                    <span className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.14em] text-sky-700 dark:text-sky-300 mb-4"><Brain size={15} />{project.badge}</span>
+                    <h3 className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight text-slate-900 dark:text-white">{project.title}</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-300 mt-4 leading-relaxed">{project.shortDescription}</p>
+                    <div className="flex flex-wrap gap-2 mt-5">
+                      {project.tags.map(tag => <span key={tag} className="px-2.5 py-1 rounded-lg text-[11px] bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800">{tag}</span>)}
+                    </div>
+                    <button type="button" onClick={() => setStudy(toCaseStudy(project))} className="inline-flex items-center gap-3 mt-6 min-h-11 rounded-lg px-4 bg-sky-700 hover:bg-sky-600 text-white text-xs font-semibold transition-colors" aria-label="View AI Knowledge Brain case study">
+                      Explore the architecture <ArrowUpRight size={16} />
+                    </button>
+                  </div>
+                  <KnowledgeBrainFlow />
+                </div>
+              </TiltCard>
+            </motion.div>
+          ))}
+        </div>
+        {/* ---------- Independent n8n projects: Sleek Photo List ---------- */}
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-8 pb-3 border-b border-slate-200 dark:border-slate-800/80">
+          <div>
+            <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-sky-600 dark:text-sky-400 font-bold mb-1.5">
+              <Workflow size={14} /> Production Automation Portfolios
             </div>
-            <span className="text-xs font-mono text-slate-500 dark:text-slate-400 hidden sm:inline">
-              Click any project for full flow architecture
-            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+              n8n Automated <span className="text-sky-600 dark:text-sky-400">Pipelines</span>
+            </h3>
           </div>
+          <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+            {independentProjects.length} production workflows · tap any row for case study details
+          </span>
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {visibleProjects.map((project: AIIndependentProject, idx: number) => (
+        {/* Sleek List Container */}
+        <div className="space-y-5">
+          {independentProjects.map((project, idx) => {
+            const metric = headlineMetric(project.timeSavings);
+            return (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                onClick={() => setSelectedProject(project)}
-                className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-sky-500/40 transition-all flex flex-col justify-between cursor-pointer group shadow-sm hover:shadow-md dark:shadow-xl font-sans"
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: idx * 0.08, ease }}
               >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="px-3 py-1 rounded-md bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sky-700 dark:text-sky-400 font-mono text-xs font-semibold shadow-xs">
-                      {project.badge}
-                    </span>
-                    <span className="text-slate-400 dark:text-slate-500 group-hover:text-sky-600 dark:group-hover:text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
-                      <ArrowUpRight size={18} />
-                    </span>
-                  </div>
+                <div
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setStudy(toCaseStudy(project))}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setStudy(toCaseStudy(project));
+                    }
+                  }}
+                  className="rounded-2xl p-4 sm:p-5 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 hover:border-sky-500/50 hover:bg-slate-50/50 dark:hover:bg-slate-900/90 transition-all duration-300 cursor-pointer group shadow-sm hover:shadow-md"
+                >
+                  <div className="flex flex-col md:flex-row gap-5 lg:gap-6 items-start md:items-center">
 
-                  <h4 className="text-lg font-bold text-slate-900 dark:text-white font-sans group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors mb-2">
-                    {project.title}
-                  </h4>
+                    {/* Workflow Diagram Photo Thumbnail */}
+                    <div className="relative w-full md:w-[320px] lg:w-[360px] shrink-0 aspect-[16/9] rounded-xl overflow-hidden bg-slate-950 border border-slate-200 dark:border-slate-800 group-hover:border-sky-500/40 transition-colors">
+                      {project.image && (
+                        <ResponsiveImage
+                          sizes="(max-width: 767px) calc(100vw - 80px), 360px"
+                          src={project.image}
+                          alt={`${project.title} workflow diagram`}
+                          loading="lazy"
+                          className="w-full h-full object-cover object-center filter brightness-95 group-hover:brightness-105 group-hover:scale-105 transition-all duration-500"
+                        />
+                      )}
 
-                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                    {project.shortDescription}
-                  </p>
+                      {/* Badge Counter */}
+                      <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-slate-900/90 border border-white/10 text-white font-mono font-bold text-xs">
+                        #{String(idx + 1).padStart(2, '0')}
+                      </span>
 
-                  {/* Flow Diagram Thumbnail */}
-                  {project.image && (
-                    <div 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedImage({ url: project.image!, title: project.title });
-                      }}
-                      className="w-full h-40 rounded-xl overflow-hidden mb-4 border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-950 relative group/img cursor-pointer"
-                    >
-                      <img
-                        src={project.image}
-                        alt={`${project.title} Flow Diagram`}
-                        className="w-full h-full object-cover object-top filter brightness-95 group-hover/img:scale-105 transition-transform duration-500"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-slate-900/30 group-hover/img:bg-slate-900/10 transition-colors flex items-center justify-center">
-                        <span className="px-3 py-1.5 rounded-lg bg-slate-900/80 text-white font-mono text-[11px] font-semibold flex items-center gap-1.5 opacity-0 group-hover/img:opacity-100 transition-opacity backdrop-blur-xs">
-                          <ZoomIn size={14} />
-                          Zoom Flow Diagram
+                      {/* Speed-up metric pill */}
+                      {metric && (
+                        <span className="absolute bottom-2.5 left-2.5 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-emerald-500 text-slate-950 text-[11px] font-mono font-bold shadow-md">
+                          <Zap size={11} /> {metric}
+                        </span>
+                      )}
+
+                      {/* Click to expand hover overlay */}
+                      <div className="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="px-3 py-1.5 rounded-lg bg-slate-900/90 text-white font-mono text-[11px] font-medium flex items-center gap-1.5 shadow-lg">
+                          <ZoomIn size={13} /> View Full Workflow
                         </span>
                       </div>
                     </div>
-                  )}
 
-                  {/* Automation Flow Steps Timeline Preview */}
-                  {project.flowSteps && (
-                    <div className="mb-4 p-3.5 rounded-xl bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800/80 space-y-2.5">
-                      <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 block flex items-center gap-1.5">
-                        <Layers size={13} />
-                        Automation Flow Steps:
-                      </span>
-                      <div className="space-y-2">
-                        {project.flowSteps.map((step) => (
-                          <div key={step.step} className="flex items-start gap-2 text-xs">
-                            <span className="shrink-0 w-4 h-4 rounded-full bg-sky-100 dark:bg-sky-950 border border-sky-300 dark:border-sky-800 text-sky-700 dark:text-sky-400 font-mono font-bold text-[10px] flex items-center justify-center mt-0.5">
-                              {step.step}
-                            </span>
-                            <div className="min-w-0">
-                              <span className="font-semibold text-slate-800 dark:text-slate-200">{step.title}: </span>
-                              <span className="text-slate-500 dark:text-slate-400 line-clamp-1">{step.description}</span>
-                            </div>
+                    {/* Workflow Details */}
+                    <div className="flex-1 min-w-0 w-full flex flex-col justify-between py-1">
+                      <div>
+                        <div className="flex items-start justify-between gap-3 mb-1.5">
+                          <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+                            {project.title}
+                          </h4>
+                          <span className="p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 group-hover:text-sky-500 group-hover:border-sky-500/30 transition-all shrink-0">
+                            <ArrowUpRight size={15} />
+                          </span>
+                        </div>
+
+                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                          {project.shortDescription}
+                        </p>
+
+                        {/* Sequential Execution Node Badges */}
+                        {project.flowSteps && (
+                          <div className="mb-3 flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1">
+                            <Layers size={13} className="text-sky-600 dark:text-sky-400 shrink-0" />
+                            {project.flowSteps.map((s, sIdx) => (
+                              <React.Fragment key={s.step}>
+                                <span className="shrink-0 px-2 py-0.5 rounded text-[11px] font-mono whitespace-nowrap bg-sky-50 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-800/80">
+                                  {s.title}
+                                </span>
+                                {sIdx < project.flowSteps!.length - 1 && (
+                                  <span className="shrink-0 text-slate-300 dark:text-slate-700 font-bold text-[10px]">
+                                    →
+                                  </span>
+                                )}
+                              </React.Fragment>
+                            ))}
                           </div>
+                        )}
+
+                        {/* Measurable Outcome */}
+                        {project.timeSavings && (
+                          <p className="text-xs font-sans text-emerald-800 dark:text-emerald-400 font-medium">
+                            <strong className="font-mono text-[11px] uppercase mr-1">Outcome:</strong>
+                            {project.timeSavings}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Tech Tags */}
+                      <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex flex-wrap gap-1.5">
+                        {project.tags.map((t) => (
+                          <span key={t} className="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">
+                            {t}
+                          </span>
                         ))}
                       </div>
                     </div>
-                  )}
 
-                  {project.timeSavings && (
-                    <div className="mb-4 p-3 rounded-lg bg-emerald-50 dark:bg-slate-950/90 border border-emerald-200 dark:border-emerald-800/40 text-xs font-mono text-emerald-800 dark:text-emerald-400 flex items-center gap-2">
-                      <Clock size={14} className="shrink-0" />
-                      <span>{project.timeSavings}</span>
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-200 dark:border-slate-800/60">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 rounded text-[11px] font-mono bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                  </div>
                 </div>
               </motion.div>
-            ))}
-          </div>
-
-          {hasMoreProjects && (
-            <div className="mt-8 flex justify-center">
-              <button
-                onClick={() => setShowAllProjects(true)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:border-sky-500/40 hover:text-sky-600 dark:hover:text-sky-400 transition-all font-sans"
-              >
-                <LayoutGrid size={16} />
-                View All {independentProjects.length} Automation Projects
-              </button>
-            </div>
-          )}
+            );
+          })}
         </div>
       </div>
 
-      {/* View All Projects Modal */}
-      <AnimatePresence>
-        {showAllProjects && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 dark:bg-black/80 backdrop-blur-md cursor-pointer"
-            onClick={() => setShowAllProjects(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-6 sm:p-8 shadow-2xl text-slate-900 dark:text-slate-100 font-sans cursor-default"
-            >
-              <div className="flex items-center justify-between gap-4 mb-6">
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-sans">
-                  All Automation Projects
-                </h3>
-                <button
-                  onClick={() => setShowAllProjects(false)}
-                  className="p-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all shrink-0"
-                  aria-label="Close modal"
-                >
-                  <X size={18} />
-                </button>
-              </div>
-
-              <div className="space-y-3">
-                {independentProjects.map((project: AIIndependentProject) => (
-                  <button
-                    key={project.id}
-                    onClick={() => {
-                      setShowAllProjects(false);
-                      setSelectedProject(project);
-                    }}
-                    className="w-full text-left p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-sky-500/40 transition-all flex items-start justify-between gap-4 group"
-                  >
-                    {project.image && (
-                      <div className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-950">
-                        <img
-                          src={project.image}
-                          alt={`${project.title} Flow Diagram`}
-                          className="w-full h-full object-cover object-top"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = 'none';
-                          }}
-                        />
-                      </div>
-                    )}
-                    <div className="min-w-0 flex-1">
-                      <span className="text-[10px] font-mono uppercase tracking-widest text-sky-700 dark:text-sky-400 font-bold block mb-1">
-                        {project.badge}
-                      </span>
-                      <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors mb-1">
-                        {project.title}
-                      </h4>
-                      <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
-                        {project.shortDescription}
-                      </p>
-                    </div>
-                    <ArrowUpRight size={18} className="shrink-0 mt-1 text-slate-400 dark:text-slate-500 group-hover:text-sky-600 dark:group-hover:text-sky-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                  </button>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* AI Automation Project Detailed Case Study Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 dark:bg-black/80 backdrop-blur-md cursor-pointer"
-            onClick={() => setSelectedProject(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-6 sm:p-10 shadow-2xl text-slate-900 dark:text-slate-100 font-sans cursor-default"
-            >
-              {/* Close Button - Sticky at top right */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="sticky top-0 float-right z-20 -mr-2 -mt-2 sm:-mr-4 sm:-mt-4 p-2 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white backdrop-blur-md shadow-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
-                aria-label="Close modal"
-              >
-                <X size={20} />
-              </button>
-
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-sky-600 dark:text-sky-400 block mb-2">
-                {selectedProject.badge}
-              </span>
-
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-sans mb-4 pr-10">
-                {selectedProject.title}
-              </h2>
-
-              {/* Flow Diagram Featured Image */}
-              {selectedProject.image && (
-                <div 
-                  onClick={() => setSelectedImage({ url: selectedProject.image!, title: selectedProject.title })}
-                  className="w-full max-h-72 rounded-xl overflow-hidden mb-6 border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950 relative group cursor-pointer"
-                >
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/10 transition-colors flex items-center justify-center">
-                    <span className="px-3 py-1.5 rounded-lg bg-slate-900/80 text-white font-mono text-[11px] font-semibold flex items-center gap-1.5 backdrop-blur-xs">
-                      <ZoomIn size={14} />
-                      Click to Expand Flow Diagram
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed mb-6">
-                {selectedProject.fullDescription}
-              </p>
-
-              {/* Step-by-Step Architecture Pipeline */}
-              {selectedProject.flowSteps && (
-                <div className="mb-6 p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800">
-                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-4 flex items-center gap-2">
-                    <Workflow size={16} />
-                    Automation Flow Architecture & Execution Pipeline
-                  </h4>
-                  <div className="space-y-4">
-                    {selectedProject.flowSteps.map((step) => (
-                      <div key={step.step} className="flex items-start gap-3.5 p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800/80">
-                        <span className="shrink-0 w-7 h-7 rounded-lg bg-sky-600 text-white font-mono font-bold text-xs flex items-center justify-center shadow-xs">
-                          {step.step}
-                        </span>
-                        <div>
-                          <h5 className="text-xs font-bold text-slate-900 dark:text-white font-sans mb-0.5">
-                            {step.title}
-                          </h5>
-                          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                            {step.description}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Problem / Solution / Tech Details / Impact Grid */}
-              <div className="space-y-6">
-                {selectedProject.problem && (
-                  <div className="p-5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800">
-                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 mb-2 flex items-center gap-2">
-                      <Cpu size={15} />
-                      Manual Process & Engineering Problem
-                    </h4>
-                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                      {selectedProject.problem}
-                    </p>
-                  </div>
-                )}
-
-                {selectedProject.solution && (
-                  <div className="p-5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800">
-                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-2 flex items-center gap-2">
-                      <Wrench size={15} />
-                      Automation Architecture & Solution
-                    </h4>
-                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                      {selectedProject.solution}
-                    </p>
-                  </div>
-                )}
-
-                {selectedProject.techDetails && (
-                  <div className="p-5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800">
-                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 dark:text-slate-300 mb-2 flex items-center gap-2">
-                      <Code size={15} />
-                      Technical & Prompt Engineering Details
-                    </h4>
-                    <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-                      {selectedProject.techDetails}
-                    </p>
-                  </div>
-                )}
-
-                {selectedProject.timeSavings && (
-                  <div className="p-5 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/40">
-                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-2 flex items-center gap-2">
-                      <CheckCircle2 size={15} />
-                      Measured Outcome & Time Savings
-                    </h4>
-                    <p className="text-xs sm:text-sm text-emerald-900 dark:text-emerald-200 leading-relaxed font-semibold">
-                      {selectedProject.timeSavings}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Technologies */}
-              <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-2">
-                {selectedProject.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 rounded-md text-xs font-mono bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sky-700 dark:text-sky-300">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* Lightbox / Zoom Modal for Flow Diagram */}
-      <AnimatePresence>
-        {selectedImage && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md cursor-pointer"
-            onClick={() => setSelectedImage(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl bg-white dark:bg-[#0b1120] border border-slate-200 dark:border-slate-800 p-4 sm:p-6 shadow-2xl overflow-hidden flex flex-col cursor-default"
-            >
-              <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-200 dark:border-slate-800">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white font-sans">
-                  {selectedImage.title} — Workflow Architecture Flow
-                </h3>
-                <button
-                  onClick={() => setSelectedImage(null)}
-                  className="p-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
-                  aria-label="Close flow image"
-                >
-                  <X size={18} />
-                </button>
-              </div>
-              
-              <div className="flex-1 overflow-auto rounded-xl bg-slate-100 dark:bg-slate-950 p-2 flex items-center justify-center">
-                <img
-                  src={selectedImage.url}
-                  alt={selectedImage.title}
-                  className="w-full h-auto max-h-[75vh] object-contain rounded-lg shadow-md"
-                />
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+      <CaseStudyModal study={study} onClose={() => setStudy(null)} />
     </section>
   );
 };
 
 export default AIAutomation;
-

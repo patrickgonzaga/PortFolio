@@ -5,6 +5,10 @@ export interface Experience {
   period: string;
   location?: string;
   flag?: string;
+  employmentType?: 'freelance' | 'fulltime' | 'contract';
+  tools?: string[];
+  technologies?: string;
+  confidentialityNote?: string;
   description: string[];
 }
 
@@ -64,11 +68,11 @@ export const cvData = {
     name: "Patrick Gonzaga",
     fullName: "Patrick James Lee Gonzaga",
     title: "Senior Software Engineer",
-    primaryStatement: "I don't just write code — I close gaps.",
-    supportingStatement: "Understand the system. Identify the gap. Build the solution. Deliver it in production.",
+    primaryStatement: "From enterprise backends to cloud & AI — I deliver production-ready systems that last.",
+    supportingStatement: "Understand the business domain. Engineer resilient architecture. Deliver production-ready software that scales.",
     techBadges: ["C# / VB.NET / .NET", "ASP.NET Core", "Azure", "SQL Server", "APIs & Integrations"],
     overview: "Software engineer with 2 decades of experience across software development, enterprise applications, databases, integrations and IT systems, with 5+ years of C# / modern .NET and 15+ years of VB.NET enterprise experience.",
-    longAbout: "My engineering career spans two decades of building software, enterprise applications, and production systems. My earlier foundation was built on desktop and web application development, database architecture (SQL Server, Oracle), manufacturing systems, and enterprise integrations using VB.NET. Over the last 5+ years, I have focused professionally on modern C#/.NET, ASP.NET Core, Azure cloud infrastructure, and robust backend microservices.\n\nI approach engineering with a systems mindset: understand the business domain, pinpoint operational gaps, build clean and maintainable software, and ensure reliable execution in production.",
+    longAbout: "My engineering career spans two decades of building software, enterprise applications, and production systems. My earlier foundation was built on desktop and web application development, database architecture (SQL Server, Oracle), manufacturing systems, and enterprise integrations using VB.NET. Over the last 5+ years, I have focused professionally on modern C#/.NET, ASP.NET Core, Azure cloud infrastructure, and robust backend microservices.\n\nI approach engineering with a systems mindset: understand the business domain, architect clean and scalable systems, and ensure reliable execution in production.",
     location: "Available for Senior .NET & Azure Roles (Remote International)",
     email: "patrickgonzaga@gmail.com",
     linkedin: "https://www.linkedin.com/in/patgonzaga/",
@@ -105,44 +109,60 @@ export const cvData = {
     {
       category: "Emerging & AI-Assisted Engineering",
       description: "Modern AI tooling for accelerated development and process automation",
-      skills: ["Cursor (Repo Rules & MCP)", "n8n Workflows", "OpenAI API Integration"]
+      skills: ["Cursor (Repo Rules & MCP)", "n8n Workflows", "OpenAI API Integration", "Claude Code", "Claude Cowork", "Claude API", "OpenClaw", "Telegram Bots", "Node.js", "Google Drive API", "Google OAuth Sign-In"]
     }
   ] as SkillGroup[],
 
   experience: [
     {
+      id: "freelance-automation",
+      company: "Australian IT services firm",
+      role: "Automation & Integration Developer (Freelance)",
+      period: "Sep 2026 – Present",
+      confidentialityNote: "Client engagements under NDA",
+      location: "Remote",
+      employmentType: "freelance",
+      technologies: "Node.js, MCP, Claude / Claude Code, OpenClaw, n8n, Docker, Linux, Azure (Key Vault, Bicep, NSG, Backup, CLI), Google OAuth / Drive API, rclone, Markdown / Obsidian, Caddy, systemd, GitHub Actions, Git.",
+      description: [
+        "Build AI knowledge platforms, document ingestion and synchronization pipelines, MCP integrations and automation workflows; operate and troubleshoot OpenClaw-based agents.",
+        "Deliver secure cloud deployments, infrastructure as code and CI/CD, with access controls, secrets management, backups, automated tests and release rollback.",
+        "Investigate and resolve web application and integration issues, implement features and regression tests, review changes and verify production releases.",
+        "Translate business processes into scopes, estimates and delivery plans; produce SOPs, technical guides and runbooks, and support stakeholder sessions and remote setup."
+      ]
+    },
+    {
       id: "emapta-discovery",
+      technologies: "C#, .NET, ASP.NET Core, EF Core, REST APIs, Azure (Key Vault, Application Insights, Redis, Blob Storage, Service Bus, Functions, AI Search), SQL Server, Retool, Polly, SonarQube, Cursor, MCP.",
       company: "Discovery Holiday Parks / Emapta",
       role: "Backend Developer",
       period: "2023 – 2026",
       location: "Australia (Remote)",
       flag: "au",
       description: [
-        "Engineered and maintained production C#, .NET, and ASP.NET Core APIs powering the Deals and WikiCamps platforms, owning domain logic, EF Core data access, and microservice integrations.",
-        "Orchestrated reliable event-driven backend workflows using Azure Service Bus, Azure Functions (scheduled jobs, offline builder), Redis Cache, Blob Storage, Key Vault, and Application Insights.",
-        "Integrated third-party service pipelines including BookEasy (booking sync), OSRM (routing) with Polly resilience policies, and Azure AI Search for automated content indexing.",
-        "Took full ownership of the internal Retool Admin Portal, configuring resources, complex SQL queries, and multi-environment pipelines used daily by operations teams.",
-        "Enforced code quality and maintainability standards on the Deals backend using SonarQube static analysis, addressing code smells, vulnerabilities, and coverage gaps as part of the CI pipeline.",
-        "Accelerated development velocity using AI-assisted tooling (Cursor with repository-level rules and MCP for read-only Azure/SQL access), ensuring all generated changes were thoroughly tested and validated before merge."
+        "Built and maintained C# / .NET / ASP.NET Core APIs and EF Core data access for Deals and WikiCamps, contributing shared services across sites, forums, accounts, trips and media.",
+        "Delivered event-driven workflows with Azure Service Bus, Functions, Redis, Blob Storage, Key Vault and Application Insights; integrated BookEasy, OSRM with Polly, and Azure AI Search.",
+        "Owned the Retool Admin Portal, including pages, resources, SQL queries and multi-environment configuration for deals, bookings and WikiCamps.",
+        "Enforced SonarQube code quality, security and coverage standards; used Cursor and MCP for read-only Azure / SQL context, reviewing and validating changes before release."
       ]
     },
     {
       id: "emapta-bidenergy",
+      technologies: "C#, .NET, AWS S3, AWS SQS, Buildkite CI/CD, Snyk, Clean Architecture, Confluence.",
       company: "BidEnergy / Emapta (Optima Technology)",
       role: ".NET Developer",
       period: "2021 – 2023",
       location: "Australia (Remote)",
       flag: "au",
       description: [
-        "Engineered C#/.NET applications for high-throughput energy metering systems, leveraging AWS S3 and SQS for scalable storage and asynchronous message handling.",
-        "Refactored legacy energy data pipelines to Clean Architecture, improving long-term maintainability, system resilience, and overall code quality.",
-        "Automated release workflows across Test, UAT, and Production environments using Buildkite CI/CD pipelines.",
-        "Enforced high code quality standards through active code reviews and achieved 99% meter data accuracy through automated validation checks.",
-        "Integrated Snyk into the development workflow for automated dependency vulnerability and security scanning."
+        "Built, maintained and refactored C# / .NET energy applications, using AWS S3 and SQS for scalable storage and reliable asynchronous messaging.",
+        "Applied Clean Architecture, code reviews and Snyk security scanning; automated validation maintained 99% meter data accuracy.",
+        "Delivered releases across Test, UAT and Production using Buildkite CI/CD with minimal downtime.",
+        "Created functional and technical documentation in Confluence, improving knowledge sharing and troubleshooting efficiency by 50%."
       ]
     },
     {
       id: "renesas",
+      technologies: "VB.NET, ASP.NET, SQL Server, Oracle, SAP, MES, TIBCO Spotfire, VMware, Hyper-V.",
       company: "Renesas Semiconductor KL SDN BHD",
       role: "Senior Engineer",
       period: "2011 – 2021",
@@ -158,6 +178,7 @@ export const cvData = {
     },
     {
       id: "grand-dragon",
+      technologies: "VB.NET, PHP, SQL Server, POS, Casino Management System, biometric timekeeping.",
       company: "Grand Dragon Resorts",
       role: "IT Manager / IT Executive",
       period: "2008 – 2010",
@@ -170,6 +191,7 @@ export const cvData = {
     },
     {
       id: "subic-bay",
+      technologies: "VB.NET, SQL Server, Windows Server, SCO UNIX, Novell NetWare, Oracle OPERA PMS, Micros-Fidelio.",
       company: "Subic Bay Yacht Club",
       role: "Senior Programmer / Junior Programmer",
       period: "2005 – 2008",
@@ -303,11 +325,45 @@ export const cvData = {
       role: "Backend Developer",
       summary: "Integrated modern AI tools into daily software development workflows to accelerate delivery while maintaining high code quality and security standards.",
       highlights: [
-        "Cursor IDE Workflows: Formulated repository-level rules to enforce clean architecture patterns and project conventions.",
         "Model Context Protocol (MCP): Utilized MCP servers for read-only database schema inspection and Azure configuration context.",
         "Cursor Debugging & Diagnostics: Leveraged Cursor AI to debug production issues identified in Azure Application Insights, analyzing stack traces to pinpoint root-cause code locations, evaluate fix suggestions, update implementation logic, and verify resolution with unit tests."
       ]
     },
+    clientProjects: [
+      {
+        id: "drive-knowledge-brain",
+        title: "AI Knowledge Brain",
+        badge: "Confidential Client Work",
+        tags: ["Node.js", "MCP", "Claude / Claude Code", "n8n", "Google OAuth / Drive API", "Markdown / Obsidian", "Docker", "Azure / Bicep", "GitHub Actions"],
+        shortDescription: "One shared knowledge core connects Claude, business documents and human-reviewed workflows. Explore how meeting notes, document handling, onboarding and agent-assisted work fit together.",
+        fullDescription: "An interconnected architecture for knowledge retrieval and business automation, spanning users, access channels, shared services and five workflow lanes. Explore each flow below. The diagram presents the platform architecture and scope without implying that every lane has been implemented; client identities and confidential operational details are excluded.",
+        problem: "Company knowledge was scattered across Google Drive files that staff had to search manually, and any AI assistant would quickly go out of date as documents changed.",
+        solution: "The architecture connects document imports, conversation saves, MCP search and Google-authenticated knowledge access with transcript summaries, CRM notes, draft follow-ups, document checklists, broker approvals, onboarding visibility and an agent-assisted Telegram interface.",
+        techDetails: "Node.js, MCP, Claude / Claude Code, Markdown / Obsidian, Google OAuth / Drive API, rclone, n8n, Docker, Azure / Bicep and GitHub Actions. Shared controls include tiered knowledge, request auditing, protected secrets, verified backups, CI tests and manual deployments with automatic rollback. Integration channels include Teams, Gmail, CRM and Telegram.",
+        flowSteps: [
+          {
+            step: 1,
+            title: "Document Ingestion",
+            description: "Process connected business documents into reusable knowledge."
+          },
+          {
+            step: 2,
+            title: "Knowledge Synchronization",
+            description: "Keep knowledge current as source documents change."
+          },
+          {
+            step: 3,
+            title: "Authenticated Access",
+            description: "Apply identity verification and authorization to knowledge access."
+          },
+          {
+            step: 4,
+            title: "MCP-Connected AI Assistance",
+            description: "Connect approved knowledge to Claude for search and AI-assisted answers."
+          }
+        ]
+      }
+    ] as AIIndependentProject[],
     independentProjects: [
       {
         id: "ai-resume-screener",

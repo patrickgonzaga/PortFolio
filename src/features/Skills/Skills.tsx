@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Layers, Server, Database, Code2, Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { TiltCard } from '../../components/ui/TiltCard/TiltCard';
+import { SectionHeader } from '../../components/ui/SectionHeader/SectionHeader';
 
 export const Skills: React.FC = () => {
   const categories = [
@@ -49,88 +51,79 @@ export const Skills: React.FC = () => {
       badge: "Modern Workflows",
       icon: Sparkles,
       isPrimary: false,
-      skills: ["Cursor", "n8n Workflows", "Claude", "Gemini"],
+      skills: ["OpenClaw", "Claude API", "Claude Code", "Claude Cowork", "Telegram Bots", "Cursor", "n8n Workflows", "Gemini"],
       description: "AI-assisted engineering processes, structured prompt rules, MCP context integration, and automation."
     }
   ];
 
   return (
-    <section id="skills" className="py-24 px-6 md:px-12 lg:px-20 relative bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-slate-100 border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
+    <section id="skills" className="section section-glow py-24 sm:py-32 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sky-600 dark:text-sky-400 font-mono text-xs uppercase tracking-widest mb-3">
-            <Code2 size={14} />
-            <span>Technical Capabilities</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Technical Expertise & Stack<span className="text-sky-600 dark:text-sky-400">.</span>
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 mt-3 max-w-2xl text-sm sm:text-base">
-            Structured view of core languages, frameworks, cloud services, and enterprise databases.
-          </p>
-        </motion.div>
+        <SectionHeader
+          icon={Code2}
+          eyebrow="Technical Capabilities"
+          title="Technical Expertise &"
+          highlight="Stack."
+          description="Core languages, frameworks, cloud services, and enterprise databases."
+        />
 
-        {/* Skills Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-6">
           {categories.map((cat, idx) => {
             const Icon = cat.icon;
-
             return (
               <motion.div
                 key={cat.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className={`rounded-2xl p-6 sm:p-8 ${
-                  cat.isPrimary 
-                    ? 'border border-sky-300 dark:border-sky-500/40 bg-sky-50/70 dark:bg-sky-950/20 lg:col-span-12 shadow-sm dark:shadow-xl' 
-                    : 'border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 lg:col-span-6 hover:border-slate-300 dark:hover:border-slate-700'
-                } transition-all flex flex-col justify-between group shadow-sm`}
+                initial={{ opacity: 0, y: 30, rotateX: 10 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.6, delay: (idx % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformPerspective: 1200 }}
+                className={cat.isPrimary ? 'md:col-span-2 lg:col-span-12' : 'lg:col-span-4'}
               >
-                <div>
-                  <div className="flex items-center justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className={`p-2.5 rounded-xl ${cat.isPrimary ? 'bg-sky-100 dark:bg-sky-500/20 text-sky-700 dark:text-sky-400 border border-sky-300 dark:border-sky-500/30' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>
+                <TiltCard
+                  max={cat.isPrimary ? 3 : 6}
+                  className={`glass rounded-2xl p-6 sm:p-8 h-full ${
+                    cat.isPrimary ? 'border-sky-500/40 bg-sky-50/50 dark:bg-sky-950/20' : ''
+                  }`}
+                >
+                  <div className="relative z-[3]">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className={`depth-1 p-2.5 rounded-xl border ${
+                          cat.isPrimary
+                            ? 'bg-sky-600 text-white border-transparent shadow-md'
+                            : 'bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-sky-600 dark:text-sky-400'
+                        }`}
+                      >
                         <Icon size={20} />
                       </div>
                       <div>
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-sky-600 dark:text-sky-400 font-bold block">
+                        <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-sky-600 dark:text-sky-400 font-bold block">
                           {cat.badge}
                         </span>
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white font-sans tracking-tight">
-                          {cat.title}
-                        </h3>
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">{cat.title}</h3>
                       </div>
                     </div>
-                  </div>
 
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                    {cat.description}
-                  </p>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed">{cat.description}</p>
 
-                  <div className="flex flex-wrap gap-2.5">
-                    {cat.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium transition-all ${
-                          cat.isPrimary
-                            ? 'bg-white dark:bg-sky-900/40 text-sky-900 dark:text-sky-200 border border-sky-200 dark:border-sky-700/60 font-semibold shadow-xs'
-                            : 'bg-slate-50 dark:bg-slate-950/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 group-hover:border-slate-300 dark:group-hover:border-slate-700'
-                        }`}
-                      >
-                        <CheckCircle2 size={12} className={cat.isPrimary ? 'text-sky-600 dark:text-sky-400' : 'text-slate-400 dark:text-slate-500'} />
-                        {skill}
-                      </span>
-                    ))}
+                    <div className="flex flex-wrap gap-2">
+                      {cat.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all hover:-translate-y-0.5 ${
+                            cat.isPrimary
+                              ? 'bg-white dark:bg-sky-950/80 text-slate-900 dark:text-sky-100 border border-sky-300 dark:border-sky-700/80 font-semibold shadow-xs'
+                              : 'bg-slate-50 dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-sky-500/40'
+                          }`}
+                        >
+                          <CheckCircle2 size={12} className={cat.isPrimary ? 'text-sky-500' : 'text-slate-400 dark:text-slate-500'} />
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                </TiltCard>
               </motion.div>
             );
           })}

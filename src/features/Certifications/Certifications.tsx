@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Award, ExternalLink, ChevronLeft, ChevronRight, GraduationCap } from 'lucide-react';
 import { cvData } from '../../data/cvData';
+import { SectionHeader } from '../../components/ui/SectionHeader/SectionHeader';
+import { ResponsiveImage } from '../../components/ui/ResponsiveImage';
 
 type FilterType = 'all' | 'ai' | 'professional';
 
@@ -216,28 +218,23 @@ export const Certifications: React.FC = () => {
   }, []);
 
   return (
-    <section id="certifications" className="py-24 px-6 md:px-12 lg:px-20 relative bg-white dark:bg-[#0b1120] text-slate-900 dark:text-slate-100 border-t border-slate-200 dark:border-slate-800/80 transition-colors duration-300">
+    <section id="certifications" className="section section-glow py-24 sm:py-32 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
+        <SectionHeader
+          icon={GraduationCap}
+          eyebrow="Continuous Learning"
+          title=""
+          highlight="Certifications."
+          description="Verified credentials in cloud infrastructure, data engineering, code quality, and AI-assisted automation."
+        />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="-mt-6 mb-8"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-sky-600 dark:text-sky-400 font-mono text-xs uppercase tracking-widest mb-3">
-            <GraduationCap size={14} />
-            <span>Continuous Learning</span>
-          </div>
-          <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Certifications<span className="text-sky-600 dark:text-sky-400">.</span>
-          </h2>
-          <p className="text-slate-600 dark:text-slate-400 mt-3 max-w-2xl text-sm sm:text-base">
-            Verified credentials in cloud infrastructure, data engineering, code quality, and AI-assisted automation.
-          </p>
-
           {/* Filter Tabs & Carousel Controls */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-8 pt-2 border-b border-slate-200 dark:border-slate-800/60 pb-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex flex-wrap gap-2">
               {tabs.map((tab) => {
                 const isActive = activeFilter === tab.id;
@@ -245,10 +242,10 @@ export const Certifications: React.FC = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveFilter(tab.id)}
-                    className={`px-4 py-2 rounded-lg text-xs font-mono font-semibold uppercase tracking-wider transition-all border ${
+                    className={`px-4 py-2 rounded-full text-xs font-mono font-semibold uppercase tracking-wider transition-all border ${
                       isActive
-                        ? 'bg-sky-600 border-sky-600 text-white shadow-sm'
-                        : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-sky-500/40 hover:text-sky-600 dark:hover:text-sky-400'
+                        ? 'bg-gradient-to-r from-cyan-500 to-violet-500 border-transparent text-white shadow-[0_8px_24px_-8px_hsl(var(--c-cyan)/0.9)]'
+                        : 'glass text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300'
                     }`}
                   >
                     {tab.label}
@@ -291,12 +288,12 @@ export const Certifications: React.FC = () => {
         {/* Certifications Carousel */}
         <div className="relative group/carousel">
           <div
-            className={`absolute left-0 top-0 bottom-8 w-16 bg-gradient-to-r from-white dark:from-[#0b1120] to-transparent pointer-events-none z-10 transition-opacity duration-300 ${
+            className={`absolute left-0 top-0 bottom-8 w-16 bg-gradient-to-r from-[hsl(var(--bg))] to-transparent pointer-events-none z-10 transition-opacity duration-300 ${
               canScrollLeft ? 'opacity-100' : 'opacity-0'
             }`}
           />
           <div
-            className={`absolute right-0 top-0 bottom-8 w-16 bg-gradient-to-l from-white dark:from-[#0b1120] to-transparent pointer-events-none z-10 transition-opacity duration-300 ${
+            className={`absolute right-0 top-0 bottom-8 w-16 bg-gradient-to-l from-[hsl(var(--bg))] to-transparent pointer-events-none z-10 transition-opacity duration-300 ${
               canScrollRight ? 'opacity-100' : 'opacity-0'
             }`}
           />
@@ -307,7 +304,7 @@ export const Certifications: React.FC = () => {
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMoveHoverOnly}
-            className={`flex gap-6 overflow-x-auto pb-8 scrollbar-none select-none ${
+            className={`flex gap-6 overflow-x-auto pt-6 pb-10 px-1 scrollbar-none select-none [perspective:1200px] ${
               isDragging ? 'cursor-grabbing' : 'cursor-grab scroll-smooth snap-x snap-mandatory'
             }`}
           >
@@ -320,12 +317,13 @@ export const Certifications: React.FC = () => {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: 15 }}
                   transition={{ duration: 0.35 }}
-                  className="w-[260px] sm:w-[300px] md:w-[330px] shrink-0 snap-start rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 hover:border-sky-500/40 transition-all shadow-sm hover:shadow-md dark:shadow-xl overflow-hidden flex flex-col group"
+                  className="w-[260px] sm:w-[300px] md:w-[330px] shrink-0 snap-start rounded-3xl glass overflow-hidden flex flex-col group transition-[transform,box-shadow] duration-500 ease-out hover:[transform:translateY(-8px)_rotateX(6deg)] hover:shadow-[0_30px_60px_-20px_hsl(var(--c-cyan)/0.45)]"
                 >
                   {/* Certificate Image */}
                   <div className="w-full aspect-[1.6/1] bg-slate-100 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 relative overflow-hidden flex items-center justify-center">
                     {cert.image && !failedImages.includes(cert.id) ? (
-                      <img
+                      <ResponsiveImage
+                        sizes="(max-width: 639px) 260px, 320px"
                         src={cert.image}
                         alt={cert.title}
                         draggable={false}
