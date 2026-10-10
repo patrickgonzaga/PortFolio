@@ -1,0 +1,188 @@
+{
+  "/hero-profile.png": {
+    "src": "/images/optimized/hero-profile-960.webp",
+    "srcSet": "/images/optimized/hero-profile-480.webp 480w, /images/optimized/hero-profile-960.webp 960w, /images/optimized/hero-profile-1024.webp 1024w",
+    "width": 1024,
+    "height": 1536
+  },
+  "/pat.jpg": {
+    "src": "/images/optimized/pat-960.webp",
+    "srcSet": "/images/optimized/pat-480.webp 480w, /images/optimized/pat-960.webp 960w, /images/optimized/pat-1600.webp 1600w",
+    "width": 2173,
+    "height": 3894
+  },
+  "/images/projects/wikicamps-admin.png": {
+    "src": "/images/optimized/wikicamps-admin-960.webp",
+    "srcSet": "/images/optimized/wikicamps-admin-480.webp 480w, /images/optimized/wikicamps-admin-960.webp 960w, /images/optimized/wikicamps-admin-1024.webp 1024w",
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/optimatech-cloud.png": {
+    "src": "/images/optimized/optimatech-cloud-960.webp",
+    "srcSet": "/images/optimized/optimatech-cloud-480.webp 480w, /images/optimized/optimatech-cloud-960.webp 960w, /images/optimized/optimatech-cloud-1024.webp 1024w",
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/mes-sap-integration.png": {
+    "src": "/images/optimized/mes-sap-integration-960.webp",
+    "srcSet": "/images/optimized/mes-sap-integration-480.webp 480w, /images/optimized/mes-sap-integration-960.webp 960w, /images/optimized/mes-sap-integration-1024.webp 1024w",
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/e-lot-control.png": {
+    "src": "/images/optimized/e-lot-control-960.webp",
+    "srcSet": "/images/optimized/e-lot-control-480.webp 480w, /images/optimized/e-lot-control-960.webp 960w, /images/optimized/e-lot-control-1024.webp 1024w",
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/e-counting-balance.png": {
+    "src": "/images/optimized/e-counting-balance-960.webp",
+    "srcSet": "/images/optimized/e-counting-balance-480.webp 480w, /images/optimized/e-counting-balance-960.webp 960w, /images/optimized/e-counting-balance-1024.webp 1024w",
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/resort-systems.png": {
+    "src": "/images/optimized/resort-systems-960.webp",
+    "srcSet": "/images/optimized/resort-systems-480.webp 480w, /images/optimized/resort-systems-960.webp 960w, /images/optimized/resort-systems-1024.webp 1024w",
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/enterprise-reporting.png": {
+    "src": "/images/optimized/enterprise-reporting-960.webp",
+    "srcSet": "/images/optimized/enterprise-reporting-480.webp 480w, /images/optimized/enterprise-reporting-960.webp 960w, /images/optimized/enterprise-reporting-1024.webp 1024w",
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/rskl-helpdesk.png": {
+    "src": "/images/optimized/rskl-helpdesk-960.webp",
+    "srcSet": "/images/optimized/rskl-helpdesk-480.webp 480w, /images/optimized/rskl-helpdesk-960.webp 960w, /images/optimized/rskl-helpdesk-1024.webp 1024w",
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/projects/n8n-ai-resume-screener.png": {
+    "src": "/images/optimized/n8n-ai-resume-screener-960.webp",
+    "srcSet": "/images/optimized/n8n-ai-resume-screener-480.webp 480w, /images/optimized/n8n-ai-resume-screener-960.webp 960w, /images/optimized/n8n-ai-resume-screener-1600.webp 1600w",
+    "width": 1658,
+    "height": 621
+  },
+  "/images/projects/n8n-recruitment-automation-system.png": {
+    "src": "/images/optimized/n8n-recruitment-automation-system-960.webp",
+    "srcSet": "/images/optimized/n8n-recruitment-automation-system-480.webp 480w, /images/optimized/n8n-recruitment-automation-system-960.webp 960w, /images/optimized/n8n-recruitment-automation-system-1600.webp 1600w",
+    "width": 2308,
+    "height": 2218
+  },
+  "/images/projects/n8n-ai-customer-support-ticket-triage.png": {
+    "src": "/images/optimized/n8n-ai-customer-support-ticket-triage-960.webp",
+    "srcSet": "/images/optimized/n8n-ai-customer-support-ticket-triage-480.webp 480w, /images/optimized/n8n-ai-customer-support-ticket-triage-960.webp 960w, /images/optimized/n8n-ai-customer-support-ticket-triage-1399.webp 1399w",
+    "width": 1399,
+    "height": 775
+  },
+  "/images/projects/n8n-ai-invoice-processing.png": {
+    "src": "/images/optimized/n8n-ai-invoice-processing-960.webp",
+    "srcSet": "/images/optimized/n8n-ai-invoice-processing-480.webp 480w, /images/optimized/n8n-ai-invoice-processing-960.webp 960w, /images/optimized/n8n-ai-invoice-processing-1600.webp 1600w",
+    "width": 1645,
+    "height": 724
+  },
+  "/images/certificates/openai-workflow.jpg": {
+    "src": "/images/optimized/openai-workflow-809.webp",
+    "srcSet": "/images/optimized/openai-workflow-480.webp 480w, /images/optimized/openai-workflow-809.webp 809w",
+    "width": 809,
+    "height": 566
+  },
+  "/images/certificates/taraai-zapier.jpg": {
+    "src": "/images/optimized/taraai-zapier-727.webp",
+    "srcSet": "/images/optimized/taraai-zapier-480.webp 480w, /images/optimized/taraai-zapier-727.webp 727w",
+    "width": 727,
+    "height": 519
+  },
+  "/images/certificates/taraai-make.jpg": {
+    "src": "/images/optimized/taraai-make-960.webp",
+    "srcSet": "/images/optimized/taraai-make-480.webp 480w, /images/optimized/taraai-make-960.webp 960w, /images/optimized/taraai-make-1069.webp 1069w",
+    "width": 1069,
+    "height": 777
+  },
+  "/images/certificates/udemy-react.jpg": {
+    "src": "/images/optimized/udemy-react-960.webp",
+    "srcSet": "/images/optimized/udemy-react-480.webp 480w, /images/optimized/udemy-react-960.webp 960w, /images/optimized/udemy-react-962.webp 962w",
+    "width": 962,
+    "height": 717
+  },
+  "/images/certificates/udemy-azure-bicep.jpg": {
+    "src": "/images/optimized/udemy-azure-bicep-960.webp",
+    "srcSet": "/images/optimized/udemy-azure-bicep-480.webp 480w, /images/optimized/udemy-azure-bicep-960.webp 960w, /images/optimized/udemy-azure-bicep-963.webp 963w",
+    "width": 963,
+    "height": 718
+  },
+  "/images/certificates/udemy-azure-devops.jpg": {
+    "src": "/images/optimized/udemy-azure-devops-960.webp",
+    "srcSet": "/images/optimized/udemy-azure-devops-480.webp 480w, /images/optimized/udemy-azure-devops-960.webp 960w, /images/optimized/udemy-azure-devops-964.webp 964w",
+    "width": 964,
+    "height": 719
+  },
+  "/images/certificates/udemy-code-reviews.jpg": {
+    "src": "/images/optimized/udemy-code-reviews-953.webp",
+    "srcSet": "/images/optimized/udemy-code-reviews-480.webp 480w, /images/optimized/udemy-code-reviews-953.webp 953w",
+    "width": 953,
+    "height": 715
+  },
+  "/images/certificates/project-sparta-data-engineering.jpg": {
+    "src": "/images/optimized/project-sparta-data-engineering-960.webp",
+    "srcSet": "/images/optimized/project-sparta-data-engineering-480.webp 480w, /images/optimized/project-sparta-data-engineering-960.webp 960w, /images/optimized/project-sparta-data-engineering-1128.webp 1128w",
+    "width": 1128,
+    "height": 798
+  },
+  "/images/certificates/n8n-quickstart.jpg": {
+    "src": "/images/optimized/n8n-quickstart-400.webp",
+    "srcSet": "/images/optimized/n8n-quickstart-400.webp 400w",
+    "width": 400,
+    "height": 400
+  },
+  "/images/certificates/project-sparta-data-visualization.jpg": {
+    "src": "/images/optimized/project-sparta-data-visualization-960.webp",
+    "srcSet": "/images/optimized/project-sparta-data-visualization-480.webp 480w, /images/optimized/project-sparta-data-visualization-960.webp 960w, /images/optimized/project-sparta-data-visualization-1128.webp 1128w",
+    "width": 1128,
+    "height": 800
+  },
+  "/images/certificates/project-sparta-data-science.jpg": {
+    "src": "/images/optimized/project-sparta-data-science-960.webp",
+    "srcSet": "/images/optimized/project-sparta-data-science-480.webp 480w, /images/optimized/project-sparta-data-science-960.webp 960w, /images/optimized/project-sparta-data-science-1125.webp 1125w",
+    "width": 1125,
+    "height": 799
+  },
+  "/images/certificates/project-sparta-data-science-analytics.jpg": {
+    "src": "/images/optimized/project-sparta-data-science-analytics-960.webp",
+    "srcSet": "/images/optimized/project-sparta-data-science-analytics-480.webp 480w, /images/optimized/project-sparta-data-science-analytics-960.webp 960w, /images/optimized/project-sparta-data-science-analytics-1130.webp 1130w",
+    "width": 1130,
+    "height": 804
+  },
+  "/images/certificates/project-sparta-advance-data-engineering.jpg": {
+    "src": "/images/optimized/project-sparta-advance-data-engineering-960.webp",
+    "srcSet": "/images/optimized/project-sparta-advance-data-engineering-480.webp 480w, /images/optimized/project-sparta-advance-data-engineering-960.webp 960w, /images/optimized/project-sparta-advance-data-engineering-1132.webp 1132w",
+    "width": 1132,
+    "height": 758
+  },
+  "/images/certificates/project-sparta-data-visualization-tableau.jpg": {
+    "src": "/images/optimized/project-sparta-data-visualization-tableau-960.webp",
+    "srcSet": "/images/optimized/project-sparta-data-visualization-tableau-480.webp 480w, /images/optimized/project-sparta-data-visualization-tableau-960.webp 960w, /images/optimized/project-sparta-data-visualization-tableau-1126.webp 1126w",
+    "width": 1126,
+    "height": 800
+  },
+  "/images/certificates/project-sparta-python-data-engineering.jpg": {
+    "src": "/images/optimized/project-sparta-python-data-engineering-960.webp",
+    "srcSet": "/images/optimized/project-sparta-python-data-engineering-480.webp 480w, /images/optimized/project-sparta-python-data-engineering-960.webp 960w, /images/optimized/project-sparta-python-data-engineering-1129.webp 1129w",
+    "width": 1129,
+    "height": 803
+  },
+  "/images/certificates/project-sparta-deep-learning-python.jpg": {
+    "src": "/images/optimized/project-sparta-deep-learning-python-960.webp",
+    "srcSet": "/images/optimized/project-sparta-deep-learning-python-480.webp 480w, /images/optimized/project-sparta-deep-learning-python-960.webp 960w, /images/optimized/project-sparta-deep-learning-python-1128.webp 1128w",
+    "width": 1128,
+    "height": 805
+  },
+  "/images/certificates/project-sparta-computing-python.jpg": {
+    "src": "/images/optimized/project-sparta-computing-python-960.webp",
+    "srcSet": "/images/optimized/project-sparta-computing-python-480.webp 480w, /images/optimized/project-sparta-computing-python-960.webp 960w, /images/optimized/project-sparta-computing-python-1132.webp 1132w",
+    "width": 1132,
+    "height": 805
+  }
+}

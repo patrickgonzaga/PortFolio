@@ -1,62 +1,45 @@
-import React from 'react';
+﻿import { lazy, Suspense, useEffect, useState } from 'react';
+import { MotionConfig } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Navbar } from './features/Navbar';
 import { Hero } from './features/Hero';
-import { TechMarquee } from './features/TechMarquee';
-import { About } from './features/About';
-import { Experience } from './features/Experience';
-import { Projects } from './features/Projects';
-import { Skills } from './features/Skills';
-import { AIAutomation } from './features/AIAutomation';
-import { Certifications } from './features/Certifications';
-import { Contact } from './features/Contact';
 import { Footer } from './features/Footer';
+import { useLightweightMode } from './hooks/useLightweightMode';
 
-const AppContent: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-slate-100 font-sans selection:bg-sky-500 selection:text-white transition-colors duration-300">
-      {/* Sticky Navigation Header */}
-      <Navbar />
+const PortfolioContent = lazy(() => import('./PortfolioContent'));
 
-      <main className="relative z-10">
-        {/* 1. Hero Section */}
-        <Hero />
-
-        {/* 2. Scrolling Tech Stack */}
-        <TechMarquee />
-
-        {/* 3. About & Engineering Evolution */}
-        <About />
-
-        {/* 4. Software Engineering Case Studies */}
-        <Projects />
-
-        {/* 5. Technical Expertise & Stack */}
-        <Skills />
-
-        {/* 6. Secondary: AI & Automation */}
-        <AIAutomation />
-
-        {/* 7. Professional Experience Timeline */}
-        <Experience />
-
-        {/* 8. Certifications */}
-        <Certifications />
-
-        {/* 9. Contact Banner */}
-        <Contact />
-      </main>
-
-      {/* 10. Footer */}
-      <Footer />
-    </div>
-  );
-};
+function DeferredContent() {
+  const [ready, setReady] = useState(() => !!window.location.hash);
+  useEffect(() => {
+    if (ready) return;
+    const enable = () => setReady(true);
+    window.addEventListener('hashchange', enable);
+    const idle = window.requestIdleCallback?.(enable, { timeout: 800 });
+    const timer = idle === undefined ? window.setTimeout(enable, 150) : undefined;
+    return () => {
+      window.removeEventListener('hashchange', enable);
+      if (idle !== undefined) window.cancelIdleCallback(idle);
+      if (timer !== undefined) window.clearTimeout(timer);
+    };
+  }, [ready]);
+  const placeholder = <div className="min-h-screen flex items-start justify-center pt-12 text-sm text-slate-500" role="status">Loading selected work…</div>;
+  return <Suspense fallback={placeholder}>{ready ? <PortfolioContent /> : placeholder}</Suspense>;
+}
 
 function App() {
+  const lightweight = useLightweightMode();
   return (
     <ThemeProvider>
-      <AppContent />
+      <MotionConfig reducedMotion={lightweight ? 'always' : 'user'}>
+        <div className="min-h-screen bg-slate-50 dark:bg-[#080c14] text-slate-900 dark:text-slate-100 font-sans selection:bg-sky-500 selection:text-white transition-colors duration-300">
+          <Navbar />
+          <main className="relative z-10">
+            <Hero />
+            <DeferredContent />
+          </main>
+          <Footer />
+        </div>
+      </MotionConfig>
     </ThemeProvider>
   );
 }

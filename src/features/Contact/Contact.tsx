@@ -33,7 +33,7 @@ export const Contact: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.15 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
         >
           {/* Email */}
           <a
@@ -46,7 +46,7 @@ export const Contact: React.FC = () => {
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
               Direct Email
             </span>
-            <span className="text-sm font-semibold text-slate-900 dark:text-white font-mono group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
+            <span className="text-sm break-all font-semibold text-slate-900 dark:text-white font-mono group-hover:text-sky-600 dark:group-hover:text-sky-300 transition-colors">
               {cvData.personal.email}
             </span>
           </a>
@@ -90,6 +90,11 @@ export const Contact: React.FC = () => {
             </span>
           </a>
         </motion.div>
+        <div className="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-slate-600 dark:text-slate-300">
+          <a href="/documents/CV_Patrick_Gonzaga.docx" download className="underline underline-offset-4 hover:text-sky-600 dark:hover:text-sky-300">Original CV · Word</a>
+          <a href="/documents/CV_Patrick_Gonzaga_ATS.docx" download className="underline underline-offset-4 hover:text-sky-600 dark:hover:text-sky-300">ATS resume · Word</a>
+          <a href="/documents/CV_Patrick_Gonzaga_ATS.pdf" download className="underline underline-offset-4 hover:text-sky-600 dark:hover:text-sky-300">ATS resume · PDF</a>
+        </div>
       </div>
     </section>
   );

@@ -1,0 +1,131 @@
+.portfolio-hero {
+  --hero-ink: #10212d;
+  --hero-muted: #526575;
+  --hero-line: rgb(28 64 85 / 14%);
+  --hero-accent: #007aa7;
+  background: #f1f5f6;
+  color: var(--hero-ink);
+  overflow: clip;
+  padding: 112px 0 0;
+}
+.dark .portfolio-hero {
+  --hero-ink: #eef5fa;
+  --hero-muted: #91a4b4;
+  --hero-line: rgb(153 195 219 / 16%);
+  --hero-accent: #73d7fa;
+  background: #080e17;
+}
+.hero-ambient { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 77% 40%, rgb(52 170 210 / 11%), transparent 54%); }
+.hero-shell { width: min(1320px, calc(100% - 112px)); margin-inline: auto; }
+.hero-topline, .hero-bottomline { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.hero-topline { border-bottom: 1px solid var(--hero-line); padding-bottom: 22px; font-size: 11px; color: var(--hero-muted); letter-spacing: .025em; }
+.hero-availability { display: inline-flex; align-items: center; gap: 9px; min-height: 28px; }
+.hero-availability > span { width: 6px; height: 6px; background: #17a779; border-radius: 50%; box-shadow: 0 0 0 4px rgb(23 167 121 / 10%); }
+.hero-availability:hover { color: var(--hero-ink); }
+.hero-layout { display: grid; grid-template-columns: 1fr 1.06fr; align-items: center; gap: 30px; padding: 32px 0; }
+.hero-copy { min-width: 0; position: relative; z-index: 2; animation: hero-arrive .85s both; }
+.hero-eyebrow { display: flex; gap: 14px; align-items: center; font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .16em; color: var(--hero-muted); margin-bottom: 27px; }
+.hero-eyebrow > span { color: var(--hero-accent); }
+.hero-name { font-family: 'Space Grotesk', var(--font-sans); font-size: clamp(76px, 7.65vw, 110px); font-weight: 600; line-height: .98; letter-spacing: -.075em; margin-left: -5px; }
+.hero-name > span { display: block; }
+.hero-surname { color: var(--hero-accent); }
+.hero-period { color: var(--hero-ink); }
+.hero-statement { margin-top: 28px; font-size: clamp(21px, 2.1vw, 29px); line-height: 1.25; font-weight: 500; letter-spacing: -.035em; }
+.hero-description { margin-top: 16px; max-width: 390px; font-size: 14px; line-height: 1.8; color: var(--hero-muted); }
+.hero-actions { display: flex; align-items: center; gap: 25px; margin-top: 28px; }
+.hero-primary { display: inline-flex; align-items: center; justify-content: space-between; gap: 30px; min-height: 52px; padding: 14px 21px; border-radius: 6px; color: #f8fcff; background: #102e41; font-size: 13px; font-weight: 600; transition: background .2s, transform .2s, box-shadow .2s; }
+.dark .hero-primary { background: #a5e4fa; color: #0b2433; }
+.hero-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgb(54 169 211 / 20%); background: #086088; }
+.dark .hero-primary:hover { background: #d3f3ff; }
+.hero-primary svg { transition: transform .2s; }
+.hero-primary:hover svg { transform: translate(2px, -2px); }
+.hero-resume { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; font-size: 12px; color: var(--hero-muted); transition: color .2s; }
+.hero-resume:hover { color: var(--hero-ink); }
+.hero-art { min-width: 0; position: relative; animation: hero-arrive 1.1s .1s both; }
+.sculpture-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-inline: 12px; color: var(--hero-muted); font: 10px var(--font-mono); text-transform: uppercase; letter-spacing: .15em; }
+.sculpture-heading > span { display: flex; align-items: center; gap: 8px; }
+.sculpture-marker { height: 5px; width: 5px; border-radius: 50%; background: var(--sculpture-accent); }
+.sculpture-pause { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--hero-line); border-radius: 50%; cursor: pointer; transition: color .2s, border-color .2s; }
+.sculpture-pause:hover { color: var(--hero-ink); border-color: var(--sculpture-accent); }
+.sculpture-pause:disabled { opacity: .45; cursor: default; }
+.sculpture-stage { position: relative; height: clamp(300px, 28vw, 420px); isolation: isolate; touch-action: pan-y; }
+.sculpture-halo { position: absolute; inset: 2% 0 5%; background: radial-gradient(ellipse, color-mix(in srgb, var(--sculpture-accent) 14%, transparent), transparent 68%); border-radius: 50%; transition: background .6s; }
+.sculpture-guide { position: absolute; border: 1px solid var(--hero-line); border-radius: 50%; pointer-events: none; }
+.sculpture-guide-one { width: 76%; height: 84%; top: 8%; left: 12%; opacity: .45; }
+.sculpture-guide-two { width: 91%; height: 100%; top: 0; left: 4.5%; opacity: .25; }
+.sculpture-coordinate { position: absolute; right: -6px; top: 50%; transform: rotate(90deg); color: var(--hero-muted); font: 9px var(--font-mono); letter-spacing: .2em; }
+.sculpture-canvas { position: absolute; inset: -5% -5% 0; z-index: 1; pointer-events: none; }
+.sculpture-poster { display: block; width: 100%; height: 100%; object-fit: contain; filter: hue-rotate(var(--poster-hue, 0deg)); }
+.sculpture-shadow { position: absolute; bottom: 0; left: 20%; width: 60%; height: 12%; background: radial-gradient(ellipse, rgb(7 27 47 / 19%), transparent 66%); }
+.dark .sculpture-shadow { background: radial-gradient(ellipse, rgb(0 0 0 / 65%), transparent 66%); }
+.sculpture-caption { position: absolute; bottom: 6px; left: 50%; width: max-content; transform: translateX(-50%); font: 9px var(--font-mono); text-transform: uppercase; letter-spacing: .2em; color: var(--hero-muted); }
+.sculpture-footer { margin: 18px 12px 0; }
+.sculpture-modes { display: flex; gap: 6px; border-bottom: 1px solid var(--hero-line); }
+.sculpture-modes button { flex: 1; position: relative; padding: 13px 4px; min-height: 48px; font-size: 11px; color: var(--hero-muted); white-space: nowrap; cursor: pointer; transition: color .25s; }
+.sculpture-mode-number { margin-right: 4px; font-family: var(--font-mono); font-size: 9px; opacity: .6; }
+.sculpture-modes button[aria-pressed='true'] { color: var(--hero-ink); }
+.sculpture-modes button::after { content: ''; position: absolute; height: 2px; bottom: -1px; inset-inline: 0; background: var(--sculpture-accent); transform: scaleX(0); transition: transform .3s; }
+.sculpture-modes button[aria-pressed='true']::after { transform: scaleX(1); }
+.sculpture-modes button:hover { color: var(--hero-ink); }
+.sculpture-description { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 72px; padding-top: 18px; }
+.sculpture-description p { font-size: 13px; font-weight: 500; letter-spacing: -.01em; }
+.sculpture-description span { display: block; font: 10px var(--font-mono); color: var(--hero-muted); margin-top: 6px; }
+.sculpture-description > svg { color: var(--sculpture-accent); }
+.sculpture-fallback { position: absolute; inset: 0; display: grid; place-items: center; }
+.sculpture-fallback i { position: absolute; width: 58%; height: 58%; border-radius: 50%; border: clamp(24px, 4vw, 48px) solid color-mix(in srgb, var(--sculpture-accent) 70%, #d5f3ff); background: transparent; box-shadow: inset 8px 4px 14px #ecfaff, inset -9px -7px 17px #163545, 7px 8px 12px #07172650; transform: rotate(-30deg) scaleX(.6); }
+.sculpture-fallback i:nth-child(2) { transform: rotate(90deg) scaleX(.6); }
+.sculpture-fallback i:nth-child(3) { transform: rotate(210deg) scaleX(.6); }
+.hero-bottomline { padding: 27px 0 30px; border-top: 1px solid var(--hero-line); }
+.hero-experience { display: flex; gap: clamp(24px, 5vw, 76px); }
+.hero-experience > div { display: flex; align-items: center; gap: 12px; }
+.hero-experience dt { font-family: var(--font-mono); font-size: 29px; line-height: 1; letter-spacing: -.05em; }
+.hero-experience dd { max-width: 100px; font-size: 10px; line-height: 1.6; color: var(--hero-muted); }
+.hero-scroll { display: inline-flex; align-items: center; gap: 15px; min-height: 44px; color: var(--hero-muted); font-size: 10px; }
+.hero-scroll svg { color: var(--hero-accent); }
+@keyframes hero-arrive { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@media (min-width: 1600px) { .hero-layout { padding-block: 70px; } }
+@media (max-width: 1100px) {
+  .hero-shell { width: calc(100% - 64px); }
+  .hero-layout { gap: 12px; }
+  .hero-name { font-size: clamp(64px, 8vw, 88px); }
+  .hero-actions { gap: 17px; }
+  .hero-primary { padding-inline: 17px; gap: 20px; }
+  .sculpture-mode-number { display: none; }
+}
+@media (max-width: 767px) {
+  .portfolio-hero { padding-top: 98px; }
+  .hero-shell { width: calc(100% - 40px); }
+  .hero-topline { justify-content: flex-start; padding-bottom: 17px; }
+  .hero-topline > span { display: none; }
+  .hero-layout { grid-template-columns: 1fr; gap: 28px; padding: 28px 0; }
+  .hero-copy { max-width: 550px; }
+  .hero-eyebrow { font-size: 10px; margin-bottom: 22px; }
+  .hero-name { font-size: clamp(66px, 13.8vw, 100px); }
+  .hero-statement { margin-top: 20px; font-size: 23px; }
+  .hero-description { font-size: 13px; max-width: 420px; }
+  .hero-actions { margin-top: 20px; gap: 20px; flex-wrap: wrap; }
+  .hero-art { width: 100%; max-width: 530px; justify-self: center; }
+  .sculpture-stage { height: clamp(280px, 83vw, 425px); }
+  .sculpture-footer { margin-inline: 0; }
+  .sculpture-heading { padding-inline: 0; }
+  .sculpture-coordinate { right: -13px; }
+  .sculpture-mode-number { display: inline; }
+  .hero-bottomline { align-items: flex-start; flex-direction: column; gap: 15px; padding-top: 25px; padding-bottom: 18px; }
+  .hero-experience { width: 100%; justify-content: space-between; gap: 15px; }
+  .hero-experience > div { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .hero-experience dt { font-size: 28px; }
+  .hero-experience dd { font-size: 10px; max-width: 100px; }
+  .hero-scroll { width: 100%; justify-content: space-between; }
+}
+@media (max-width: 374px) {
+  .hero-name { font-size: 59px; }
+  .hero-eyebrow { font-size: 9px; letter-spacing: .11em; }
+  .hero-actions { gap: 15px; }
+  .hero-primary { font-size: 11px; padding-inline: 13px; gap: 15px; }
+  .hero-resume { font-size: 11px; }
+  .sculpture-mode-number { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy, .hero-art { animation: none; }
+  .hero-primary:hover { transform: none; }
+}
