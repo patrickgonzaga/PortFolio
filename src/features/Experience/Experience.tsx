@@ -92,7 +92,7 @@ export const Experience: React.FC = () => {
                         <div>
                           <div className="flex flex-wrap items-center gap-2">
                             <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">{item.role}</h3>
-                            {item.employmentType === 'freelance' && !item.role.includes('(Freelance)') && (
+                            {item.employmentType === 'freelance' && !item.role.includes('Freelance') && (
                               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 flex items-center gap-1 shadow-sm">
                                 <Sparkles size={11} className="text-emerald-500" />
                                 Freelance

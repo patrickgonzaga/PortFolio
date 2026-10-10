@@ -117,7 +117,7 @@ export const cvData = {
     {
       id: "freelance-automation",
       company: "Australian IT services firm",
-      role: "Automation & Integration Developer (Freelance)",
+      role: "Automation & Integration Developer (Freelance, Part-time)",
       period: "Sep 2026 – Present",
       confidentialityNote: "Client engagements under NDA",
       location: "Remote",
