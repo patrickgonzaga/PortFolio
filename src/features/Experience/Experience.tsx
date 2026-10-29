@@ -8,13 +8,6 @@ import { SectionHeader } from '../../components/ui/SectionHeader/SectionHeader';
 type Accent = { node: string; chip: string; box: string; boxText: string; label?: string };
 
 const ACCENTS: Record<string, Accent> = {
-  'freelance-automation': {
-    node: 'from-emerald-400 via-sky-500 to-blue-600',
-    chip: 'bg-sky-500/10 border-sky-500/30 text-sky-700 dark:text-sky-300',
-    box: 'bg-sky-500/[0.06] border-sky-500/25',
-    boxText: 'text-sky-900 dark:text-sky-200',
-    label: 'AI & Cloud Automation',
-  },
   'emapta-discovery': {
     node: 'from-sky-400 to-blue-600',
     chip: 'bg-sky-500/10 border-sky-500/30 text-sky-700 dark:text-sky-300',

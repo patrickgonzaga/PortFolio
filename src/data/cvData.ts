@@ -115,22 +115,6 @@ export const cvData = {
 
   experience: [
     {
-      id: "freelance-automation",
-      company: "Australian IT services firm",
-      role: "Automation & Integration Developer (Freelance, Part-time)",
-      period: "Sep 2026 – Present",
-      confidentialityNote: "Client engagements under NDA",
-      location: "Remote",
-      employmentType: "freelance",
-      technologies: "Node.js, MCP, Claude / Claude Code, OpenClaw, n8n, Docker, Linux, Azure (Key Vault, Bicep, NSG, Backup, CLI), Google OAuth / Drive API, rclone, Markdown / Obsidian, Caddy, systemd, GitHub Actions, Git.",
-      description: [
-        "Build AI knowledge platforms, document ingestion and synchronization pipelines, MCP integrations and automation workflows; operate and troubleshoot OpenClaw-based agents.",
-        "Deliver secure cloud deployments, infrastructure as code and CI/CD, with access controls, secrets management, backups, automated tests and release rollback.",
-        "Investigate and resolve web application and integration issues, implement features and regression tests, review changes and verify production releases.",
-        "Translate business processes into scopes, estimates and delivery plans; produce SOPs, technical guides and runbooks, and support stakeholder sessions and remote setup."
-      ]
-    },
-    {
       id: "emapta-discovery",
       technologies: "C#, .NET, ASP.NET Core, EF Core, REST APIs, Azure (Key Vault, Application Insights, Redis, Blob Storage, Service Bus, Functions, AI Search), SQL Server, Retool, Polly, SonarQube, Cursor, MCP.",
       company: "Discovery Holiday Parks / Emapta",
